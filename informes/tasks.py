@@ -3145,7 +3145,7 @@ def matriz_chequeo_compilada(email):
 
 
 
-    for id_diplomado in [1]:
+    for id_diplomado in [2,3]:
 
         if id_diplomado == 1:
             ws = ws_innovatic
