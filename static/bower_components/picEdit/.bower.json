@@ -1,0 +1,14 @@
+{
+  "name": "picEdit",
+  "homepage": "https://github.com/andyvr/picEdit",
+  "_release": "8169403228",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "81694032280d03ef940495f51cf81ba76c40d914"
+  },
+  "_source": "https://github.com/andyvr/picEdit.git",
+  "_target": "*",
+  "_originalSource": "picEdit",
+  "_direct": true
+}

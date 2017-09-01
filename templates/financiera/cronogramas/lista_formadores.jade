@@ -1,0 +1,123 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") CRONOGRAMAS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta tabla encuentras el listado de los formadores asignados a tu perfil como lider de formación.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista de semanas
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Semana {{numero_semana}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        h4(style="color:#004c99;font-weight:700") {{fechas}}
+        div(class="header-buttons")
+            | {% if nuevo_permiso %}
+            div(class="block-right")
+                a(href="nuevo",class="link_button")
+                    paper-button(class="submit") Nuevo
+            | {% endif %}
+            | {% if informes %}
+            div
+                select(class="selectpicker",id="select_accion")
+                    option(value="") ---------
+                    option(value="5") Generar reporte cronograma
+                button(class="btn",id="accion") Generar reporte
+            | {% endif %}
+        input(class="hidden",id="semana_id",value="{{semana_id}}")
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Formador
+                    th Lider
+                    th Cedula
+                    th Departamento(s)
+                    th Ruta
+                    th Cantidad de registros
+            tbody
+                tr
+                    td Formador
+                    td Lider
+                    td Cedula
+                    td Departamento(s)
+                    td Ruta
+                    td Cantidad de registros
+block body_script_content
+    script.
+        $("#accion").on("click", function () {
+            var action = $("#select_accion").val();
+            var semana_id = $("#semana_id").val();
+            if (action != '') {
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action + '&semana_id=' + semana_id,
+                    success: function (data) {
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/financiera/cronogramas/{{id_semana}}",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "asc"]],
+                "columns": [
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[7]) {
+                                return '<a href="editar/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 4,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 5,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 6,
+                        "orderable": false,
+                    }
+                ]
+            });
+        });

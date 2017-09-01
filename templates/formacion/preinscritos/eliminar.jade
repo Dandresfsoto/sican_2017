@@ -1,0 +1,85 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") DOCENTES PREINSCRITOS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar un docente preinscrito a la formación de los diplomados.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="formacion/preinscritos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de docentes preinscritos
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar: {{object.tipo}}
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-Deletesoporte")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar el siguiente docente preinscrito:
+                    p(class="inline bold-p") Nombre:
+                        p(class="inline").
+                            {{object.primer_nombre}} {{object.segundo_nombre}} {{object.primer_apellido}} {{object.segundo_apellido}}
+                    p(class="inline bold-p") Cedula:
+                        p(class="inline") {{object.cedula}}
+
+                    p(class="inline bold-p") Cargo:
+                        p(class="inline") {{object.cargo}}
+
+                    p(class="inline bold-p") Correo:
+                        p(class="inline") {{object.correo}}
+
+                    p(class="inline bold-p") Telefono fijo:
+                        p(class="inline") {{object.telefono_fijo}}
+
+                    p(class="inline bold-p") Celular:
+                        p(class="inline") {{object.telefono_celular}}
+
+                    p(class="inline bold-p") Departamento:
+                        p(class="inline") {{object.departamento.nombre}}
+
+                    p(class="inline bold-p") Municipio:
+                        p(class="inline") {{object.municipio.nombre}}
+
+                    p(class="inline bold-p") Radicado:
+                        p(class="inline") {{object.radicado.numero}}
+
+                    |{% if object.verificado %}
+                    p(class="inline bold-p") Base Mineducación:
+                        p(class="inline") Si
+                    |{% else %}
+                    p(class="inline bold-p") Base Mineducación:
+                        p(class="inline") No
+                    |{% endif %}
+
+                    p(class="inline bold-p") Fecha de registro:
+                        p(class="inline") {{object.fecha}}
+
+
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-Deletesoporte').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });

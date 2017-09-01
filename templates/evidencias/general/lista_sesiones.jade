@@ -1,0 +1,68 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") EVIDENCIAS GENERALES
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta tabla encuentras el listado de diplomados de la estrategia ETIC@ del programa Computadores para Educar.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/evidencias/general/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista de diplomados
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Formadores {{nombre_diplomado}}
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") {{nombre_formador}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) {{nombre_nivel}}
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        | {% if nuevo_permiso %}
+        a(href="nuevo",class="link_button")
+            paper-button(class="submit") Nuevo
+        | {% endif %}
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Nombre
+            tbody
+                tr
+                    td Nombre
+block body_script_content
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/evidencias/sesiones/{{id_nivel}}/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            return '<a href="sesion/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                        },
+                        "orderable": true,
+                    },
+                ]
+            });
+        });

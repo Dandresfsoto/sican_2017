@@ -1,0 +1,137 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") REVISIÓN DOCUMENTAL
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos los formadores de la Asociación Nacional para
+        el Desarrollo Social - ANDES, haciendo click en la cabecera de la columna puedes ordenar
+        alfabeticamente los campos de "Formador" y "Cargo".
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Listado de formadores
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="header-buttons")
+
+            | {% if masivo_permiso %}
+            div
+                select(class="selectpicker",id="select_accion")
+                    option(value="") ---------
+                    option(value="15") Reporte acumulado formadores tipo 1
+                    option(value="16") Reporte acumulado formadores tipo 2
+                    option(value="17") Reporte acumulado formadores tipo 3
+                    option(value="18") Reporte acumulado formadores tipo 4
+                button(class="btn",id="accion") Generar reporte
+            | {% endif %}
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Formador
+                    th Cargo
+                    th Región
+                    th Capacitación
+                    th Ruta
+                    th Valor
+            tbody
+                tr
+                    td Formador
+                    td Cargo
+                    td Región
+                    td Capacitación
+                    td Ruta
+                    td Valor
+
+block body_script_content
+    script.
+        $("#accion").on("click", function () {
+            var action = $("#select_accion").val();
+            if (action != '') {
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action,
+                    success: function (data) {
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    script.
+        $("#check_all").on("change", function () {
+            var checks = $(".check_seleccion");
+            for (i = 0; i < checks.length; i++) {
+                checks[i].checked = this.checked;
+            }
+        });
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/formadores/revision/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[7]) {
+                                return '<a href="' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 4,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 5,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 6,
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            return accounting.formatMoney(data);
+                        },
+                        "className": 'text-center',
+                    }
+                ]
+            });
+        });

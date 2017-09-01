@@ -1,0 +1,201 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") REQUERIMIENTOS
+
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos los requerimientos de la interventoria y la información relevante de cada
+        uno.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Listado de requerimientos
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="header-buttons")
+            | {% if nuevo_permiso %}
+            a(href="nuevo",class="link_button")
+               paper-button(class="submit") Nuevo
+            | {% endif %}
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th
+                    th Solicitud
+                    th Fecha
+                    th Dias en mora
+                    th Región
+                    th Estado
+                    th Eliminar
+            tbody
+                tr
+                    td
+                    td Solicitud
+                    td Fecha
+                    td Dias en mora
+                    td Región
+                    td Estado
+                    td Eliminar
+
+block body_script_content
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/requerimientos/delegacion/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "asc"]],
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[16]) {
+                                return '<a href="editar/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 4,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 5,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[17]) {
+                                return '<a href="eliminar/' + row[0] + '" style="color:#004c99;"><img src="/static/img/delete.png" height="24"></a>';
+                            }
+                            else {
+                                return '<img src="/static/img/delete_gray.png" height="24">';
+                            }
+                        },
+                        "defaultContent": ''
+                    },
+                ]
+            });
+            // Add event listener for opening and closing details
+            $('#table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function format(d) {
+            // `d` is the original data object for the row
+
+            var archivo_solicitud = '';
+            var archivo_respuesta = '';
+
+            if(d[8] != ''){
+                archivo_solicitud = '<td><p class="bold-p">Archivo de solicitud:</p><a href="' + d[8] + '"><img src="/static/img/file.png" height="24"></a></td>'
+            }
+            else{
+                archivo_solicitud = '<td><p class="bold-p">Archivo de solicitud:</p>No disponible</td>'
+            }
+
+
+            if(d[15] != ''){
+                archivo_respuesta = '<td><p class="bold-p">Archivo de respuesta:</p><a href="' + d[15] + '"><img src="/static/img/file.png" height="24"></a></td>'
+            }
+            else{
+                archivo_respuesta = '<td><p class="bold-p">Archivo de respuesta:</p>No disponible</td>'
+            }
+
+
+            return '<table class="table table-striped">' +
+                    '<tr>' +
+                        '<td colspan="8"><p class="bold-p text-center">REQUERIMIENTO</p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                    '<td><p class="bold-p">Entidad remitente:</p>' + d[6] + '</td>' +
+                    '<td><p class="bold-p">Funcionario:</p>' + d[7] + '</td>' +
+                    archivo_solicitud +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                        '<td colspan="8"><p class="bold-p">Descripción</p>'+ d[9] +'</td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                        '<td colspan="8"><p class="bold-p text-center">DELEGACIÓN</p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                    '<td><p class="bold-p">Tiempo de respuesta:</p>' + d[10] + ' Dias</td>' +
+                    '<td><p class="bold-p">Encargados:</p>' + d[11] + '</td>' +
+                    '<td><p class="bold-p">Medio de entrega:</p>' + d[12] + '</td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                        '<td colspan="8"><p class="bold-p text-center">RESPUESTA</p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                    '<td><p class="bold-p">Fecha respuesta:</p>' + d[13] + '</td>' +
+                    archivo_respuesta +
+                    '<td><p class="bold-p"></p></td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+
+                    '<tr>' +
+                        '<td colspan="8"><p class="bold-p">Observaciones</p>'+ d[14] +'</td>' +
+                    '</tr>' +
+
+                    '</table>';
+        }

@@ -1,0 +1,113 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") ENCUESTA PERCEPCIÓN INICIAL
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos las respuestas de la encuesta de percepción inicial.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Listado de respuestas
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="header-buttons")
+            | {% if informes %}
+            div
+                select(class="selectpicker",id="select_accion")
+                    option(value="") ---------
+                    option(value="9") Base de datos de respuestas
+                button(class="btn",id="accion") Generar reporte
+            | {% endif %}
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Nombre
+                    th Cedula
+                    th Departamento
+                    th Municipio
+                    th Radicado
+
+
+
+            tbody
+                tr
+                    td Nombre
+                    td Cedula
+                    td Departamento
+                    td Municipio
+                    td Radicado
+
+block body_script_content
+    script.
+        $("#accion").on("click", function () {
+            var action = $("#select_accion").val();
+            if (action != '') {
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action,
+                    success: function (data) {
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/encuestas/percepcioninicialresultados/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[6]) {
+                                return '<a href="editar/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": false,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 4,
+                        "orderable": false,
+                    },
+                        {
+                        "data": 5,
+                        "orderable": false,
+                    }
+                ]
+            });
+        });

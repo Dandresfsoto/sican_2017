@@ -1,0 +1,197 @@
+extends ../base
+block title
+    | FORMADORES
+
+block breadcrumb_block
+    li
+        a(href="../../") Inicio
+    li
+        a(href="../") Transportes
+    li(class="active") Nueva solicitud
+
+
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 Solicitud de transportes
+                p.
+                    Diligencia el siguiente formulario para solicitar la aprobacion de desplazamiento, utiliza las filas
+                    que consideres necesarias.
+                p.
+                    Nota: El sistema solo considera valido un desplazamiento si tiene completos los 5 campos solicitados
+                    en cada fila.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+                div(class="row",style="margin-bottom:30px;")
+                    div(class="col-md-12 text-center")
+                        form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                            | {% crispy form %}
+
+block body_script
+    script.
+        $(document).ready(function() {
+            $('#id_fecha_1').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+            $("#id_municipio_origen_1").remoteChained({
+                parents: "#id_departamento_origen_1",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_1").remoteChained({
+                parents: "#id_departamento_destino_1",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_valor_1").maskMoney();
+            $("#id_valor_2").maskMoney();
+            $("#id_valor_3").maskMoney();
+            $("#id_valor_4").maskMoney();
+            $("#id_valor_5").maskMoney();
+            $("#id_valor_6").maskMoney();
+            $("#id_valor_7").maskMoney();
+            $("#id_valor_8").maskMoney();
+            $("#id_valor_9").maskMoney();
+            $("#id_valor_10").maskMoney();
+
+           $('#id_fecha_2').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_2").remoteChained({
+                parents: "#id_departamento_origen_2",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_2").remoteChained({
+                parents: "#id_departamento_destino_2",
+                url: "/rest/chained/municipios/"
+            });
+
+           $('#id_fecha_3').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_3").remoteChained({
+                parents: "#id_departamento_origen_3",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_3").remoteChained({
+                parents: "#id_departamento_destino_3",
+                url: "/rest/chained/municipios/"
+            });
+
+           $('#id_fecha_4').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_4").remoteChained({
+                parents: "#id_departamento_origen_4",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_4").remoteChained({
+                parents: "#id_departamento_destino_4",
+                url: "/rest/chained/municipios/"
+            });
+
+            $('#id_fecha_5').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_5").remoteChained({
+                parents: "#id_departamento_origen_5",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_5").remoteChained({
+                parents: "#id_departamento_destino_5",
+                url: "/rest/chained/municipios/"
+            });
+
+            $('#id_fecha_6').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_6").remoteChained({
+                parents: "#id_departamento_origen_6",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_6").remoteChained({
+                parents: "#id_departamento_destino_6",
+                url: "/rest/chained/municipios/"
+            });
+
+            $('#id_fecha_7').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_7").remoteChained({
+                parents: "#id_departamento_origen_7",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_7").remoteChained({
+                parents: "#id_departamento_destino_7",
+                url: "/rest/chained/municipios/"
+            });
+
+            $('#id_fecha_8').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_8").remoteChained({
+                parents: "#id_departamento_origen_8",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_8").remoteChained({
+                parents: "#id_departamento_destino_8",
+                url: "/rest/chained/municipios/"
+            });
+
+
+            $('#id_fecha_9').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_9").remoteChained({
+                parents: "#id_departamento_origen_9",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_9").remoteChained({
+                parents: "#id_departamento_destino_9",
+                url: "/rest/chained/municipios/"
+            });
+
+            $('#id_fecha_10').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+
+           $("#id_municipio_origen_10").remoteChained({
+                parents: "#id_departamento_origen_10",
+                url: "/rest/chained/municipios/"
+            });
+
+           $("#id_municipio_destino_10").remoteChained({
+                parents: "#id_departamento_destino_10",
+                url: "/rest/chained/municipios/"
+            });
+
+        });

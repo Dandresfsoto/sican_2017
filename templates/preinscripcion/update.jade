@@ -1,0 +1,26 @@
+extends base
+block title
+    | ACTUALIZAR
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2 Participa en la oferta TIC de formación de Computadores para Educar
+                h3 Ya te encuentras preinscrito.
+                div(class="text-center")
+                    form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                        | {% csrf_token %}
+                        | {% crispy form %}
+block body_script
+    script.
+        $(document).ready(function () {
+            $("#id_municipio").remoteChained({
+                parents: "#id_departamento",
+                url: "/rest/chained/municipios/"
+            });
+            $("#id_radicado").remoteChained({
+                parents: "#id_municipio",
+                url: "/rest/chained/radicados/"
+            });
+        });

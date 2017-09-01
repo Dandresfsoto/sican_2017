@@ -1,0 +1,21 @@
+extends ../base
+block title
+    | FORMADORES
+block breadcrumb_block
+    li
+        a(href="../") Inicio
+    li(class="active") Tipologia
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 CONSOLIDADO DE PAGO
+                p.
+                    Selecciona la tipologia correspondiente.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+        div(class="row")
+            div(class="col-md-12 text-center")
+                | {% render_table table %}

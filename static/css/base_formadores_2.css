@@ -1,0 +1,107 @@
+body {
+  background: #004c99;
+  color: #fff;
+}
+.margin-top-container {
+  margin-top: 100px;
+}
+.margin-logo {
+  margin-bottom: 20px;
+}
+.btn-cpe,
+.btn-cpe:active,
+.btn-cpe:visited {
+  background-color: #df4113;
+  color: #fff;
+}
+.btn-cpe:hover {
+  background-color: #da4f1f;
+  color: #fff;
+}
+.has-error .checkbox,
+.has-error .checkbox-inline,
+.has-error .control-label,
+.has-error .help-block,
+.has-error .radio,
+.has-error .radio-inline,
+.has-error.checkbox label,
+.has-error.checkbox-inline label,
+.has-error.radio label,
+.has-error.radio-inline label {
+  color: #f29b00;
+}
+.margin-top-container-two {
+  margin: 30px;
+}
+.inline {
+  display: inline;
+}
+a.list-group-item:focus,
+a.list-group-item:hover,
+button.list-group-item:focus,
+button.list-group-item:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #df4113;
+}
+.margin-bottom-row {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+a {
+  color: #76b82a;
+  padding: 10 15px;
+}
+a:hover {
+  color: #7fbf2f;
+  padding: 10 15px;
+}
+thead {
+  background: #df4113;
+}
+tbody {
+  color: #000;
+}
+thead > tr >th > a {
+  color: #fff;
+  vertical-align: middle;
+}
+.table-bordered>tbody>tr>td {
+  vertical-align: middle;
+  border: 1px solid #ddd;
+}
+.odd {
+  background-color: #f9f9f9;
+}
+.table>caption+thead>tr:first-child>td,
+.table>caption+thead>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>td,
+.table>thead:first-child>tr:first-child>th {
+  border-top: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+.modal-content {
+  color: #333;
+}
+.bold {
+  font-weight: 700;
+}
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  list-style: none;
+  background-color: #004c99;
+}
+.breadcrumb>.active {
+  color: #ffefd5;
+}
+.breadcrumb > li > a {
+  color: #fff;
+  font-weight: 700;
+}
+fieldset {
+  margin-bottom: 40px;
+}

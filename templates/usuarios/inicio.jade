@@ -1,0 +1,71 @@
+extends ../inicio
+
+block scroll_header_panel_title
+    span(class="title") PERFIL DE USUARIO
+
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        Con este formulario puedes actualizar tu información personal contenida en el sistema de información SICAN,
+        tambien puedes cambiar la imagen que aparece en el panel de navegación de la izquierda.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-input/paper-input.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+    link(rel="import",href="{% static 'bower_components/gold-email-input/gold-email-input.html'%}")
+
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+
+    paper-icon-item(class="breadcrum_active",disabled) Perfil de usuario
+        iron-icon(icon="check",item-icon)
+
+
+block scroll_header_panel_content
+    div(class="container-fluid container-panel")
+        div(class="row")
+            div(class="col-sm-12")
+                form(method="POST",enctype="multipart/form-data",id="form")
+                    |{% csrf_token %}
+                    |{% crispy form %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="submit",id="submit_form") Guardar
+
+block body_script_content
+    script.
+        $("#id_photo").fileinput({
+            language: "es",
+            showRemove: false,
+            showUpload: false,
+            initialPreview: ["<img src='{{avatar}}' class='file-preview-image' height='220'>" ],
+        });
+
+        $('#id_fecha_nacimiento').datetimepicker({
+            locale: 'es',
+            viewMode: 'years',
+            format: 'DD/MM/YYYY'
+        });
+
+        $("#id_municipio_natal").remoteChained({
+            parents: "#id_departamento_natal",
+            url: "/rest/chained/municipios/"
+        });
+
+        $("#id_municipio_residencia").remoteChained({
+            parents: "#id_departamento_residencia",
+            url: "/rest/chained/municipios/"
+        });
+
+        $("#id_municipio_residencia_temporal").remoteChained({
+            parents: "#id_departamento_residencia_temporal",
+            url: "/rest/chained/municipios/"
+        });
+
+        $("#id_valor_transporte").maskMoney();
+
+        submit_form.addEventListener('click',function(e){
+            form.submit();
+        });

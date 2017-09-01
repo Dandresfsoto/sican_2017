@@ -1,0 +1,79 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") LEGALIZACIÓN DE CONTRATOS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        Aqui puedes visualizar todos los cargos existentes y que deben legalizar contrato con la Asociación Nacional para
+        el Desarrollo Social - Andes, selecciona el perfil adecuado y sigue las instrucciones.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Legalización de contratos
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="controls-mixitup btn-group")
+            button(type="button",class="btn btn-sican",data-filter="all") Todo
+            button(type="button",class="btn btn-sican",data-filter=".administrativos") Administrativos
+            button(type="button",class="btn btn-sican",data-filter=".acceso") Acceso
+            button(type="button",class="btn btn-sican",data-filter=".formadores") Formación
+
+        div(class="container-mixitup")
+
+            div(class="mix administrativos",data-order="1")
+                div(class="title-mix")
+                    a(href="administrativos/")
+                        i(class="fa fa-address-book fa-2x",aria-hidden="true")
+                        p Administrativos
+                div(class="content-mix")
+                    p.
+                        Personal administrativo y de planta de la empresa.
+
+
+            div(class="mix formadores",data-order="3")
+                div(class="title-mix")
+                    a(href="formadores/")
+                        i(class="fa fa-child fa-2x",aria-hidden="true")
+                        p Formadores
+                div(class="content-mix")
+                    p.
+                        Formadores de todas las tipologias.
+
+
+            div(class="mix acceso",data-order="2")
+                div(class="title-mix")
+                    a(href="lideres/")
+                        i(class="fa fa-television fa-2x",aria-hidden="true")
+                        p Lideres
+                div(class="content-mix")
+                    p.
+                        Lideres y negociadores regionales.
+
+
+
+            div(class="mix acceso",data-order="4")
+                div(class="title-mix")
+                    a(href="negociadores/")
+                        i(class="fa fa-handshake-o fa-2x",aria-hidden="true")
+                        p Negociadores
+                div(class="content-mix")
+                    p.
+                        Estructuración de los puestos de trabajo.
+
+
+            div(class="gap")
+            div(class="gap")
+            div(class="gap")
+block body_script
+    script.
+        var mixer = mixitup('.container-mixitup');

@@ -1,0 +1,65 @@
+extends ../base
+block title
+    | ENCUESTAS
+
+block head_content
+    meta(property="og:type",content="article")
+    meta(property="og:title",content="Encuesta de percepción de valoración final de la formación")
+    meta(property="og:description",content="El desarrollo del presente instrumento dentro del proceso de cualificación de docentes y docentes en el marco de la implementación de la Estrategia ETIC@ 2016.")
+    meta(property="og:url",content="http://sican.asoandes.org/encuestas/percepcionfinal/")
+    meta(property="og:image",content="http://sican.asoandes.org/static/img/encuesta_percepcionfinal.jpg")
+
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-8 col-md-offset-2 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Encuesta de percepción de valoración final de la formación
+                div(class="text-center")
+                    form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                        | {% csrf_token %}
+                        | {% crispy form %}
+block body_script
+    script.
+        $('#id_tiempo_formacion').slider({
+            formatter: function (value) {
+                return value + ' mes(es)';
+            },
+            max: 6,
+            value: 3
+        });
+        $('#id_pregunta_1').slider({
+            formatter: function (value) {
+                return value + ' %';
+            },
+            max: 100,
+            value: 50
+        });
+        $('#id_pregunta_2').slider({
+            formatter: function (value) {
+                return value + ' horas';
+            },
+            max: 60,
+            value: 60
+        });
+        $('#id_pregunta_3').slider({
+            formatter: function (value) {
+                return value + ' horas';
+            },
+            max: 60,
+            value: 60
+        });
+        $('#id_pregunta_4').slider({
+            formatter: function (value) {
+                return value + ' horas';
+            },
+            max: 60,
+            value: 30
+        });
+        $('#id_pregunta_5').slider({
+            formatter: function (value) {
+                return value + ' %';
+            },
+            max: 100,
+            value: 50
+        });

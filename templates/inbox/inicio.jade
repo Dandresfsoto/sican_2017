@@ -1,0 +1,101 @@
+extends ../inicio
+block scroll_header_panel_title
+    span(class="title") CHAT
+
+block help_content
+    p(class="title-help") Descripción:
+
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-tabs/paper-tabs.html'%}")
+    link(rel="import",href="{% static 'bower_components/paper-tabs/paper-tab.html'%}")
+    link(rel="import",href="{% static 'bower_components/iron-icons/social-icons.html'%}")
+    link(rel="import",href="{% static 'bower_components/contact-list-sican/contact-list-sican.html'%}")
+    link(rel="import",href="{% static 'bower_components/chat-container-sican/chat-container-sican.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        |.tabs{
+        |   --paper-tabs-selection-bar-color:#E64A19;
+        |   --paper-tabs:{
+        |       background:#ffc107;
+        |   }
+        |}
+
+        |.avatar_chat{
+        |   margin-top:4px;
+        |}
+
+        |.contact{
+        |   --paper-item-icon:{
+        |       padding-top:4px;
+        |   }
+        |   --paper-icon-item:{
+        |       border-bottom:solid 1px #D6D6D6;
+        |   }
+        |}
+
+    style(is="custom-style")
+        |.conctat_toolbar{
+        |   --paper-toolbar-background:#F05623;
+        |   --paper-toolbar-title:{
+        |       font-size: 18px;
+        |       font-weight: bold;
+        |       text-align: left;
+        |   }
+        |}
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+
+    paper-icon-item(class="breadcrum_active",disabled) Chat
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_buttons
+    paper-icon-button(id="contact_button",icon="social:person")
+
+
+block scroll_header_panel_content
+    paper-drawer-panel(id="drawerPanelChat",force-narrow="true",drawer-width="320px")
+        paper-header-panel(mode="scroll",id="cuenta",drawer,fixed)
+            paper-toolbar(class="conctat_toolbar")
+                paper-icon-button(id="arrow_button",icon="icons:arrow-back")
+                span(class="title title-contact") Contactos
+            contact-list-sican(url="/rest/usuarios/chat_list/")
+        paper-scroll-header-panel(id="scrollheader",main)
+            chat-container-sican(url="/rest/usuarios/chat_list/",id="chat_container",
+                                 src="{% static 'img/usuario.png'%}",width="500",selected="")
+
+
+
+block body_script_content
+    script.
+
+        $('#contact_button').on("click",function(event){
+            drawerPanelChat.togglePanel();
+        });
+
+        $('#arrow_button').on("click",function(event){
+            drawerPanelChat.closeDrawer();
+        });
+
+        $('#send_chat').on("click",function(event){
+            if(message_to_send.value != "") {
+                send_message(contact_selected.value,message_to_send.value);
+                message_to_send.value = "";
+            }
+        });
+
+        $('#message_to_send').on("keydown",function(e){
+            if(e.key == "Enter"){
+                //$('#chat-list').prepend("<div class='me style-scope chat-container-sican'><div class='bubble style-scope chat-container-sican'><p class='me_p style-scope chat-container-sican'>"+message_to_send.value+"</p></div></div>");
+                send_message(contact_selected.value,message_to_send.value);
+                message_to_send.value = "";
+            }
+        });
+
+        setInterval(function() {
+            socket.send(JSON.stringify({conected: ""}));
+        },10000);

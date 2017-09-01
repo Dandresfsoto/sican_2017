@@ -1,0 +1,186 @@
+extends ../../../inicio
+block scroll_header_panel_title
+    span(class="title") SOLICITUDES DE TRANSPORTE
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta tabla encuentras el listado de las solicitudes de transporte realizadas por los formadores.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/formacion/transportes/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista de solicitudes
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Solicitudes de: {{formador}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th
+                    th Formador
+                    th Fecha
+                    th Valor solicitado
+                    th Valor aprobado lider
+                    th Valor aprobado financiera
+                    th Estado
+                    th Soporte
+            tbody
+                tr
+                    td
+                    td Formador
+                    td Fecha
+                    td Valor solicitado
+                    td Valor aprobado lider
+                    td Valor aprobado financiera
+                    td Estado
+                    td Soporte
+block body_script_content
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/formacion/transportes/{{formador_id}}/?estado=aprobado_lider",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "desc"]],
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": 1,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            var date = new Date(data);
+                            return date.toLocaleString();
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            return accounting.formatMoney(data);
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 4,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            return accounting.formatMoney(data);
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 5,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            return accounting.formatMoney(data);
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 7,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            if (data == "aprobado_lider") {
+                                return 'Aprobada lider';
+                            }
+                            if (data == "aprobado") {
+                                return 'Aprobada financiera';
+                            }
+                            if (data == "revision") {
+                                return 'En revisión';
+                            }
+                            if (data == "rechazado") {
+                                return 'Rechazado';
+                            }
+                            if (data == "consignado") {
+                                return 'Consignado';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 8,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            if (data != '') {
+                                return '<a target="_blank" href="' + data + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
+                            }
+                            else {
+                                return '';
+                            }
+                        },
+                        "orderable": true,
+                    }
+                ]
+            });
+            // Add event listener for opening and closing details
+            $('#table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function format(d) {
+            // `d` is the original data object for the row
+            var desplazamientos = '';
+            for (i = 0; i < d[6].length; i++) {
+                var valor = accounting.formatMoney(d[6][i][5]);
+                desplazamientos += '<tr><td colspan="6"><p class="bold-p">Motivo:</p>' + d[6][i][6] + '</td></tr>' +
+                        '<tr>' +
+                        '<td><p class="bold-p">Fecha:</p>' + d[6][i][0] + '</td>' +
+                        '<td><p class="bold-p">Origen:</p>' + d[6][i][1] + ', ' + d[6][i][2] + '</td>' +
+                        '<td><p class="bold-p">Destino:</p>' + d[6][i][3] + ', ' + d[6][i][4] + '</td>' +
+                        '<td><p class="bold-p">Valor:</p>' + valor + '</td>' +
+                        '</tr>'
+            }
+            return '<table class="table table-striped">' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Nombre:</p>' + d[9] + '</td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td colspan="6"><p class="text-center bold-p"">Desplazamientos</p></td>' +
+                    '</tr>' + desplazamientos +
+                    '</table>';
+        }

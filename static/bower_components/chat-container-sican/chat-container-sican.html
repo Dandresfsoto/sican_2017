@@ -1,0 +1,198 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+<link rel="import" href="../paper-item/paper-item-body.html">
+<link rel="import" href="../image-mask/image-mask.html">
+<link rel="import" href="../iron-icons/av-icons.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+
+<dom-module id="chat-container-sican">
+
+  <style type="text/css">
+    :host {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+
+    #content_flex{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-list{
+        overflow-y: scroll;
+        padding-bottom: 16px;
+        height: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .send-message{
+        padding: 0 30px 60px 30px;
+        display: flex;
+    }
+
+    paper-input{
+        flex-grow: 150;
+        margin: 0 30px;
+    }
+
+    paper-fab{
+        flex-grow: 1;
+        --paper-fab-background:red;
+    }
+
+    .bubble{
+        margin: 10px 10%;
+        max-width: 40%;
+        min-width: 30%;
+        display: inline-block;
+        color: white;
+    }
+
+
+    .me{
+        text-align: right;
+    }
+
+    .you{
+        text-align: left;
+    }
+
+    .me_p{
+        background: #1976D2;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    .you_p{
+        background: #FF5722;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    #toolbar_chat{
+        height: 80px;
+        background: #eee;
+    }
+
+    .contact{
+        --paper-icon-item:{
+             padding: 6px;
+            padding-left: 40px;
+        }
+
+        --paper-item-icon:{
+            margin-top: 4px;
+            padding: 4px;
+         }
+
+        --paper-item-disabled:{
+            background: #169fdb;
+            color: white;
+         }
+
+    }
+
+    .offline{
+        color: grey;
+    }
+
+    .online{
+        color: lime;
+    }
+
+    .white_color_body{
+        --paper-item-body-secondary-color:white;
+    }
+
+  </style>
+
+  <template>
+    <section layout vertical fit id="content_flex" hidden>
+
+        <iron-ajax auto url="{{ url }}{{ selected }}" handle-as="json" last-response="{{ usuarios }}"></iron-ajax>
+        <template is="dom-repeat" items="[[usuarios]]">
+            <paper-icon-item class="contact" disabled>
+                <image-mask shape="circle" size="48" src="[[item.get_photo]]" item-icon></image-mask>
+                <paper-item-body class="white_color_body" two-line>
+                    <div>[[item.fullname]]</div>
+                    <div secondary>[[item.email]]</div>
+                </paper-item-body>
+                <iron-icon class="offline" icon="av:fiber-manual-record" id="conected_container_[[item.id]]"></iron-icon>
+            </paper-icon-item>
+        </template>
+
+        <div class="chat-list" id="chat-list">
+
+        </div>
+
+        <div class="send-message" layout horizontal>
+            <paper-input flex label="Escriba un mensaje..." id="message_to_send"></paper-input>
+            <paper-fab icon="send" id="send_chat"></paper-fab>
+        </div>
+    </section>
+    <div class="container-fluid chat-welcome" id="chat_welcome">
+        <img class="img-responsive center-block chat-welcome-img" src="{{ src }}" width="{{ width }}">
+        <h1 class="text-center chat-welcome-h1">Selecciona un contacto</h1>
+        <p class="text-center">Puedes enviar mensajes a los usuarios aun cuando no esten conectados.</p>
+    </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'chat-container-sican',
+
+    properties: {
+
+      url: {
+        type: String,
+        value: ""
+      },
+
+      src: {
+        type: String,
+        value: ""
+      },
+
+      width: {
+        type: String,
+        value: ""
+      },
+
+      selected: {
+        type: Number,
+        value: "",
+        observer: '_selectedChanged'
+      },
+
+    },
+
+    _selectedChanged: function(newVal, oldVal){
+        if(newVal != 0) {
+            this.$.content_flex.removeAttribute("hidden");
+            this.$.chat_welcome.setAttribute("hidden","hidden");
+        }
+        else{
+            this.$.chat_welcome.removeAttribute("hidden");
+            this.$.content_flex.setAttribute("hidden","hidden");
+        }
+    }
+
+  });
+
+</script>

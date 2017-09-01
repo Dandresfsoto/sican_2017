@@ -1,0 +1,173 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load django_tables2 %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>FORMADORES</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="FORMADORES REGIÓN 1 y REGIÓN 2"/>
+    <meta property="og:description" content="En este enlace puedes consultar información, cargar y descargar soportes."/>
+    <meta property="og:url" content="http://sican.asoandes.org/formadores/"/>
+    <meta property="og:image" content="http://sican.asoandes.org/static/img/formadores_facebook.jpg"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700"/>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/datatables/media/css/dataTables.bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-fileinput/css/fileinput.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/base_formadores_2.css'%}"/>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><a href="../">Inicio</a></li>
+      <li class="active">Transportes</li>
+    </ol>
+    <div class="container-fluid margin-top-container-two">
+      <div class="row margin-logo">
+        <div class="col-sm-4 col-sm-offset-4"><img src="{% static 'img/SICAN.svg'%}" class="img-responsive"/></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1>Solicitud de transportes</h1>
+          <p>
+            A continuación encuentras una tabla con las solicitudes de transporte que haz realizado, si necesitas
+            realizar una nueva haz clic en el boton "Nueva solicitud".
+          </p>
+          <h3 style="margin-bottom:30px;">{{formador}} - {{tipo}}</h3>
+          <div style="margin-bottom:30px;" class="row"><a href="nueva">
+              <button class="btn btn-cpe">Nueva solicitud</button></a></div>
+          <div class="row">
+            <div class="col-md-12 text-center">{% render_table table %}</div>
+          </div>
+          <div style="margin-bottom:50px;" id="ver_manual" class="row">
+            <button class="btn btn-cpe">Ver manual</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal" tabindex="-1" role="dialog" class="modal fade">
+      <div role="document" class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+            <h3>Atención!</h3>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <p>
+                  Apreciado formador a partir de ahora este es el unico medio para solicitar recursos de desplazamiento, por favor lea
+                  cuidadosamente las siguientes indicaciones.
+                  
+                </p>
+                <p class="bold">1. Tabla de solicitudes.</p><img src="{% static 'img/manual/nueva_solicitud.png'%}" class="img-responsive"/>
+                <p>
+                  Aqui puedes ver las solicitudes que haz realizado y la información relevante de cada una de ellas, con
+                  el boton "Nueva solicitud" puedes crear una nueva.
+                  
+                </p>
+                <p class="bold">2. Formulario de solicitud.</p><img src="{% static 'img/manual/formulario_solicitud.png'%}" class="img-responsive"/>
+                <p>
+                  Cada solicitud de transporte puede tener entre 1 y 10 desplazamientos, los campos marcados en color rojo
+                  son obligatorios y se deben llenar de la siguiente manera.
+                </p>
+                <p>
+                  1. Nombre de la solicitud: Es un campo obligatorio que puede contener cualquier texto, te recomendamos que uses
+                  alguna frase con la que recuerdes el motivo de la solicitud.
+                </p>
+                <p>
+                  2. Primer desplazamiento: Los 6 campos son obligatorios y corresponden al primer desplazamiento
+                  que vas a realizar en la solicitud.
+                </p>
+                <p>
+                  3. Desplazamientos adicionales: Las 9 filas restantes corresponden a desplazamientos opcionales, para
+                  que se considere valido en el momento de enviar se debe diligenciar la información de los 6 campos.
+                </p>
+                <p>
+                  Nota: Los campos correspondientes a los valores agregan automaticante el formato de pesos ($).
+                  
+                </p>
+                <p class="bold">3. Esperando aprobación.</p><img src="{% static 'img/manual/esperando_aprobacion.png'%}" class="img-responsive"/>
+                <p>
+                  En este momento el eje administrativo de la entidad se encuentra procesando tu solicitud de transporte, el
+                  tiempo de respuesta es de 1 dia.
+                  
+                </p>
+                <p class="bold">4. Esperando firma de soporte.</p><img src="{% static 'img/manual/esperando_firma.png'%}" class="img-responsive"/>
+                <p>
+                  La direccion financiera emite un valor aprobado para cada desplazamiento, el valor total de la solicitud
+                  se puede observar en la columna "Valor aprobado", para continuar el procedimiento es necesario que
+                  descargues el archivo en excel, lo firmes y lo subas como un archivo legible en el campo "Soporte".
+                  
+                  
+                </p>
+                <p class="bold">5. Subir soporte firmado, SOLO PUEDES HACERLO UNA VEZ.</p><img src="{% static 'img/manual/subir_soporte.png'%}" class="img-responsive"/>
+                <p>
+                  Para continuar con la solicitud debes enviar el archivo firmado, esto solo lo pudes hacer una vez por cada
+                  solicitud, por favor verifica muy bien el archivo antes de enviarlo.
+                  
+                </p>
+                <p class="bold">6. Esperando consignación.</p><img src="{% static 'img/manual/esperando_consignacion.png'%}" class="img-responsive"/>
+                <p>
+                  Aqui puedes ver los dos archivos de cada solicitud (formato de excel y soporte firmado), en este momento
+                  debes esperar la confirmacion de la consignación.
+                  
+                </p>
+                <p class="bold">7. Consignado.</p><img src="{% static 'img/manual/consignado.png'%}" class="img-responsive"/>
+                <p>
+                  Con esta confirmación se da por terminada la solicitud de desplazamiento.
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="cerrar_totorial" class="btn btn-default">No quiero ver mas este tutorial</button>
+            <button type="button" data-dismiss="modal" class="btn btn-primary">Entendido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js'%}"></script>
+    <script src="{% static 'bower_components/moment/min/moment.min.js'%}"></script>
+    <script src="{% static 'bower_components/moment/locale/es.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'%}"></script>
+    <script src="{% static 'bower_components/datatables/media/js/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'bower_components/datatables/media/js/dataTables.bootstrap.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-select/dist/js/i18n/defaults-es_CL.min.js'%}"></script>
+    <script src="{% static 'bower_components/chained/jquery.chained.min.js'%}"></script>
+    <script src="{% static 'bower_components/chained/jquery.chained.remote.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/sortable.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/purify.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-fileinput/js/fileinput.min.js'%}"></script>
+    <script src="{% static 'bower_components/bootstrap-fileinput/js/locales/es.js'%}"></script>
+    <script src="{% static 'bower_components/jquery-maskmoney/src/jquery.maskMoney.js'%}"></script>
+    <script>
+      $(document).ready(function () {
+          if(localStorage.getItem("instrucciones_desplazamiento") != "True"){
+              $('#modal').modal('show');
+          }
+      
+          $("#cerrar_totorial").on('click',function(){
+              localStorage.setItem("instrucciones_desplazamiento", "True");
+              $('#modal').modal('hide');
+          });
+      
+          $("#ver_manual").on('click',function(){
+              $('#modal').modal('show');
+          });
+      });
+    </script>
+  </body>
+</html>

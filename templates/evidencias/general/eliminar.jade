@@ -1,0 +1,81 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") EVIDENCIAS GENERALES
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar un soporte.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/evidencias/general/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista de diplomados
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../../../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Formadores {{nombre_diplomado}}
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") {{nombre_formador}}
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") {{nombre_nivel}}
+            iron-icon(icon="check",item-icon)
+    a(href="../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class")  {{nombre_sesion}}
+            iron-icon(icon="check",item-icon)
+    a(href="../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class")  Entregable {{id_entregable}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-Deletecargo")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar el siguiente soporte:
+                    p(class="inline bold-p") Fecha de creación:
+                        p(class="inline") {{object.fecha}}
+                    p(class="inline bold-p") Fecha de modificación:
+                        p(class="inline") {{object.updated}}
+                    p(class="inline bold-p") Usuario:
+                        p(class="inline") {{object.usuario.get_full_name_string}}
+                    p(class="inline bold-p") Entregable:
+                        p(class="inline") {{object.entregable.id}}
+                    p(class="inline bold-p") Beneficiarios cargados:
+                        p(class="inline") {{object.get_beneficiarios_cantidad}}
+                    p(class="inline bold-p") Beneficiarios validados:
+                        p(class="inline") {{object.get_validados_cantidad}}
+                    p(class="inline bold-p") Formador:
+                        p(class="inline") {{object.formador.get_full_name}}
+                    p(class="inline bold-p") Archivo:
+                        | {% if object.get_archivo_url != ""%}
+                        a(href="{{object.get_archivo_url}}",target="_blank")
+                            img(src="{% static 'img/file.png'%}",height="32")
+                        | {% else %}
+                        p(class="inline") No hay ningun archivo cargado.
+                        | {% endif %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-Deletecargo').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });

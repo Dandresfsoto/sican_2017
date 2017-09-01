@@ -1,0 +1,15 @@
+{
+  "name": "mixitup2",
+  "homepage": "https://github.com/patrickkunka/mixitup",
+  "version": "3.1.6",
+  "_release": "3.1.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.6",
+    "commit": "a53f4241e4416c1b022638f2ebaa61d6d0f3d3c4"
+  },
+  "_source": "https://github.com/patrickkunka/mixitup.git",
+  "_target": "^3.1.6",
+  "_originalSource": "mixitup2",
+  "_direct": true
+}

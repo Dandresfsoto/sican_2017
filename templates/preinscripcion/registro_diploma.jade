@@ -1,0 +1,35 @@
+extends base
+block title
+    | REGISTRO
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Participa en la oferta TIC de formación de Computadores para Educar
+
+                p(style="color:white;").
+                    Apreciado docente, fuiste formado durante la vigencia 2015 en el
+                    diplomado DocenTIC.
+                p(style="color:white;") Nombre: {{nombre_docente}}
+                p(style="color:white;") Cedula: {{cedula_docente}}
+                a(href="http://cpe.utp.edu.co/",target="_blank")
+                    button(class="btn btn-cpe") Descarga tu certificado
+
+                h3(class="title-white") Este año tenemos una nueva oferta con TecnoTIC y DirecTIC.
+                div(class="text-center")
+                    form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                        | {% csrf_token %}
+                        | {% crispy form %}
+block body_script
+    script.
+        $(document).ready(function () {
+            $("#id_municipio").remoteChained({
+                parents: "#id_departamento",
+                url: "/rest/chained/municipios/"
+            });
+            $("#id_radicado").remoteChained({
+                parents: "#id_municipio",
+                url: "/rest/chained/radicados/"
+            });
+        });

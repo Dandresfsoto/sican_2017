@@ -1,0 +1,35 @@
+extends base
+block title
+    | LIDERES
+block breadcrumb_block
+    li
+        a(href="../") Inicio
+    li(class="active") Legalización
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 Legalización de contrato
+                p.
+                    Por favor carga todos los documentos solicitados en este formulario para la legalización de tu
+                    contrato, los campos marcados con (*) son obligatorios.
+                h3(style="margin-bottom:30px;") {{object.nombres}} {{object.apellidos}}
+                h4(style="margin-bottom:30px;") Cedula: {{object.cedula}}
+                div(class="row")
+                    div(class="col-md-8 col-md-offset-2 text-center")
+                        form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                            | {% crispy form %}
+block body_script
+    script.
+        $("#id_rut").fileinput({showUpload: false, showPreview: false});
+        $("#id_fotocopia_cedula").fileinput({showUpload: false, showPreview: false});
+        $("#id_antecedentes_judiciales").fileinput({showUpload: false, showPreview: false});
+        $("#id_antecedentes_procuraduria").fileinput({showUpload: false, showPreview: false});
+        $("#id_antecedentes_contraloria").fileinput({showUpload: false, showPreview: false});
+        $("#id_certificacion").fileinput({showUpload: false, showPreview: false});
+        $("#id_seguridad_social").fileinput({showUpload: false, showPreview: false});
+        $("#seguridad_social-clear_id").addClass("hidden");
+        $("label[for='seguridad_social-clear_id']").addClass("hidden");

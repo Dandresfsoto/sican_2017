@@ -1,0 +1,110 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") REQUERIMIENTOS CONTRATACIÓN
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos los requerimientos de contratación realizada por los lideres.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Listado de requerimientos contratación
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        |{% if nuevo_permiso %}
+        a(href="nuevo",class="link_button")
+            paper-button(class="submit") Nuevo
+        |{% endif %}
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th ID
+                    th Encargado
+                    th Codigo de ruta
+                    th Departamento
+                    th Municipios
+                    th Estado
+            tbody
+                tr
+                    td ID
+                    td Encargado
+                    td Codigo de ruta
+                    td Departamento
+                    td Municipios
+                    td Estado
+
+block body_script_content
+    script.
+        $("#accion").on("click", function () {
+            var action = $("#select_accion").val();
+            if (action != '') {
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action,
+                    success: function (data) {
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/formacion/requerimientoscontratacion/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 0,
+                        "render": function (data, type, row, meta) {
+                            if (row[6]) {
+                                return '<a href="' + data + '" style="color:#004c99;">REQ - ' + data + '</a>';
+                            }
+                            else {
+                                return 'REQ - ' + data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 1,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 4,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 5,
+                        "orderable": false,
+                    }
+                ]
+            });
+        });

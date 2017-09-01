@@ -1,0 +1,275 @@
+extends ../../../inicio
+block scroll_header_panel_title
+    span(class="title") EVIDENCIAS CÓDIGO DE SOPORTE VIGENCIA 2017
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos los soportes de la asociación ANDES.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Listado de evidencias vigencia 2017
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+
+        div(class="header-buttons")
+            | {% if informes %}
+            div
+                select(class="selectpicker",id="select_accion")
+                    option(value="") ---------
+                    |{% if user.is_superuser %}
+                    option(value="26") Progreso actividades virtuales
+                    option(value="27") Aprobación actividades virtuales
+                    |{% endif %}
+                    option(value="23") Progreso de carga listados de asistencia y actas de compromiso
+                    option(value="25") Aprobación listados de asistencia y actas de compromiso
+                    option(value="28") Consolidado RED
+                    option(value="29") Consolidado aprobacion RED
+                    option(value="30") Aprobacion presencial a criterio de la interventoria
+                    option(value="32") Consolidado de aprobación
+                    option(value="33") Secretaria bogota
+                    option(value="35") Consolidado actividades virtuales
+
+
+                button(class="btn",id="accion") Generar reporte
+            | {% endif %}
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th
+                    th Código
+                    th Diplomado
+                    th Nivel
+                    th Sesión
+                    th ID Entregable
+                    th Red
+                    th Cargados
+                    th Validados
+                    th Archivo
+            tbody
+                tr
+                    td
+                    td Código
+                    td Diplomado
+                    td Nivel
+                    td Sesión
+                    td ID Entregable
+                    td Red
+                    td Cargados
+                    td Validados
+                    td Archivo
+
+block body_script_content
+    script.
+        $("#accion").on("click",function(){
+            var action = $("#select_accion").val();
+            var id_diplomado = $("#id_diplomado").val();
+            if(action != ''){
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action + '&id_diplomado=' + id_diplomado,
+                    success: function(data){
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/vigencia_2017/evidencias/codigos/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "desc"]],
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": 0,
+                        "orderable": true,
+                        "render": function (data, type, row, meta) {
+                            return 'SIC-' + data;
+                        },
+                    },
+                    {
+                        "data": 5,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 6,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 7,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 8,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 1,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 2,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                        "className": 'text-center',
+                    },
+                    {
+                        "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[4] != '') {
+                                return '<a target="_blank" href="' + row[4] + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
+                            }
+                            else {
+                                return '';
+                            }
+                        },
+                    },
+                ]
+            });
+            // Add event listener for opening and closing details
+            $('#table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function format(d) {
+
+            var cargados = '';
+            var aprobados = '';
+            var rechazados = '';
+            for (i = 0; i < d[14].length; i++) {
+                cargados += '<tr>' +
+                        '<td colspan=2><p>' + d[14][i][0] + '</p></td>' +
+                        '<td><p>' + d[14][i][1] + '</p></td>' +
+                        '<td><p>' + d[14][i][2] + '</p></td>' +
+                        '</tr>'
+            }
+            for (i = 0; i < d[15].length; i++) {
+                aprobados += '<tr>' +
+                        '<td colspan=2><p>' + d[15][i][0] + '</p></td>' +
+                        '<td><p>' + d[15][i][1] + '</p></td>' +
+                        '<td><p>' + d[15][i][2] + '</p></td>' +
+                        '</tr>'
+            }
+            for (i = 0; i < d[16].length; i++) {
+                rechazados += '<tr>' +
+                        '<td><p>' + d[16][i][0] + '</p></td>' +
+                        '<td><p>' + d[16][i][1] + '</p></td>' +
+                        '<td><p>' + d[16][i][2] + '</p></td>' +
+                        '<td><p>' + d[16][i][3] + '</p></td>' +
+                        '</tr>'
+            }
+            if (cargados == '') {
+                cargados += '<tr>' +
+                        '<td colspan=8><p>No hay registros</p></td>' +
+                        '</tr>'
+            }
+            if (aprobados == '') {
+                aprobados += '<tr>' +
+                        '<td colspan=8><p>No hay registros</p></td>' +
+                        '</tr>'
+            }
+            if (rechazados == '') {
+                rechazados += '<tr>' +
+                        '<td colspan=8><p>No hay registros</p></td>' +
+                        '</tr>'
+            }
+
+            return '<table class="table table-striped">' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Fecha creación:</p>' + d[9] + '</td>' +
+                    '<td><p class="bold-p">Fecha modificación:</p>' + d[10] + '</td>' +
+                    '<td><p class="bold-p">Usuario:</p>' + d[11] + '</td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Formador:</p>' + d[13] + '</td>' +
+                    '<td><p class="bold-p">Entregable:</p>' + d[12] + '</td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+
+                        '<tr style="background:#1488ca;color:white;">' +
+                            '<td colspan = 8 class="text-center"><p class="bold-p">BENEFICIARIOS CARGADOS</p></td>' +
+                        '</tr>' +
+
+                        '<tr>' +
+                            '<td colspan=2><p class="bold-p">Nombre:</p></td>' +
+                            '<td><p class="bold-p">Cedula:</p></td>' +
+                            '<td><p class="bold-p">Grupo:</p></td>' +
+                        '</tr>' +
+
+                        cargados +
+
+                        '<tr style="background:#76b82a;color:white;">' +
+                            '<td colspan = 8 class="text-center"><p class="bold-p">BENEFICIARIOS APROBADOS</p></td>' +
+                        '</tr>' +
+
+                        '<tr>' +
+                            '<td colspan=2><p class="bold-p">Nombre:</p></td>' +
+                            '<td><p class="bold-p">Cedula:</p></td>' +
+                            '<td><p class="bold-p">Grupo:</p></td>' +
+                        '</tr>' +
+
+                        aprobados +
+
+                        '<tr style="background:#DF4113;color:white;">' +
+                            '<td colspan = 8 class="text-center"><p class="bold-p">BENEFICIARIOS RECHAZADOS</p></td>' +
+                        '</tr>'+
+
+                            '<tr>' +
+                            '<td><p class="bold-p">Nombre:</p></td>' +
+                            '<td><p class="bold-p">Cedula:</p></td>' +
+                            '<td><p class="bold-p">Grupo:</p></td>' +
+                            '<td><p class="bold-p">Causa:</p></td>' +
+                        '</tr>' +
+
+                        rechazados +
+
+                    '</table>';
+        }

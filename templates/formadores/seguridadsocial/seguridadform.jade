@@ -1,0 +1,31 @@
+extends ../base
+block title
+    | FORMADORES
+block breadcrumb_block
+    li
+        a(href="../") Inicio
+    li(class="active") Seguridad Social
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 Soportes de seguridad social
+                p.
+                    En este espacio puedes cargar los soportes corresondientes a la seguridad social, pensión y riesgos profesionales.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+                h4(style="margin-bottom:30px;") Cedula: {{cedula}}
+                div(class="row")
+                    div(class="col-md-8 col-md-offset-2")
+                        form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                            | {% crispy form %}
+
+block body_script
+    script.
+        $("#id_agosto").fileinput({showUpload: false,showPreview: false});
+        $("#id_septiembre").fileinput({showUpload: false,showPreview: false});
+        $("#id_octubre").fileinput({showUpload: false,showPreview: false});
+        $("#id_noviembre").fileinput({showUpload: false,showPreview: false});
+        $("#id_diciembre").fileinput({showUpload: false,showPreview: false});

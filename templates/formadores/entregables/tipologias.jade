@@ -1,0 +1,21 @@
+extends ../base
+block title
+    | FORMADORES
+block breadcrumb_block
+    li
+        a(href="../") Inicio
+    li(class="active") ENTREGABLES
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 ENTREGABLES
+                p.
+                    A continuación encuentras una tabla con las tipologias de formador.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+        div(class="row")
+            div(class="col-md-12 text-center")
+                | {% render_table table %}

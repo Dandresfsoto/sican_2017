@@ -1,0 +1,35 @@
+extends ../base
+block title
+    | FORMADORES
+
+
+block breadcrumb_block
+    li
+        a(href="../../../") Inicio
+    li
+        a(href="../../") Transportes
+    li(class="active") Subir Soporte: {{object.nombre}}
+
+
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 Solicitud de transportes
+                p.
+                    Haz clic en el icono de la columna "Excel" en la ventana anterior, imprimelo, firmalo y cargalo en este formulario.
+                p.
+                    Atención: Verifica el archivo que vas a enviar, una vez cargado no se puede modificar.
+
+                h3(style="margin-bottom:30px;") {{object.formador.nombres}} {{object.formador.apellidos}} - {{object.formador.cargo}}
+                div(class="row",style="margin-bottom:30px;")
+                    div(class="col-md-6 col-md-offset-3 text-center")
+                        form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                            | {% crispy form %}
+
+block body_script
+    script.
+        $("#id_archivo").fileinput({showUpload: false});

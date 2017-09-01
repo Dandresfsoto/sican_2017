@@ -1,0 +1,67 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") CRONOGRAMAS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        Con el formulario que aparece en la parte inferior puedes editar la entrada del cronograma.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/formacion/cronograma/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de semanas
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Semana {{numero_semana}}
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Formador: {{formador}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Editar
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    input(class="hidden",value="{{start_date}}",id="fecha_inicio",type="text")
+    input(class="hidden",value="{{end_date}}",id="fecha_fin",type="text")
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-10 col-sm-offset-1")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                    | {% csrf_token %}
+                    | {% crispy form %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="submit",id="submit_form") Guardar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-administrador').submit();
+        });
+        $('#id_fecha').datetimepicker({
+            locale: 'es',
+            format: 'DD/MM/YYYY',
+            minDate: new Date($("#fecha_inicio").val()),
+            maxDate: new Date($("#fecha_fin").val())
+        });
+        $('#id_actividades_entrada').selectpicker({});
+        $("#id_municipio").remoteChained({
+            parents: "#id_departamento",
+            url: "/rest/chained/municipios/"
+        });
+        $("#id_secretaria").remoteChained({
+            parents: "#id_municipio",
+            url: "/rest/chained/secretarias/"
+        });
+
+        var initial = $('#id_fecha').attr('initial');
+        if(initial != ''){
+            $('#id_fecha').data("DateTimePicker").date(initial);
+        }

@@ -1,0 +1,16 @@
+extends base
+block title
+    | REGISTRO
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Participa en la oferta TIC de formación de Computadores para Educar
+                p(style="color:white;").
+                    Apreciado docente, fuiste formado durante la vigencia 2015 en el
+                    diplomado DocenTIC.
+                p(style="color:white;") Nombre: {{nombre_docente}}
+                p(style="color:white;") Cedula: {{cedula_docente}}
+                a(href="http://cpe.utp.edu.co/")
+                    button(class="btn btn-cpe") Descarga tu certificado

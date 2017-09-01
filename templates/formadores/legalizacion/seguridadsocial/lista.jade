@@ -1,0 +1,135 @@
+extends ../../../inicio
+block scroll_header_panel_title
+    span(class="title") FORMADORES - SOPORTES DE SEGURIDAD SOCIAL
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta ventana observas el historial de contratos establecidos entre tú y la Asociación Nacional para el Desarrollo Social -
+        ANDES; para detallar la información individual del contrato haz click en el nombre.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Lista de contratos
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th
+                    th Nombre
+                    th Fecha Inicio
+                    th Fecha Finalización
+                    th Terminación por renuncia
+                    th Contrato liquidado
+            tbody
+                tr
+                    td
+                    td Nombre
+                    td Fecha Inicio
+                    td Fecha Finalización
+                    td Terminación por renuncia
+                    td Contrato liquidado
+block body_script_content
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/formadores/legalizacion/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "asc"]],
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[7]) {
+                                return '<a href="contrato/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 4,
+                        "orderable": true,
+                    },
+                    {
+                        "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[5]) {
+                                return 'Si';
+                            }
+                            else {
+                                return 'No';
+                            }
+                        },
+                        "defaultContent": ''
+                    },
+                    {
+                        "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[6]) {
+                                return 'Si';
+                            }
+                            else {
+                                return 'No';
+                            }
+                        },
+                        "defaultContent": ''
+                    }
+                ]
+            });
+            // Add event listener for opening and closing details
+            $('#table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function format(d) {
+            // `d` is the original data object for the row
+            return '<table class="table table-striped">' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Fecha de creación:</p>' + d[2] + '</td>' +
+                    '</tr>' +
+                    '</table>';
+        }

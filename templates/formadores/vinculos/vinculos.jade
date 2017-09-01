@@ -1,0 +1,37 @@
+extends ../base
+block title
+    | FORMADORES
+
+
+block breadcrumb_block
+    li(class="active") Inicio
+
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2 text-center")
+                p.
+                    Apreciado formador, este espacio esta destinado a compartir información con el sistema de información
+                    SICAN.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+                div(class="row")
+                    div(class="col-md-6 col-md-offset-3 text-center")
+                        div(class="list-group")
+                            |{% if link_contrato == "#" %}
+                            a(href="{{link_contrato}}",class="list-group-item disabled") Descargar contrato
+                            |{% else %}
+                            a(href="{{link_contrato}}",class="list-group-item",target="_blank") Descargar contrato
+                            |{% endif %}
+
+                            |{% if cargo != "Formador Tipo 4" %}
+                            a(href="otrosi",class="list-group-item") Firma otrosí
+                            |{% endif %}
+                            a(href="legalizacion",class="list-group-item") Legalización de documentos
+                            a(href="seguridadsocial",class="list-group-item") Seguridad social
+                            a(href="{{carta}}",class="list-group-item",target="_blank") Carta de presentación
+                            a(href="transportes",class="list-group-item") Solicitud de transporte
+                            a(href="entregables",class="list-group-item") Formatos de entregables
+                            a(href="pagos",class="list-group-item") Consolidado de pagos

@@ -1,0 +1,21 @@
+extends ../base
+block title
+    | ENCUESTAS
+
+block head_content
+    meta(property="og:type",content="article")
+    meta(property="og:title",content="Encuesta de interes y percepción inicial")
+    meta(property="og:description",content="El desarrollo del presente instrumento dentro del proceso de cualificación de docentes y docentes en el marco de la implementación de la Estrategia ETIC@ 2016.")
+    meta(property="og:url",content="http://sican.asoandes.org/encuestas/percepcioninicial/")
+    meta(property="og:image",content="http://sican.asoandes.org/static/img/encuesta_percepcion.jpg")
+
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Encuesta de percepción inicial y detección de necesidades
+                div(class="text-center")
+                    form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                        | {% csrf_token %}
+                        | {% crispy form %}

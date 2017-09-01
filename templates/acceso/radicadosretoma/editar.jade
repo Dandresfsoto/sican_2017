@@ -1,0 +1,37 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") RADICADOS RETOMA
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        Con el formulario que aparece en la parte inferior puedes agregar un nuevo radicado de retoma.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/acceso/radicadosretoma/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de radicados retoma
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Editar: {{object.numero}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-10 col-sm-offset-1")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-formador")
+                    | {% csrf_token %}
+                    | {% crispy form %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="submit",id="submit_form") Guardar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-formador').submit();
+        });

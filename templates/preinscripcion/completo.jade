@@ -1,0 +1,13 @@
+extends base
+block title
+    | REGISTRO COMPLETO
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Participa en la oferta TIC de formación de Computadores para Educar
+                h3.
+                    Preinscripción completa, ayudanos contestando la encuesta de percepción inicial.
+                a(href="/encuestas/percepcioninicial/")
+                    button(class="btn btn-cpe") Responder encuesta

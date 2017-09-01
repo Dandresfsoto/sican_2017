@@ -1,0 +1,19 @@
+extends ../base
+block title
+    | ACTUALIZAR
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2 Participa en la oferta de formación en el diplomado DirecTIC Bogotá
+                h3 Ya te encuentras preinscrito.
+                div(class="text-center")
+                    form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                        | {% csrf_token %}
+                        | {% crispy form %}
+block body_script
+    script.
+        $(document).ready(function () {
+            $("#id_radicado").chosen({disable_search_threshold: 10,no_results_text: "No hay resultados para "});
+        });

@@ -1,0 +1,118 @@
+extends ../base
+block title
+    | FORMADORES
+
+block breadcrumb_block
+    li
+        a(href="../") Inicio
+    li(class="active") Transportes
+
+
+block modal_title
+    h3 Atención!
+
+block modal_body
+    div(class="container-fluid")
+        div(class="row")
+            p.
+                Apreciado formador a partir de ahora este es el unico medio para solicitar recursos de desplazamiento, por favor lea
+                cuidadosamente las siguientes indicaciones.
+
+            p(class="bold") 1. Tabla de solicitudes.
+            img(class="img-responsive",src="{% static 'img/manual/nueva_solicitud.png'%}")
+            p.
+                Aqui puedes ver las solicitudes que haz realizado y la información relevante de cada una de ellas, con
+                el boton "Nueva solicitud" puedes crear una nueva.
+
+            p(class="bold") 2. Formulario de solicitud.
+            img(class="img-responsive",src="{% static 'img/manual/formulario_solicitud.png'%}")
+
+            p.
+                Cada solicitud de transporte puede tener entre 1 y 10 desplazamientos, los campos marcados en color rojo
+                son obligatorios y se deben llenar de la siguiente manera.
+            p.
+                1. Nombre de la solicitud: Es un campo obligatorio que puede contener cualquier texto, te recomendamos que uses
+                alguna frase con la que recuerdes el motivo de la solicitud.
+            p.
+                2. Primer desplazamiento: Los 6 campos son obligatorios y corresponden al primer desplazamiento
+                que vas a realizar en la solicitud.
+            p.
+                3. Desplazamientos adicionales: Las 9 filas restantes corresponden a desplazamientos opcionales, para
+                que se considere valido en el momento de enviar se debe diligenciar la información de los 6 campos.
+            p.
+                Nota: Los campos correspondientes a los valores agregan automaticante el formato de pesos ($).
+
+            p(class="bold") 3. Esperando aprobación.
+            img(class="img-responsive",src="{% static 'img/manual/esperando_aprobacion.png'%}")
+
+            p.
+                En este momento el eje administrativo de la entidad se encuentra procesando tu solicitud de transporte, el
+                tiempo de respuesta es de 1 dia.
+
+            p(class="bold") 4. Esperando firma de soporte.
+            img(class="img-responsive",src="{% static 'img/manual/esperando_firma.png'%}")
+
+            p.
+                La direccion financiera emite un valor aprobado para cada desplazamiento, el valor total de la solicitud
+                se puede observar en la columna "Valor aprobado", para continuar el procedimiento es necesario que
+                descargues el archivo en excel, lo firmes y lo subas como un archivo legible en el campo "Soporte".
+
+
+            p(class="bold") 5. Subir soporte firmado, SOLO PUEDES HACERLO UNA VEZ.
+            img(class="img-responsive",src="{% static 'img/manual/subir_soporte.png'%}")
+
+            p.
+                Para continuar con la solicitud debes enviar el archivo firmado, esto solo lo pudes hacer una vez por cada
+                solicitud, por favor verifica muy bien el archivo antes de enviarlo.
+
+            p(class="bold") 6. Esperando consignación.
+            img(class="img-responsive",src="{% static 'img/manual/esperando_consignacion.png'%}")
+
+            p.
+                Aqui puedes ver los dos archivos de cada solicitud (formato de excel y soporte firmado), en este momento
+                debes esperar la confirmacion de la consignación.
+
+            p(class="bold") 7. Consignado.
+            img(class="img-responsive",src="{% static 'img/manual/consignado.png'%}")
+
+            p.
+                Con esta confirmación se da por terminada la solicitud de desplazamiento.
+
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 Solicitud de transportes
+                p.
+                    A continuación encuentras una tabla con las solicitudes de transporte que haz realizado, si necesitas
+                    realizar una nueva haz clic en el boton "Nueva solicitud".
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+                div(class="row",style="margin-bottom:30px;")
+                    a(href="nueva")
+                        button(class="btn btn-cpe") Nueva solicitud
+                div(class="row")
+                    div(class="col-md-12 text-center")
+                        |{% render_table table %}
+
+                div(class="row",style="margin-bottom:50px;",id="ver_manual")
+                    button(class="btn btn-cpe") Ver manual
+
+block body_script
+    script.
+        $(document).ready(function () {
+            if(localStorage.getItem("instrucciones_desplazamiento") != "True"){
+                $('#modal').modal('show');
+            }
+
+            $("#cerrar_totorial").on('click',function(){
+                localStorage.setItem("instrucciones_desplazamiento", "True");
+                $('#modal').modal('hide');
+            });
+
+            $("#ver_manual").on('click',function(){
+                $('#modal').modal('show');
+            });
+        });

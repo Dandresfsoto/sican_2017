@@ -1,0 +1,6 @@
+media/
+*.log
+*.config
+*.pyc
+*.pid
+celerybeat-schedule

@@ -1,0 +1,16 @@
+extends inicio
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/permission-sican-mix/permission-sican-mix.html'%}")
+
+block scroll_header_panel_title
+    span(class="title") COMPUTADORES PARA EDUCAR
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina encuentras el listado de modulos en los que participas con la Asociación Nacional para el Desarrollo
+        Social - Andes&reg en la Estrategia Etic@ 2016 del programa Computadores para Educar, haz click en un vinculo para
+        realizar las tareas designadas en tu rol.
+
+block scroll_header_panel_content
+    permission-sican-mix(url="/rest/usuarios/permisos/")

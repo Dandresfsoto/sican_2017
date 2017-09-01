@@ -1,0 +1,105 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") SUBSANACIÓN FORMATOS RED
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina se visualizan los formatos RED retroalimentados por la interventoria.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de formatos RED
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Subsanación: RED-{{id_red}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Subsanaciónes SIC-{{id_evidencia}}
+        iron-icon(icon="check",item-icon)
+
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+
+        a(href="nuevo",class="link_button")
+            paper-button(class="submit") Nuevo
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Código
+                    th Usuario
+                    th Fecha
+                    th Cantidad subsanados
+                    th Archivo
+            tbody
+                tr
+                    td Código
+                    td Usuario
+                    td Fecha
+                    td Cantidad subsanados
+                    td Archivo
+
+
+block body_script_content
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/reds/subsanacionevidencias_id/red/{{id_red}}/evidencia/{{id_evidencia}}/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 0,
+                        "orderable": true,
+                        "render": function (data, type, row, meta) {
+                            return 'SUB-' + row[0];
+                        },
+                    },
+                    {
+                        "data": 1,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                    },
+
+                    {
+                        "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[4] != '') {
+                                return '<a target="_blank" href="' + row[4] + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
+                            }
+                            else {
+                                return '';
+                            }
+                        },
+                    },
+                ]
+            });
+
+        });

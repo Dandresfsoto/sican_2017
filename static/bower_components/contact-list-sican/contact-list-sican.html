@@ -1,0 +1,90 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+<link rel="import" href="../paper-item/paper-item-body.html">
+<link rel="import" href="../image-mask/image-mask.html">
+<link rel="import" href="../iron-icons/av-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<dom-module id="contact-list-sican">
+
+  <style type="text/css">
+    :host {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .contact{
+        --paper-item-icon:{
+            margin-top: 4px;
+            padding: 4px;
+         }
+        --paper-icon-item:{
+            border-bottom: dotted 1px #C6C6C6;
+         }
+    }
+
+    .offline{
+        color: grey;
+    }
+
+    .online{
+        color: lime;
+    }
+
+    .paper-item-link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .contact:hover {
+        background: #eee;
+    }
+  </style>
+
+  <template>
+    <iron-ajax auto url="{{ url }}" handle-as="json" last-response="{{ usuarios }}"></iron-ajax>
+    <div role="listbox">
+        <template is="dom-repeat" items="[[usuarios]]">
+            <a class="paper-item-link" href="#">
+                <paper-icon-item class="contact" on-click="selected" data-args="1">
+                    <image-mask shape="circle" size="48" src="[[item.get_photo]]" item-icon></image-mask>
+                    <paper-item-body two-line>
+                        <div>[[item.fullname]]</div>
+                        <div secondary>[[item.email]]</div>
+                    </paper-item-body>
+                    <iron-icon class="offline" icon="av:fiber-manual-record" id="conected_list_[[item.id]]"></iron-icon>
+                </paper-icon-item>
+            </a>
+        </template>
+    </div>
+    <input type="hidden" id="contact_selected">
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'contact-list-sican',
+
+    properties: {
+
+      url: {
+        type: String,
+        value: ""
+      },
+
+    },
+
+    selected: function(e) {
+      this.$.contact_selected.value = e.model.item.id;
+      drawerPanelChat.closeDrawer();
+      chat_container.selected = e.model.item.id;
+    },
+
+  });
+
+
+</script>

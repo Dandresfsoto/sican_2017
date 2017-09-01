@@ -1,0 +1,48 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") USUARIOS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCION!! estas a punto de eliminar el grupo de permisos "{{object.name}}", esto dejara sin ningun acceso al sistema de
+        información SICAN a los usuarios que actualmente tienen este rol asignado.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-input/paper-input.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+    link(rel="import",href="{% static 'bower_components/gold-email-input/gold-email-input.html'%}")
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/adminuser/grupos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista de grupos
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar {{object.name}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-panel")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(method="POST",enctype="multipart/form-data",id="form-Deletegroup")
+                   | {% csrf_token %}
+                   p(class="title-delete-p") Estas a punto de eliminar el siguiente grupo:
+                   p(class="inline bold-p") Nombre:
+                     p(class="inline") {{object.name}}
+                   p(class="bold-p") Permisos:
+                    ul
+                        |{% for permiso in permisos %}
+                        li {{permiso}}
+                        |{% endfor %}
+                   div(class="text-right login-form-button")
+                       paper-button(class="return",id="return") Cancelar
+                       paper-button(class="delete",id="submit_form") Eliminar
+
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-Deletegroup').submit();
+        });
+
+        $('#return').on('click', function () {
+            window.history.back();
+        });

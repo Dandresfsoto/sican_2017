@@ -1,0 +1,45 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") GRUPOS DE FORMACIÓN
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes buscar los grupos focalizados por cada uno de los formadores.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/vigencia2017/grupos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de grupos de formación
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Grupos de {{formador}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) {{codigo_grupo}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-10 col-sm-offset-1")
+                legend Grupo: {{codigo_grupo}} Diplomado: {{diplomado}}
+                div(id="tree")
+
+
+
+block body_script_content
+    script.
+        $.ajax({
+            url: "/rest/vigencia_2017/grupos/formador/{{id_contrato}}/evidencias/{{id_grupo}}/",
+            type: "GET",
+            dataType : "json",
+            success: function (data) {
+                $('#tree').treeview({data: data,enableLinks: true});
+            }
+        });

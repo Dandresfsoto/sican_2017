@@ -1,0 +1,190 @@
+extends ../../inicio
+
+block scroll_header_panel_title
+    span(class="title") BENEFICIARIOS {{diplomado}}
+
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes visualizar todos los beneficiarios del diplomado {{diplomado}}.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Lista beneficiados {{diplomado}}
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="header-buttons")
+            | {% if nuevo_permiso %}
+            div(class="block-right")
+                a(href="nuevo",class="link_button")
+                    paper-button(class="submit") Nuevo
+            | {% endif %}
+
+            | {% if informes %}
+            div
+                select(class="selectpicker",id="select_accion")
+                    option(value="") ---------
+                    option(value="") Exportar matriz de beneficiarios
+                button(class="btn",id="accion") Generar reporte
+            | {% endif %}
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th
+                    th Región
+                    th Radicado
+                    th Formador
+                    th Grupo
+                    th Apellidos
+                    th Nombres
+                    th Cedula
+                    th Eliminar
+
+            tbody
+                tr
+                    td
+                    td Región
+                    td Radicado
+                    td Formador
+                    td Grupo
+                    td Apellidos
+                    td Nombres
+                    td Cedula
+                    td Eliminar
+
+block body_script_content
+    script.
+        $("#accion").on("click", function () {
+            var action = $("#select_accion").val();
+            if (action != '') {
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action,
+                    success: function (data) {
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/matrices/diplomados/{{diplomado}}/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[1, "asc"]],
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[15]) {
+                                return '<a href="editar/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 4,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 5,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 6,
+                        "orderable": true,
+                    },
+                    {
+                        "data": 7,
+                        "orderable": true,
+                    },
+                    {
+                        "orderable": false,
+                        "data": null,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            if (row[16]) {
+                                return '<a href="eliminar/' + row[0] + '" style="color:#004c99;"><img src="/static/img/delete.png" height="24"></a>';
+                            }
+                            else {
+                                return '<img src="/static/img/delete_gray.png" height="24">';
+                            }
+                        },
+                        "defaultContent": ''
+                    }
+                ]
+            });
+            // Add event listener for opening and closing details
+            $('#table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function format(d) {
+            // `d` is the original data object for the row
+            return '<table class="table table-striped">' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Correo:</p>' + d[8] + '</td>' +
+                    '<td><p class="bold-p">Telefono fijo:</p>' + d[9] + '</td>' +
+                    '<td><p class="bold-p">Telefono celular:</p>' + d[10] + '</td>' +
+                    '<td><p class="bold-p">Area:</p>' + d[11] + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><p class="bold-p">Grado:</p>' + d[12] + '</td>' +
+                    '<td><p class="bold-p">Genero:</p>' + d[13] + '</td>' +
+                    '<td><p class="bold-p">Estado:</p>' + d[14] + '</td>' +
+                    '<td><p class="bold-p"></p></td>' +
+                    '</tr>' +
+                    '</table>';
+        }

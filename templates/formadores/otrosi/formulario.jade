@@ -1,0 +1,32 @@
+extends ../base
+block title
+    | FORMADORES
+block breadcrumb_block
+    li
+        a(href="../../") Inicio
+    li
+        a(href="../") OTROSI
+    li(class="active") Firma
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-12 text-center")
+                h1 FIRMA DE OTROSI
+                h3(style="margin-bottom:30px;") {{object.formador.nombres}} {{object.formador.apellidos}} - {{object.formador.cargo.nombre}}
+                p.
+                    Por favor descarga el archivo en el boton "Descargar Otrosi", firmalo, coloca tu huella, escanealo y
+                    envialo en este formulario.
+                a(target="_blank",href="{{otro_si_blanco}}")
+                    button(class="btn btn-cpe",style="margin-bottom:30px;") Descargar Otrosi
+
+
+                div(class="row",style="margin-bottom:30px;")
+                    div(class="col-md-4 col-md-offset-4 text-center")
+                        form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                            | {% crispy form %}
+block body_script
+    script.
+        $("#id_archivo").fileinput({showUpload: false,showPreview: true});

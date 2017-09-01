@@ -1,0 +1,102 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") CONTRATACIÓN
+block help_content
+    p(class="title-help") Descripción:
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Contratación
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="controls-mixitup btn-group")
+            button(type="button",class="btn btn-sican",data-filter="all") Todo
+            | {% if permiso_formadores %}
+            button(type="button",class="btn btn-sican",data-filter=".formadores") Formadores
+            | {% endif %}
+            | {% if permiso_lideres %}
+            button(type="button",class="btn btn-sican",data-filter=".lideres") Lideres
+            | {% endif %}
+            | {% if permiso_negociadores %}
+            button(type="button",class="btn btn-sican",data-filter=".negociadores") Negociadores
+            | {% endif %}
+
+
+        div(class="container-mixitup")
+            | {% if permiso_formadores %}
+            div(class="mix formadores",data-order="1")
+                div(class="title-mix")
+                    a(href="solicitud_soportes/formadores/")
+                        i(class="fa fa-address-book fa-2x",aria-hidden="true")
+                        p Soportes formadores
+                div(class="content-mix")
+                    p.
+                        Solicitudes de soportes a formadores
+
+            div(class="mix formadores",data-order="1")
+                div(class="title-mix")
+                    a(href="contratos/formadores/")
+                        i(class="fa fa-book fa-2x",aria-hidden="true")
+                        p Contratos formadores
+                div(class="content-mix")
+                    p.
+                        Contratos de formadores
+
+            | {% endif %}
+
+            | {% if permiso_lideres %}
+            div(class="mix lideres",data-order="2")
+                div(class="title-mix")
+                    a(href="solicitud_soportes/lideres/")
+                        i(class="fa fa-television fa-2x",aria-hidden="true")
+                        p Soportes lideres
+                div(class="content-mix")
+                    p.
+                        Solicitudes de soportes a lideres.
+
+            div(class="mix lideres",data-order="2")
+                div(class="title-mix")
+                    a(href="contratos/lideres/")
+                        i(class="fa fa-book fa-2x",aria-hidden="true")
+                        p Contratos lideres
+                div(class="content-mix")
+                    p.
+                        Contratos de lideres
+            | {% endif %}
+
+            | {% if permiso_negociadores %}
+            div(class="mix negociadores",data-order="3")
+                div(class="title-mix")
+                    a(href="solicitud_soportes/negociadores/")
+                        i(class="fa fa-television fa-2x",aria-hidden="true")
+                        p Soportes negociadores
+                div(class="content-mix")
+                    p.
+                        Solicitudes de soportes a negociadores.
+
+            div(class="mix negociadores",data-order="3")
+                div(class="title-mix")
+                    a(href="contratos/negociadores/")
+                        i(class="fa fa-book fa-2x",aria-hidden="true")
+                        p Contratos negociadores
+                div(class="content-mix")
+                    p.
+                        Contratos de negociadores.
+            | {% endif %}
+
+            div(class="gap")
+            div(class="gap")
+            div(class="gap")
+block body_script
+    script.
+        var mixer = mixitup('.container-mixitup');

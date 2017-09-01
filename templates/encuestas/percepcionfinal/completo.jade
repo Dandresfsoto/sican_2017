@@ -1,0 +1,21 @@
+extends ../base
+block title
+    |ENCUESTA COMPLETA
+
+block head_content
+    meta(property="og:type",content="article")
+    meta(property="og:title",content="Encuesta de percepción de valoración final de la formación")
+    meta(property="og:description",content="El desarrollo del presente instrumento dentro del proceso de cualificación de docentes y docentes en el marco de la implementación de la Estrategia ETIC@ 2016.")
+    meta(property="og:url",content="http://sican.asoandes.org/encuestas/percepcionfinal/")
+    meta(property="og:image",content="http://sican.asoandes.org/static/img/encuesta_percepcionfinal.jpg")
+
+block body_content
+    div(class="container-fluid")
+        div(class="row")
+            div(class="col-md-12 text-center")
+                img(src="{% static 'img/logocpe.png'%}")
+                h2(class="title-white") Encuesta de percepción de valoración final de la formación
+                h3.
+                    Gracias, se han recibido tus respuestas.
+                a(href="http://www.computadoresparaeducar.gov.co/")
+                    button(class="btn btn-cpe") Visita la pagina de Computadores para Educar

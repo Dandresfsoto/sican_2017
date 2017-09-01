@@ -1,0 +1,25 @@
+extends ../base
+block title
+    | FORMADORES
+block breadcrumb_block
+    li
+        a(href="../../") Inicio
+    li
+        a(href="../") OTROSI
+    li(class="active") Completo
+block body_content
+    div(class="container-fluid margin-top-container-two")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2 text-center")
+                p.
+                    Apreciado formador, este espacio esta destinado a compartir información con el sistema de información
+                    SICAN.
+                h3(style="margin-bottom:30px;") {{formador}} - {{tipo}}
+                h3(style="margin-bottom:30px;") Se guardaron sus documentos de manera exitosa.
+                div(class="row")
+                    div(class="col-md-4 col-md-offset-4 text-center")
+                        a(href="../../")
+                            button(class="btn btn-cpe") Regresar

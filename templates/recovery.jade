@@ -1,0 +1,89 @@
+extends base
+block title
+    | Recuperar Contraseña
+block head_content
+    link(rel="import",href="{% static 'bower_components/paper-material/index.html'%}")
+    link(rel="import",href="{% static 'bower_components/gold-email-input/gold-email-input.html'%}")
+    link(rel="import",href="{% static 'bower_components/paper-input/paper-input.html'%}")
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/paper-toast/paper-toast.html'%}")
+    style(is="custom-style").
+        #submit {
+            background: #1976D2;
+            color: white;
+        }
+
+        #submit[disabled] {
+            background: #eaeaea;
+        }
+
+        #login_toast {
+            --paper-toast-background-color: #FF5252;
+        }
+
+         .login_description{
+            padding: 15px
+            15px;
+         }
+block body_content
+    div(class="container-fluid login-card")
+        div(class="row")
+            div(class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4")
+                paper-material(elevation="1")
+                    div(class="login-logo")
+                        img(class="img-responsive login-logo-svg center-block",src="{% static 'img/SICAN.svg'%}")
+                    div(class="login-form-container")
+                        form(id="login-form",method="POST")
+                            | {% csrf_token %}
+                            gold-email-input(label="Email",name="email",id="email",value="{{email}}",
+                                             error-message="Ingrese un email valido",required,auto-validate)
+                            paper-input(label="Nueva contraseña",type="password",name="password1",id="password1")
+                            paper-input(label="Confirmar contraseña",type="password",name="password2",id="password2")
+                            p(style="font-size:10px;") *Para terminar el cambio de contraseña ingresa al link enviado a tu correo electrónico.
+                            div(class="text-right login-form-recovery")
+                                paper-button(onclick="submitFormLogin()",id="submit",disabled) Recuperar Contraseña
+                input(type="hidden",value="{{error}}",id="login_error_input")
+                paper-toast(id="login_toast",text="{{error}}",duration="5000")
+block body_script
+    script.
+        $('#email').on("change", function (event) {
+            if (email.validate() == true && $('#password1').val().length > 0 && $('#password2').val().length > 0
+                    && $('#password1').val() == $('#password2').val() && $('#password1').val() != "" && $('#password2').val() != "") {
+                submit.disabled = false;
+            }
+            else {
+                submit.disabled = true;
+            }
+        });
+
+
+        $('#password1').on("keyup",function(event){
+            if(email.validate() == true && $('#password1').val().length > 0 && $('#password2').val().length > 0
+                    && $('#password1').val() == $('#password2').val() && $('#password1').val() != "" && $('#password2').val() != ""){
+                submit.disabled = false;
+            }
+            else{
+                submit.disabled = true;
+            }
+        });
+
+        $('#password2').on("keyup",function(event){
+            if(email.validate() == true && $('#password1').val().length > 0 && $('#password2').val().length > 0
+                    && $('#password1').val() == $('#password2').val() && $('#password1').val() != "" && $('#password2').val() != ""){
+                submit.disabled = false;
+            }
+            else{
+                submit.disabled = true;
+            }
+        });
+
+        function submitFormLogin(event) {
+            $("#login-form").submit();
+        }
+
+        $(document).ready(function () {
+            login_toast.horizontalAlign = "right";
+            if ($('#login_error_input').val() != "") {
+                login_toast.open();
+            }
+        });

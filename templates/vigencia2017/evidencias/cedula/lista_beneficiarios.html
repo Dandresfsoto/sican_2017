@@ -1,0 +1,184 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html><html lang="es"><head><title>SICAN</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"/><script src="{% static 'bower_components/webcomponentsjs/webcomponents-lite.min.js'%}"></script><!--link(rel="import",href="{% static 'bower_components/polymer/polymer.html'%}")--><link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/><link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/datatables/media/css/dataTables.bootstrap.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/jquery.steps/demo/css/jquery.steps.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/chosen/chosen.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap-fileinput/css/fileinput.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/components-font-awesome/css/font-awesome.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/picEdit/dist/css/picedit.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css'%}"/><link rel="stylesheet" href="{% static 'css/base.css'%}"/><!--script(src="{% static 'bower_components/webcomponentsjs/webcomponents-lite.min.js'%}")--><link rel="import" href="{% static 'bower_components/paper-drawer-panel/paper-drawer-panel.html'%}"/><link rel="import" href="{% static 'bower_components/paper-header-panel/paper-header-panel.html'%}"/><link rel="import" href="{% static 'bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html'%}"/><link rel="import" href="{% static 'bower_components/paper-toolbar/paper-toolbar.html'%}"/><link rel="import" href="{% static 'bower_components/paper-icon-button/paper-icon-button.html'%}"/><link rel="import" href="{% static 'bower_components/iron-icon/iron-icon.html'%}"/><link rel="import" href="{% static 'bower_components/iron-icons/iron-icons.html'%}"/><link rel="import" href="{% static 'bower_components/iron-icons/hardware-icons.html'%}"/><link rel="import" href="{% static 'bower_components/iron-icons/image-icons.html'%}"/><link rel="import" href="{% static 'bower_components/iron-icons/communication-icons.html'%}"/><link rel="import" href="{% static 'bower_components/image-mask/image-mask.html'%}"/><link rel="import" href="{% static 'bower_components/paper-menu/paper-menu.html'%}"/><link rel="import" href="{% static 'bower_components/paper-item/paper-item.html'%}"/><link rel="import" href="{% static 'bower_components/paper-item/paper-icon-item.html'%}"/><link rel="import" href="{% static 'bower_components/paper-item/paper-item-body.html'%}"/><link rel="import" href="{% static 'bower_components/iron-collapse/iron-collapse.html'%}"/><link rel="import" href="{% static 'bower_components/paper-toast/paper-toast.html'%}"/><link rel="import" href="{% static 'bower_components/paper-badge/paper-badge.html'%}"/><link rel="import" href="{% static 'bower_components/paper-button/paper-button.html'%}"/><style is="custom-style">.icon-sican{
+   --iron-icon-height: 100px;
+   --iron-icon-width: 100px;
+   margin-right: 20px;
+}
+.toolbar-sican{
+  --paper-toolbar-background: #004c99;
+  --paper-toolbar-title:{
+      font-weight: bold;
+  };
+}
+.toolbar-avatar{
+   --paper-toolbar-height: 70px;
+   --paper-toolbar-sm-height: 60px;
+   --paper-toolbar-background: #1976D2;
+}
+.toolbar-tools.paper-toolbar  > .title{
+   text-align: center;
+   margin-left: 0px;
+}
+#user-fullname{
+   font-size: 16px;
+}
+#user-email{
+   font-size: 14px;
+}
+#cuenta{
+  --paper-header-panel:{
+      background: #004c99;
+  };
+}
+.paper-item-link{
+  color: inherit;
+  text-decoration: none;
+}
+.paper-icon-item-secondary-class{
+  color:white;
+}
+.paper-icon-item-class{
+  --paper-item:{
+      background:#F05623;
+      color:white;
+  };
+}
+#menu-user{
+  --paper-menu-background-color: #F1F1F1;
+  padding:0;
+}
+#collapse{
+  color:white;
+  background:#F29B00;
+}
+.submit{
+  --paper-button:{
+      background: #76b82a;
+      color: white;
+  }
+}
+.delete{
+  --paper-button:{
+      background: red;
+      color: white;
+  }
+}
+.return{
+  --paper-button:{
+      background: #004c99;
+      color: white;
+  }
+}
+.breadcrumb-paper-icon-item-class{
+  margin: 2px 0px;
+  color:white;
+  --paper-icon-item:{
+      background:#76b82a;
+      padding-bottom: 10px;
+      padding-top: 10px;
+  };
+}
+.breadcrum_active{
+  margin: 2px 0px;
+  color:white;
+  --paper-icon-item:{
+      background:#169fdb;
+      padding-bottom: 10px;
+      padding-top: 10px;
+  };
+}</style><style is="custom-style">paper-button{
+  margin-bottom:15px;
+}</style></head><body><input id="user_id" value="{{user.id}}" hidden="hidden"/><paper-drawer-panel id="drawerPanel" responsive-width="1000px"><paper-header-panel mode="scroll" id="cuenta" drawer="drawer"><div class="container-fluid background-avatar"><div class="text-center"><div id="avatar"><image-mask shape="circle" size="158" src="{{user.get_photo}}"></image-mask></div></div></div><paper-menu id="menu-user" selected="0" selectable="paper-icon-item" on-iron-activate="menuSelect"><div role="listbox"><a href="#" class="link_button"><paper-item role="menuitem" id="avatar_menu" class="paper-icon-item-class"><paper-item-body two-line="two-line"><div>{{user.fullname}}</div><div secondary="secondary" class="paper-icon-item-secondary-class">{{user.email}}</div></paper-item-body><paper-icon-button icon="arrow-drop-down" id="avatar_icon"></paper-icon-button></paper-item></a><iron-collapse id="collapse"><div role="listbox"><a href="/usuario/" class="paper-item-link"><paper-icon-item class="icon-hover"><iron-icon icon="icons:face" item-icon="item-icon"></iron-icon>Perfil</paper-icon-item></a><a href="/usuario/password/" class="paper-item-link"><paper-icon-item class="icon-hover"><iron-icon icon="communication:vpn-key" item-icon="item-icon"></iron-icon>Cambiar Contraseña</paper-icon-item></a><a href="/logout/" class="paper-item-link"><paper-icon-item class="icon-hover"><iron-icon icon="icons:power-settings-new" item-icon="item-icon"></iron-icon>Cerrar sesión</paper-icon-item></a></div></iron-collapse><a href="/proyectos/" class="link_button"><paper-icon-item class="breadcrumb-paper-icon-item-class">Inicio<iron-icon icon="check" item-icon="item-icon"></iron-icon></paper-icon-item></a><paper-icon-item disabled="disabled" class="breadcrum_active">Listado de beneficiarios vigencia 2017<iron-icon icon="check" item-icon="item-icon"></iron-icon></paper-icon-item></div></paper-menu></paper-header-panel><paper-scroll-header-panel id="scrollheader" main="main" fixed="fixed"><paper-toolbar role="toolbar" class="toolbar-sican"><paper-icon-button id="navicon" icon="menu" paper-drawer-toggle="paper-drawer-toggle"></paper-icon-button><iron-icon src="{% static 'img/SICAN.svg'%}" class="icon-sican"></iron-icon><!--paper-icon-button(icon="communication:email",id="inbox")--><!--paper-badge(for="inbox",label="0",hidden,id="badge_chat")--><span class="title">EVIDENCIAS CEDULA BENEFICIARIO VIGENCIA 2017</span><paper-icon-button icon="help" id="help_button"></paper-icon-button></paper-toolbar><iron-collapse id="help"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="help_container"><p class="title-help">Descripción:</p><p>En esta pagina puedes visualizar todos los soportes de la asociación ANDES.</p></div></div></div></div></iron-collapse><div class="container-fluid"><div class="realtime"></div></div><div class="container-fluid container-index"><table id="table" width="100%" class="display responsive no-wrap table table-striped table-bordered"><thead><tr><th>Nombres</th><th>Apellidos</th><th>Cedula</th><th>Región</th><th>Diplomado</th><th>Formador</th></tr></thead><tbody><tr><td>Nombres</td><td>Apellidos</td><td>Cedula</td><td>Región</td><td>Diplomado</td><td>Formador</td></tr></tbody></table></div><div style="margin-top:25px;"></div><input type="hidden" value="{{mensaje}}" id="input_mensaje"/><paper-toast id="toast_message" text="{{mensaje}}" duration="5000"></paper-toast></paper-scroll-header-panel></paper-drawer-panel><div id="myModal" tabindex="-1" role="dialog" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">Se esta generando el reporte</h4></div><div class="modal-body"><p>El informe se esta construyendo, el tiempo que tarda en generarse depende de la cantidad de información
+por favor ten paciencia.</p><p>Para ver tus informes generados dirígete a la pestaña "Mis informes - Informes en excel".</p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button></div></div></div></div><script src="{% static 'bower_components/jquery/dist/jquery.min.js'%}"></script><script src="{% static 'bower_components/moment/min/moment.min.js'%}"></script><script src="{% static 'bower_components/moment/locale/es.js'%}"></script><script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js'%}"></script><script src="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'%}"></script><script src="{% static 'bower_components/datatables/media/js/jquery.dataTables.min.js'%}"></script><script src="{% static 'bower_components/datatables/media/js/dataTables.bootstrap.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-select/dist/js/i18n/defaults-es_CL.min.js'%}"></script><script src="{% static 'bower_components/accounting/accounting.min.js'%}"></script><script src="{% static 'bower_components/chained/jquery.chained.min.js'%}"></script><script src="{% static 'bower_components/chained/jquery.chained.remote.min.js'%}"></script><script src="{% static 'bower_components/jquery-maskmoney/src/jquery.maskMoney.js'%}"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script><script src="{% static 'bower_components/jquery.steps/build/jquery.steps.min.js'%}"></script><script src="{% static 'bower_components/chosen/chosen.jquery.js'%}"></script><script src="{% static 'bower_components/devbridge-autocomplete/dist/jquery.autocomplete.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/sortable.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-fileinput/js/plugins/purify.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-fileinput/js/fileinput.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-fileinput/js/locales/es.js'%}"></script><script src="{% static 'bower_components/dropzone/dist/min/dropzone.min.js'%}"></script><script src="{% static 'bower_components/mixitup2/dist/mixitup.min.js'%}"></script><script src="{% static 'bower_components/picEdit/dist/js/picedit.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.js'%}"></script><!--script(src="{% static 'bower_components/reconnectingWebsocket/reconnecting-websocket.min.js'%}")--><!--script(src="{% static 'js/chat.js'%}")--><script>function getCookie(name) {
+   var cookieValue = null;
+   if (document.cookie && document.cookie != '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+         var cookie = jQuery.trim(cookies[i]);
+         // Does this cookie string begin with the name we want?
+         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+         }
+      }
+   }
+   return cookieValue;
+}
+localStorage.setItem("csrftoken",getCookie('csrftoken'));</script><script>$('#avatar_menu').on("click",function(event){
+    collapse.toggle();
+    if(collapse.opened){
+        avatar_icon.icon = "arrow-drop-up";
+    }
+    else{
+        avatar_icon.icon = "arrow-drop-down";
+    }
+});
+
+$('#help_button').on("click",function(event){
+    help.toggle();
+    if(help.opened){
+        help_button.icon = "close";
+    }
+    else{
+        help_button.icon = "help";
+    }
+});
+
+
+$('#inbox').on("click",function(event){
+    window.location.replace(window.location.origin+"/realtime/");
+});
+
+
+$(document).ready(function () {
+    toast_message.horizontalAlign = "right";
+    if ($('#input_mensaje').val() != ""){
+        toast_message.open();
+    }
+});</script><script>$(document).ready(function () {
+    var table = $('#table').DataTable({
+        "stateSave": true,
+        "searching": true,
+        "processing": true,
+        "serverSide": true,
+        "scrollX": true,
+        "ajax": "/rest/vigencia_2017/evidencias/cedula/",
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+        },
+        "order": [[0, "asc"]],
+        "columns": [
+            {
+                "data": 1,
+                "render": function (data, type, row, meta) {
+                    return '<a href="beneficiario/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                },
+                "orderable": true,
+            },
+            {
+                "data": 2,
+                "orderable": false,
+            },
+            {
+                "data": 3,
+                "orderable": false,
+            },
+            {
+                "data": 4,
+                "orderable": false,
+                "className": 'text-center',
+            },
+            {
+                "data": 5,
+                "orderable": false,
+                "className": 'text-center',
+            },
+            {
+                "data": 6,
+                "orderable": false,
+                "className": 'text-center',
+            }
+        ]
+    });
+});</script></body></html>

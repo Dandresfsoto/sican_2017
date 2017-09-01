@@ -1,0 +1,53 @@
+body {
+  background: #169fdb;
+}
+fieldset {
+  border: none;
+}
+h2,
+h3 {
+  color: #fff;
+  margin: 20px;
+}
+.container-fluid {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+label {
+  color: #fff;
+}
+.has-error .checkbox,
+.has-error .checkbox-inline,
+.has-error .control-label,
+.has-error .help-block,
+.has-error .radio,
+.has-error .radio-inline,
+.has-error.checkbox label,
+.has-error.checkbox-inline label,
+.has-error.radio label,
+.has-error.radio-inline label {
+  color: #df4113;
+}
+.btn-cpe,
+.btn-cpe:active,
+.btn-cpe:visited {
+  margin-top: 20px;
+  background-color: #df4113;
+  color: #fff;
+}
+.btn-cpe:hover {
+  margin-top: 20px;
+  background-color: #da4f1f;
+  color: #fff;
+}
+.fieldset_class {
+  color: #fff;
+  text-align: justify;
+}
+.fieldset_class> legend {
+  border-bottom: none;
+}
+.slider.slider-horizontal {
+  width: 100%;
+  height: 20px;
+}

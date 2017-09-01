@@ -1,0 +1,110 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") PERSONAL
+
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta tabla puedes visualizar cada uno de los roles dispuestos en el sistema de información SICAN.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Personal
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+
+        div(class="controls-mixitup btn-group")
+            button(type="button",class="btn btn-sican",data-filter="all") Todo
+
+            |{% if permiso_administrativo %}
+            button(type="button",class="btn btn-sican",data-filter=".administrativos") Administrativos
+            |{% endif %}
+
+            |{% if permiso_acceso %}
+            button(type="button",class="btn btn-sican",data-filter=".acceso") Acceso
+            |{% endif %}
+
+            |{% if permiso_formadores %}
+            button(type="button",class="btn btn-sican",data-filter=".formadores") Formación
+            |{% endif %}
+
+            |{% if permiso_general %}
+            button(type="button",class="btn btn-sican",data-filter=".general") General
+            |{% endif %}
+
+        div(class="container-mixitup")
+
+            |{% if permiso_administrativo %}
+            div(class="mix administrativos",data-order="1")
+                div(class="title-mix")
+                    a(href="administrativos/")
+                        i(class="fa fa-address-book fa-2x",aria-hidden="true")
+                        p Administrativos
+                div(class="content-mix")
+                    p.
+                        Personal administrativo y de planta de la empresa.
+            |{% endif %}
+
+            |{% if permiso_acceso %}
+            div(class="mix acceso",data-order="2")
+                div(class="title-mix")
+                    a(href="acceso/")
+                        i(class="fa fa-television fa-2x",aria-hidden="true")
+                        p Acceso
+                div(class="content-mix")
+                    p.
+                        Lideres y negociadores regionales.
+            |{% endif %}
+
+            |{% if permiso_formadores %}
+            div(class="mix formadores",data-order="3")
+                div(class="title-mix")
+                    a(href="formadores/")
+                        i(class="fa fa-child fa-2x",aria-hidden="true")
+                        p Formación
+                div(class="content-mix")
+                    p.
+                        Formadores de todas las tipologias.
+
+            |{% endif %}
+
+            |{% if permiso_general %}
+            div(class="mix general",data-order="4")
+                div(class="title-mix")
+                    a(href="cargos/")
+                        i(class="fa fa-database fa-2x",aria-hidden="true")
+                        p Cargos
+                div(class="content-mix")
+                    p.
+                        Estructuración de los puestos de trabajo.
+
+            div(class="mix general",data-order="4")
+                div(class="title-mix")
+                    a(href="tipo_soporte/")
+                        i(class="fa fa-file fa-2x",aria-hidden="true")
+                        p Soportes
+                div(class="content-mix")
+                    p.
+                        Definicion de los tipos de soportes disponibles en el sistema.
+            |{% endif %}
+
+            div(class="gap")
+            div(class="gap")
+            div(class="gap")
+
+block body_script
+    script.
+        var mixer = mixitup('.container-mixitup');

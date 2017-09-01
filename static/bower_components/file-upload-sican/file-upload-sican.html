@@ -1,0 +1,162 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+
+<dom-module id="file-upload-sican">
+
+  <style type="text/css">
+    :host {
+        display: inline-block;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .container_element{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+    }
+
+    .container_element span{
+        flex-grow: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .container_element paper-button{
+        flex-grow: 1;
+    }
+
+    .container_hidden{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+    }
+
+    .container_hidden span{
+        flex-grow: 1;
+    }
+
+    .container_hidden a{
+        flex-grow: 100;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+    }
+
+    .container_hidden paper-checkbox{
+        flex-grow: 1;
+    }
+
+    paper-button {
+        --paper-button:{
+            background:#F05623;
+            color:white;
+            margin-left: inherit;
+        }
+    }
+
+  </style>
+
+  <template>
+    <div class="container_element">
+        <paper-button id="button" icon="file-upload" class="button" on-click="_fileClick">
+            <content></content>
+        </paper-button>
+        <span>{{ file }}</span>
+        <paper-icon-button id="cancel" hidden icon="cancel" on-tap="_resetFile"></paper-icon-button>
+    </div>
+    <div class="container_hidden">
+        <span id="hidden_span" hidden>Actualmente: </span>
+        <a id="hidden_link" target="_blank" href="{{ link_old_file }}" hidden>{{ old_file }}</a>
+        <paper-checkbox id="hidden_paper" on-change="_checkboxChange" hidden>Borrar</paper-checkbox>
+    </div>
+  <input type="file" id="fileInput" name="{{name}}" on-change="_fileChange" hidden accept="{{accept}}">
+  <input class="hidden_django_checkbox" id="{{name}}-clear_id" name="{{name}}-clear" type="checkbox" hidden>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'file-upload-sican',
+
+    properties: {
+
+      accept: {
+        type: String,
+        value: ""
+      },
+
+      name: {
+        type: String,
+        notify: true,
+        value: ""
+      },
+
+      file: {
+        type: String,
+        notify: true,
+        value: "No has seleccionado ningun archivo."
+      },
+
+      old_file: {
+        type: String,
+        notify: true,
+        value: ""
+      },
+
+      link_old_file: {
+        type: String,
+        value: ""
+      },
+
+    },
+
+    ready: function(){
+        if(this.old_file != ""){
+            this.$.hidden_span.removeAttribute("hidden");
+            this.$.hidden_link.removeAttribute("hidden");
+            this.$.hidden_paper.removeAttribute("hidden");
+        }
+    },
+
+    _fileClick: function() {
+      var elem = this.$.fileInput;
+      if (elem && document.createEvent) { // sanity check
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+      }
+    },
+
+
+    _fileChange: function(e) {
+        this.$.cancel.removeAttribute("hidden");
+        this.set("file",e.target.files[0].name);
+    },
+
+    _resetFile: function(e) {
+        this.$.fileInput.value = "";
+        this.$.cancel.setAttribute("hidden","hidden");
+        this.set("file","No has seleccionado ningun archivo.");
+    },
+
+    _checkboxChange: function(e){
+        var name = this.name+"-clear_id";
+        var element_hidden = document.getElementById(name);
+        element_hidden.checked = hidden_paper.checked;
+    },
+
+
+  });
+
+</script>

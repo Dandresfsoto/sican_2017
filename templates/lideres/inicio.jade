@@ -1,0 +1,13 @@
+extends base
+block title
+    | FORMADORES
+block body_content
+    div(class="container-fluid margin-top-container")
+        div(class="row margin-logo")
+            div(class="col-sm-4 col-sm-offset-4")
+                img(src="{% static 'img/SICAN.svg'%}",class="img-responsive")
+        div(class="row")
+            div(class="col-sm-4 col-sm-offset-4")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-administrador")
+                    | {% csrf_token %}
+                    | {% crispy form %}

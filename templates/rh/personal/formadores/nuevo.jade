@@ -1,0 +1,55 @@
+extends ../../../inicio
+block scroll_header_panel_title
+    span(class="title") FORMADORES
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        Con el formulario que aparece en la parte inferior puedes agregar un nuevo formador al sistema de información,
+        los campos que tienen un asterisco (*) son obligatorios y deben contener un valor coherente en cada caso.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/rh/personal/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Personal
+            iron-icon(icon="check",item-icon)
+    a(href="/rh/personal/formadores/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de formadores
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Nuevo
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-10 col-sm-offset-1")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-formador")
+                    | {% csrf_token %}
+                    | {% crispy form %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="submit",id="submit_form") Guardar
+block body_script_content
+    script.
+        $('#id_region').selectpicker({});
+        $('#id_departamentos').selectpicker({});
+        $('#id_cargo').selectpicker({});
+        $('#id_fecha_contratacion').datetimepicker({
+            locale: 'es',
+            viewMode: 'years',
+            format: 'DD/MM/YYYY'
+        });
+        $('#id_fecha_terminacion').datetimepicker({
+            locale: 'es',
+            viewMode: 'years',
+            format: 'DD/MM/YYYY'
+        });
+        $('#submit_form').on('click', function () {
+            $('#form-formador').submit();
+        });
+        $("#id_usuario").chosen({no_results_text: "No se encontro ningun formador"});

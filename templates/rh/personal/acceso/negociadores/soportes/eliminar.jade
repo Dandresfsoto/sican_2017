@@ -1,0 +1,69 @@
+extends ../../../../../inicio
+block scroll_header_panel_title
+    span(class="title") NEGOCIADORES
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar un soporte del lider {{object.administrativo.get_full_name}},
+        si necesitas recuperarlo comunicate con el administrador del sistema de información SICAN.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/rh/personal/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Personal
+            iron-icon(icon="check",item-icon)
+    a(href="/rh/personal/acceso/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Acceso
+            iron-icon(icon="check",item-icon)
+    a(href="../../../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de negociadores
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Soportes de {{nombre_negociador}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar: {{object.tipo}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-Deletesoporte")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar el siguiente soporte:
+                    p(class="inline bold-p") Negociador:
+                        p(class="inline") {{nombre_negociador}}
+                    p(class="inline bold-p") Fecha de creación:
+                        p(class="inline") {{object.creacion}}
+                    p(class="inline bold-p") Fecha de registro:
+                        p(class="inline") {{object.fecha}}
+                    p(class="inline bold-p") Tipo de soporte:
+                        p(class="inline") {{object.tipo}}
+                    p(class="inline bold-p") Descripción del soporte:
+                        p(class="inline") {{object.descripcion}}
+                    p(class="inline bold-p") Archivo:
+                        | {% if object.get_archivo_url != ""%}
+                        a(href="{{object.get_archivo_url}}",target="_blank")
+                            img(src="{% static 'img/file.png'%}",height="32")
+                        | {% else %}
+                        p(class="inline") No hay ningun archivo cargado.
+                        | {% endif %}
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-Deletesoporte').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });

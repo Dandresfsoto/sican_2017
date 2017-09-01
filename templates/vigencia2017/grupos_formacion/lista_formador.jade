@@ -1,0 +1,131 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") GRUPOS DE FORMACIÓN
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        En esta pagina puedes buscar los grupos focalizados por cada uno de los formadores.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/vigencia2017/grupos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de grupos de formación
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Grupos de {{formador}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+
+        | {% if nuevo_permiso %}
+        div(class="block-right")
+            a(href="nuevo",class="link_button")
+                paper-button(class="submit") Nuevo
+        | {% endif %}
+
+        | {% if informes %}
+        div(style="margin-bottom:20px;")
+            select(class="selectpicker",id="select_accion")
+                option(value="") ---------
+                option(value="36") Matriz de chequeo carga de evidencias
+                option(value="37") Matriz de pago carga de evidencias
+            button(class="btn",id="accion") Generar reporte
+        | {% endif %}
+
+        table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
+            thead
+                tr
+                    th Numero
+                    th Conectividad
+                    th Diplomado
+                    th Inscritos
+                    th Evidencias
+            tbody
+                tr
+                    td Numero
+                    td Conectividad
+                    td Diplomado
+                    td Inscritos
+                    td Evidencias
+
+
+block body_script_content
+    script.
+        $("#accion").on("click",function(){
+            var action = $("#select_accion").val();
+            if(action != ''){
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/reportes/?action=' + action +'&id_contrato={{id_contrato}}',
+                    success: function(data){
+                        $('#myModal').modal('show');
+                        $("#select_accion").val('');
+                        $("#select_accion").selectpicker('refresh');
+                    }
+                });
+            }
+        });
+    script.
+        $(document).ready(function () {
+            var table = $('#table').DataTable({
+                "stateSave": true,
+                "searching": true,
+                "processing": true,
+                "serverSide": true,
+                "scrollX": true,
+                "ajax": "/rest/vigencia_2017/grupos/formador/{{id_contrato}}/",
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]],
+                "columns": [
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[5]) {
+                                return '<a href="grupo/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
+                    },
+                    {
+                        "data": 1,
+                        "render": function (data, type, row, meta) {
+                            if (row[4]) {
+                                return '<a href="conectividad/' + row[0] + '" style="color:#004c99;">No</a>';
+                            }
+                            else {
+                                return '<a href="conectividad/' + row[0] + '" style="color:#004c99;">Si</a>';
+                            }
+                        },
+                        "orderable": false,
+                    },
+                    {
+                        "data": 2,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 3,
+                        "orderable": false,
+                    },
+                    {
+                        "data": null,
+                        "className": 'text-center',
+                        "render": function (data, type, row, meta) {
+                            return '<a href="evidencias/' + row[0] + '" style="color:#004c99;"><img src="/static/img/upload.png" height="32"></a>';
+                        },
+                        "orderable": false,
+                    },
+                ]
+            });
+        });

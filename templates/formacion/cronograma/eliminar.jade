@@ -1,0 +1,83 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") CRONOGRAMAS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar una actividad en el cronogama de la proxima semana.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/formacion/cronograma/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de formadores
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Cronograma: {{object.formador.get_full_name}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar: {{object.fecha}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-deleteAdministrativo")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar la siguiente actividad del cronograma:
+                    p(class="inline bold-p") Semana:
+                        p(class="inline") {{object.semana}}
+                    p(class="inline bold-p") Formador:
+                        p(class="inline") {{object.formador.get_full_name}}
+                    p(class="inline bold-p") Departamento:
+                        p(class="inline") {{object.departamento}}
+                    p(class="inline bold-p") Municipio:
+                        p(class="inline") {{object.municipio}}
+                    p(class="inline bold-p") Secretaria:
+                        p(class="inline") {{object.secretaria}}
+                    p(class="inline bold-p") Grupo:
+                        p(class="inline") {{object.grupo}}
+                    p(class="inline bold-p") Cantidad de sedes:
+                        p(class="inline") {{object.numero_sedes}}
+                    p(class="inline bold-p") Cantidad de niveles:
+                        p(class="inline") {{object.nivel.count}}
+                    p(class="inline bold-p") Cantidad de actividades:
+                        p(class="inline") {{object.actividades_entrada.count}}
+                    p(class="inline bold-p") Cantidad de beneficiados:
+                        p(class="inline") {{object.beneficiados}}
+                    p(class="inline bold-p") Fecha:
+                        p(class="inline") {{object.fecha}}
+                    p(class="inline bold-p") Institucion:
+                        p(class="inline") {{object.institucion}}
+                    p(class="inline bold-p") Direccion:
+                        p(class="inline") {{object.direccion}}
+                    p(class="inline bold-p") Telefono:
+                        p(class="inline") {{object.telefono}}
+                    p(class="inline bold-p") Hora de inicio:
+                        p(class="inline") {{object.hora_inicio}}
+                    p(class="inline bold-p") Hora finalizacioón:
+                        p(class="inline") {{object.hora_finalizacion}}
+                    p(class="inline bold-p") Ubicación:
+                        p(class="inline") {{object.ubicacion}}
+                    p(class="inline bold-p") Observaciones:
+                        p(class="inline") {{object.observaciones}}
+
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-deleteAdministrativo').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });

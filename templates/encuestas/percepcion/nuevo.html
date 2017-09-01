@@ -1,0 +1,117 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html><html lang="es"><head><title>ENCUESTAS</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"/><meta property="og:type" content="article"/><meta property="og:title" content="Encuesta de interes y percepción inicial"/><meta property="og:description" content="El desarrollo del presente instrumento dentro del proceso de cualificación de docentes y docentes en el marco de la implementación de la Estrategia ETIC@ 2016."/><meta property="og:url" content="http://sican.asoandes.org/encuestas/percepcioninicial/"/><meta property="og:image" content="http://sican.asoandes.org/static/img/encuesta_percepcion.jpg"/><link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/><link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png'%}"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/datatables/media/css/dataTables.bootstrap.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/chosen/chosen.css'%}"/><link rel="stylesheet" href="{% static 'bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css'%}"/><link rel="stylesheet" href="{% static 'css/base_cpe.css'%}"/></head><body><div class="container-fluid"><div class="row"><div class="col-md-8 col-md-offset-2 text-center"><img src="{% static 'img/logocpe.png'%}"/><h2 class="title-white">Encuesta de percepción inicial y detección de necesidades</h2><div class="text-center"><form action="" method="POST" enctype="multipart/form-data" id="form-administrador">{% csrf_token %}
+{% crispy form %}</form></div></div></div></div><div class="container-fluid"><div class="row"><div class="col-sm-2 col-sm-offset-1"><a href="http://www.mineducacion.gov.co" target="_blank"><img src="{% static 'img/mineducacion_logo.png'%}" class="img-responsive center-block"/></a></div><div class="col-sm-2"><a href="http://www.mintic.gov.co" target="_blank"><img src="{% static 'img/mintic_logo.png'%}" class="img-responsive center-block"/></a></div><div class="col-sm-2"><a href="http://www.computadoresparaeducar.gov.co" target="_blank"><img src="{% static 'img/cpe_logo.png'%}" class="img-responsive center-block"/></a></div><div class="col-sm-2"><a href="http://es.presidencia.gov.co" target="_blank"><img src="{% static 'img/nuevo_pais.png'%}" class="img-responsive center-block"/></a></div><div class="col-sm-2"><a href="http://asoandes.org" target="_blank"><img src="{% static 'img/andes_logo.png'%}" class="img-responsive center-block"/></a></div></div></div><script src="{% static 'bower_components/jquery/dist/jquery.min.js'%}"></script><script src="{% static 'bower_components/moment/min/moment.min.js'%}"></script><script src="{% static 'bower_components/moment/locale/es.js'%}"></script><script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js'%}"></script><script src="{% static 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'%}"></script><script src="{% static 'bower_components/datatables/media/js/jquery.dataTables.min.js'%}"></script><script src="{% static 'bower_components/datatables/media/js/dataTables.bootstrap.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js'%}"></script><script src="{% static 'bower_components/bootstrap-select/dist/js/i18n/defaults-es_CL.min.js'%}"></script><script src="{% static 'bower_components/chained/jquery.chained.min.js'%}"></script><script src="{% static 'bower_components/chained/jquery.chained.remote.min.js'%}"></script><script src="{% static 'bower_components/chosen/chosen.jquery.js'%}"></script><script src="{% static 'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js'%}"></script><script>$(document).ready(function(){
+    if( $('#id_area').val() == "15" ){
+        $('#otra_area').removeClass('hidden');
+    }
+    else{
+        $('#otra_area').addClass('hidden');
+    }
+
+
+    if($('#id_pregunta_1_1').is(':checked')){
+        $("#primer_condicional").removeClass('hidden');
+        $("#tercer_condicional").removeClass('hidden');
+    }
+    else{
+        $("#primer_condicional").addClass('hidden');
+        $("#tercer_condicional").addClass('hidden');
+    }
+
+
+    if($('#id_pregunta_7_1').is(':checked')){
+        $("#segundo_condicional").removeClass('hidden');
+    }
+    else{
+        $("#segundo_condicional").addClass('hidden');
+    }
+
+
+});
+</script><script>$('#id_area').on('change',function(){
+    if( $('#id_area').val() == "15" ){
+        $('#otra_area').removeClass('hidden');
+    }
+    else{
+        $('#otra_area').addClass('hidden');
+    }
+})</script><script>$('#id_pregunta_13').slider({
+    formatter: function(value) {
+        return value + '%';
+    },
+    max:100,
+    value:50
+});
+
+$('#id_antiguedad').slider({
+    formatter: function(value) {
+        return value + ' años';
+    },
+    max:50
+});
+</script><script>$("#id_pregunta_1_1").on('click',function(){
+    if($("#primer_condicional").hasClass('hidden') == true){
+        $("#primer_condicional").removeClass('hidden');
+        $("#tercer_condicional").removeClass('hidden');
+    }
+    $("#fieldset_pregunta_1_1").addClass('hidden');
+})
+
+$("#id_pregunta_1_2").on('click',function(){
+    if($("#fieldset_pregunta_1_1").hasClass('hidden') == true){
+        $("#fieldset_pregunta_1_1").removeClass('hidden');
+    }
+    $("#primer_condicional").addClass('hidden');
+    $("#tercer_condicional").addClass('hidden');
+})
+
+$("#id_pregunta_6_4").on('click',function(){
+    if($("#otro_1").hasClass('hidden') == true){
+        $("#otro_1").removeClass('hidden');
+    }
+})
+
+$("#id_pregunta_6_1").on('click',function(){
+    $("#otro_1").addClass('hidden');
+})
+
+$("#id_pregunta_6_2").on('click',function(){
+    $("#otro_1").addClass('hidden');
+})
+
+$("#id_pregunta_6_3").on('click',function(){
+    $("#otro_1").addClass('hidden');
+})
+
+
+$("#id_pregunta_7_1").on('click',function(){
+    if($("#segundo_condicional").hasClass('hidden') == true){
+        $("#segundo_condicional").removeClass('hidden');
+    }
+})
+
+$("#id_pregunta_7_2").on('click',function(){
+    $("#segundo_condicional").addClass('hidden');
+})
+
+
+
+
+$("#id_pregunta_12_1").on('click',function(){
+    if($("#otro_2").hasClass('hidden') == true){
+        $("#otro_2").removeClass('hidden');
+    }
+})
+
+$("#id_pregunta_12_2").on('click',function(){
+    $("#otro_2").addClass('hidden');
+})
+
+$("#id_pregunta_12_3").on('click',function(){
+    $("#otro_2").addClass('hidden');
+})
+
+$("#id_pregunta_12_4").on('click',function(){
+    $("#otro_2").addClass('hidden');
+})</script></body></html>

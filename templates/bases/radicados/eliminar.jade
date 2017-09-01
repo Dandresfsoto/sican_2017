@@ -1,0 +1,59 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") RADICADOS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar el radicado "{{object.numero}}" del sistema de información,
+        si necesitas recuperarlo en algun momento comunicate con el administrador.
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="/bases/radicados/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Listado de radicados
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar: {{object.numero}}
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-deleteAdministrativo")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar la siguiente radicado:
+                    p(class="inline bold-p") Numero:
+                        p(class="inline") {{object.numero}}
+                    p(class="inline bold-p") Secretaría:
+                        p(class="inline") {{object.secretaria}}
+                    p(class="inline bold-p") Municipio
+                        p(class="inline") {{object.secretaria.municipio}}
+                    p(class="inline bold-p") Departamento:
+                        p(class="inline") {{object.secretaria.municipio.departamento}}
+                    p(class="inline bold-p") Sede:
+                        p(class="inline") {{object.nombre_sede}}
+                    p(class="inline bold-p") Dane sede:
+                        p(class="inline") {{object.dane_sede}}
+                    p(class="inline bold-p") Tipo:
+                        p(class="inline") {{object.tipo}}
+                    p(class="inline bold-p") Ubicación:
+                        p(class="inline") {{object.ubicacion}}
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-deleteAdministrativo').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });

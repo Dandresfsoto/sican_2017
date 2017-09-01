@@ -1,0 +1,93 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") BENEFICIARIOS {{diplomado}}
+block help_content
+    p(class="title-help") Descripción:
+    p.
+        ATENCIÓN! Estas a punto de eliminar el beneficiario identificado con la C.C. {{object.cedula}} del diplomado {{diplomado}}.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+    link(rel="import",href="{% static 'bower_components/file-upload-sican/file-upload-sican.html'%}")
+
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    a(href="../../",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Lista beneficiados {{diplomado}}
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Eliminar: {{object.cedula}}
+        iron-icon(icon="check",item-icon)
+
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-8 col-sm-offset-2")
+                form(action="",method="POST",enctype="multipart/form-data",id="form-deleteFormador")
+                    | {% csrf_token %}
+                    p(class="title-delete-p") Estas a punto de eliminar el siguiente beneficiario:
+
+                    p(class="inline bold-p") Diplomado:
+                        p(class="inline") {{object.diplomado}}
+
+                    p(class="inline bold-p") Región(es):
+                        p(class="inline") {{object.region}}
+
+                    p(class="inline bold-p") Radicado:
+                        p(class="inline") {{object.radicado.numero}}
+
+                    p(class="inline bold-p") Formador:
+                        p(class="inline") {{object.formador.get_full_name}}
+
+                    p(class="inline bold-p") Grupo:
+                        p(class="inline") {{object.grupo.get_full_name}}
+
+                    p(class="inline bold-p") Nombres:
+                        p(class="inline") {{object.nombres}}
+
+                    p(class="inline bold-p") Apellidos:
+                        p(class="inline") {{object.apellidos}}
+
+                    p(class="inline bold-p") Cedula:
+                        p(class="inline") {{object.cedula}}
+
+                    p(class="inline bold-p") Correo:
+                        p(class="inline") {{object.correo}}
+
+                    p(class="inline bold-p") Telefono fijo:
+                        p(class="inline") {{object.telefono_fijo}}
+
+                    p(class="inline bold-p") Telefono celular:
+                        p(class="inline") {{object.telefono_celular}}
+
+                    p(class="inline bold-p") Area:
+                        p(class="inline") {{object.area}}
+
+                    p(class="inline bold-p") Grado:
+                        p(class="inline") {{object.grado}}
+
+                    p(class="inline bold-p") Genero:
+                        p(class="inline") {{object.genero}}
+
+                    p(class="inline bold-p") Estado:
+                        p(class="inline") {{object.estado}}
+
+                    div(class="text-right login-form-button")
+                        paper-button(class="return",id="return") Cancelar
+                        paper-button(class="delete",id="submit_form") Eliminar
+
+block body_script_content
+    script.
+        $('#submit_form').on('click', function () {
+            $('#form-deleteFormador').submit();
+        });
+        $('#return').on('click', function () {
+            window.history.back();
+        });
