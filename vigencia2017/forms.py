@@ -13,7 +13,7 @@ from productos.models import Entregable
 from usuarios.models import User
 import openpyxl
 from region.models import Region
-from vigencia2017.models import Evidencia, Red
+from vigencia2017.models import Evidencia, Red, Corte
 
 
 class DaneSEDEForm(forms.ModelForm):
@@ -734,3 +734,23 @@ class RedForm(forms.ModelForm):
     class Meta:
         model = Red
         exclude = ['producto_final']
+
+class CorteVigencia2017Form(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CorteVigencia2017Form, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            Fieldset(
+                'CORTE DE PAGO',
+                Div(
+                    Div('diplomado',css_class='col-sm-6'),
+                    css_class = 'row'
+                )
+            ),
+        )
+
+    class Meta:
+        model = Corte
+        fields = '__all__'

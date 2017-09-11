@@ -93,6 +93,7 @@ from vigencia2017.models import Evidencia as EvidenciaVigencia2017
 from vigencia2017.models import Red as RedVigencia2017RedVigencia2017
 from vigencia2017.tasks import matriz_valores_vigencia_2017, matriz_chequeo_vigencia_2017_total, matriz_valores_vigencia_2017_total
 from vigencia2017.models import Red as RedVigencia2017
+from vigencia2017.models import Corte as CorteVigencia2017
 # Create your views here.
 
 
@@ -207,6 +208,9 @@ class UserPermissionList(APIView):
         }
 
         links = {
+            'vigencia_2017_cortes_pago': {
+                'ver': {'name': 'Cortes de pago', 'link': '/vigencia2017/cortes_pago/'}
+            },
             'vigencia_2017_reds': {
                 'ver': {'name': 'Formatos RED', 'link': '/vigencia2017/reds/'}
             },
@@ -2828,6 +2832,39 @@ class BeneficiariosGruposList(BaseDatatableView):
                 self.request.user.has_perm('permisos_sican.beneficiarios.beneficiarios_registrar.ver'),
             ])
         return json_data
+
+
+
+
+class CortesPagoList(BaseDatatableView):
+    """
+    """
+    model = CorteVigencia2017
+    columns = ['id','fecha']
+
+    order_columns = ['id','fecha']
+    max_display_length = 100
+
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get(u'search[value]', None)
+        if search:
+            q = Q(id__icontains=search)
+            qs = qs.filter(q)
+        return qs
+
+    def prepare_results(self, qs):
+        json_data = []
+        for item in qs:
+            json_data.append([
+                item.id,
+                item.fecha,
+                '',
+                '',
+                self.request.user.has_perm('permisos_sican.permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.ver'),
+            ])
+        return json_data
+
 
 
 class BeneficiariosCedulaListView(BaseDatatableView):

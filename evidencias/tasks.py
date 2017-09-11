@@ -835,8 +835,6 @@ def build_consolidado_aprobacion_red(email):
 
     return "Generado consolidados RED"
 
-
-
 @app.task
 def build_red_producto_final(id_red):
 

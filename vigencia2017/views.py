@@ -23,6 +23,8 @@ from vigencia2017.forms import RedForm
 from region.models import Region
 from django.shortcuts import HttpResponseRedirect
 from vigencia2017.tasks import build_red
+from vigencia2017.models import Corte as CorteVigencia2017
+from vigencia2017.forms import CorteVigencia2017Form
 
 
 from vigencia2017.tasks import carga_masiva_evidencia
@@ -783,3 +785,32 @@ class NuevoRedView(LoginRequiredMixin,
 
             pass
         return HttpResponseRedirect(self.get_success_url())
+
+
+
+
+class ListadoCortesPago(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/cortes_pago/lista.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.ver"
+
+    def get_context_data(self, **kwargs):
+        kwargs['nuevo_permiso'] = self.request.user.has_perm('permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.crear')
+        return super(ListadoCortesPago,self).get_context_data(**kwargs)
+
+
+
+
+class NuevoCortePago(LoginRequiredMixin,
+                              PermissionRequiredMixin,
+                              CreateView):
+    model = CorteVigencia2017
+    form_class = CorteVigencia2017Form
+    success_url = '../'
+    template_name = 'evidencias/red/nuevo.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.crear"
+
+    def get_context_data(self, **kwargs):
+        kwargs['formadores_innovatic_r1'] = ''
+        return super(NuevoCortePago,self).get_context_data(**kwargs)

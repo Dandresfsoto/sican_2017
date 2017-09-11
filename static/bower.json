@@ -19,7 +19,6 @@
     "vaadin-core-elements": "vaadin-elements#^1.0.0",
     "file-upload": "^1.7.5",
     "reconnectingWebsocket": "^1.0.0",
-    "datatables": "^1.10.12",
     "bootstrap-select": "1.10.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.37",
     "moment": "^2.14.1",
@@ -39,6 +38,7 @@
     "mixitup2": "^3.1.6",
     "picEdit": "*",
     "jqTree": "jqtree#^1.4.2",
-    "bootstrap-treeview": "^1.2.0"
+    "bootstrap-treeview": "^1.2.0",
+    "datatables": "^1.10.16"
   }
 }

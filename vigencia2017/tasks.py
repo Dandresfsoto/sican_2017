@@ -50,7 +50,7 @@ def carga_masiva_matrices(id,email_user):
     wb = openpyxl.load_workbook(filename = carga.archivo.file.name,read_only=True)
     sheets = wb.get_sheet_names()
 
-    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets:
+    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'PuenteAranda' in sheets:
 
         titulos = ['DIPLOMADO',
                    'RESULTADO',
@@ -136,7 +136,7 @@ def carga_masiva_matrices(id,email_user):
 
         contenidos = []
 
-        for name in ['InnovaTIC','TecnoTIC','DirecTIC']:
+        for name in ['InnovaTIC','TecnoTIC','DirecTIC','PuenteAranda']:
             ws = wb.get_sheet_by_name(name)
 
             for fila in ws.iter_rows(row_offset=5):
@@ -612,9 +612,10 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
+    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -670,6 +671,8 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
             ws = ws_directic
         elif id_diplomado == 4:
             ws = ws_escuelatic
+        elif id_diplomado == 7:
+            ws = ws_puente_aranda
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -721,6 +724,8 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
         wb.remove_sheet(ws_directic)
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
+    if contadores['7'] == 6:
+        wb.remove_sheet(ws_puente_aranda)
 
     wb.save(output)
 
@@ -754,9 +759,10 @@ def matriz_valores_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
+    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
 
 
 
@@ -794,6 +800,8 @@ def matriz_valores_vigencia_2017(email,id_contrato):
             ws = ws_directic
         elif id_diplomado == 4:
             ws = ws_escuelatic
+        elif id_diplomado == 7:
+            ws = ws_puente_aranda
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -841,6 +849,8 @@ def matriz_valores_vigencia_2017(email,id_contrato):
         wb.remove_sheet(ws_directic)
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
+    if contadores['7'] == 6:
+        wb.remove_sheet(ws_puente_aranda)
 
     wb.save(output)
 
@@ -866,9 +876,10 @@ def matriz_chequeo_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
+    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -924,6 +935,8 @@ def matriz_chequeo_vigencia_2017_total(email):
             ws = ws_directic
         elif id_diplomado == 4:
             ws = ws_escuelatic
+        elif id_diplomado == 7:
+            ws = ws_puente_aranda
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -975,6 +988,8 @@ def matriz_chequeo_vigencia_2017_total(email):
         wb.remove_sheet(ws_directic)
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
+    if contadores['7'] == 6:
+        wb.remove_sheet(ws_puente_aranda)
 
     wb.save(output)
 
@@ -999,9 +1014,11 @@ def matriz_valores_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
+    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6}
+
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
 
 
 
@@ -1039,6 +1056,8 @@ def matriz_valores_vigencia_2017_total(email):
             ws = ws_directic
         elif id_diplomado == 4:
             ws = ws_escuelatic
+        elif id_diplomado == 7:
+            ws = ws_puente_aranda
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -1086,6 +1105,8 @@ def matriz_valores_vigencia_2017_total(email):
         wb.remove_sheet(ws_directic)
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
+    if contadores['7'] == 6:
+        wb.remove_sheet(ws_puente_aranda)
 
     wb.save(output)
 
@@ -1131,7 +1152,6 @@ def carga_masiva_evidencia(carga_id,id_contrato,id_entregable,user_id):
                     beneficiario.set_pago_entregable(id_entregable=entregable.id, evidencia_id=evidencia.id)
 
     return "Evidencias cargadas"
-
 
 @app.task
 def build_red(id_red):

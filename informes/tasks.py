@@ -3525,7 +3525,7 @@ def matriz_chequeo_virtual_compilada(email):
                                 {'letter':'P','id':99,'nombre':'N2S2 - Bitácora 3'},
                                 {'letter':'Q','id':100,'nombre':'N2S3 - Bitácora 4'},
 
-                                {'letter':'R','id':112,'nombre':'N3S1 - Bitácora 5'},
+                                {'letter':'R','id':105,'nombre':'N3S1 - Bitácora 5'},
                                 {'letter':'S','id':109,'nombre':'N3S2 - Bitácora 6'},
 
                                 {'letter':'T','id':119,'nombre':'N4S1 - Modelo de presentación del Proyecto Educativo App'},
