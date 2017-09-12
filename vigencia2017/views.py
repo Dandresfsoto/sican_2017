@@ -449,7 +449,7 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
                 except:
                     pass
                 else:
-                    evidencias = EvidenciaVigencia2017.objects.filter(entregable=entregable, contrato=contrato)
+                    evidencias = EvidenciaVigencia2017.objects.filter(entregable=entregable, contrato=beneficiario.grupo.contrato)
                     if evidencias.filter(beneficiarios_validados=beneficiario).count() == 0:
                         if evidencias.filter(beneficiarios_cargados=beneficiario).count() > 0:
                             evidencias_cargadas = evidencias.filter(beneficiarios_cargados=beneficiario)
@@ -461,7 +461,7 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
                         archivo = SimpleUploadedFile(name=soporte, content=soportes.read(soporte_info))
                         evidencia = EvidenciaVigencia2017.objects.create(usuario=user, archivo=archivo,
                                                                          entregable=entregable,
-                                                                         contrato=contrato)
+                                                                         contrato=beneficiario.grupo.contrato)
                         evidencia.beneficiarios_cargados.add(beneficiario)
                         beneficiario.set_pago_entregable(id_entregable=entregable.id, evidencia_id=evidencia.id)
 
