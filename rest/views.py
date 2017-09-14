@@ -94,6 +94,8 @@ from vigencia2017.models import Red as RedVigencia2017RedVigencia2017
 from vigencia2017.tasks import matriz_valores_vigencia_2017, matriz_chequeo_vigencia_2017_total, matriz_valores_vigencia_2017_total
 from vigencia2017.models import Red as RedVigencia2017
 from vigencia2017.models import Corte as CorteVigencia2017
+from vigencia2017.models import Pago as PagoVigencia2017
+import locale
 # Create your views here.
 
 
@@ -2856,11 +2858,17 @@ class CortesPagoList(BaseDatatableView):
     def prepare_results(self, qs):
         json_data = []
         for item in qs:
+
+            valor = PagoVigencia2017.objects.filter(corte_id=item.id).aggregate(Sum('valor')).get('valor__sum','0.0')
+
+            if valor == None:
+                valor = 0
+
             json_data.append([
                 item.id,
                 item.fecha,
-                '',
-                '',
+                locale.currency(valor,grouping=True).replace('+',''),
+                item.get_archivo_urls(),
                 self.request.user.has_perm('permisos_sican.permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.ver'),
             ])
         return json_data

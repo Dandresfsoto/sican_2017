@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView, FormView
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 from vigencia2017.models import DaneSEDE, TipoContrato, ValorEntregableVigencia2017, CargaMatriz
@@ -25,6 +28,14 @@ from django.shortcuts import HttpResponseRedirect
 from vigencia2017.tasks import build_red
 from vigencia2017.models import Corte as CorteVigencia2017
 from vigencia2017.forms import CorteVigencia2017Form
+from django.db.models import Sum
+import locale
+from informes.functions import construir_reporte
+import datetime
+import pytz
+from django.core.files import File
+from vigencia2017.tasks import set_pago
+import json
 
 
 from vigencia2017.tasks import carga_masiva_evidencia
@@ -804,13 +815,49 @@ class ListadoCortesPago(LoginRequiredMixin,
 
 class NuevoCortePago(LoginRequiredMixin,
                               PermissionRequiredMixin,
-                              CreateView):
-    model = CorteVigencia2017
+                              FormView):
     form_class = CorteVigencia2017Form
     success_url = '../'
-    template_name = 'evidencias/red/nuevo.html'
+    template_name = 'vigencia2017/cortes_pago/nuevo.html'
     permission_required = "permisos_sican.vigencia_2017.vigencia_2017_cortes_pago.crear"
 
-    def get_context_data(self, **kwargs):
-        kwargs['formadores_innovatic_r1'] = ''
-        return super(NuevoCortePago,self).get_context_data(**kwargs)
+    def form_valid(self, form):
+
+        corte = CorteVigencia2017.objects.create()
+        titulos = ['Región','Formador','Contrato','Cedula','Valor']
+        formatos = ['General', 'General', 'General', '0', '$ #,##0.00']
+        ancho_columnas = [30, 50, 50, 20, 60]
+        contenidos = []
+
+        contratos = Contrato.objects.filter(vigencia="vigencia2017").exclude(tipo_contrato_id=None)
+
+        ids = []
+        for diplomado in Diplomado.objects.all():
+            ids += form.cleaned_data['diplomado_' + str(diplomado.id)]
+
+        for contrato in contratos:
+            pagos = PagoVigencia2017.objects.filter(corte_id = None,beneficiario__grupo__contrato = contrato,entregable__id__in = ids)
+            valor = pagos.aggregate(Sum('valor')).get('valor__sum','0.0')
+
+            if valor == None:
+                valor = 0.0
+
+
+            if form.cleaned_data[str(contrato.id)] == True:
+                id_pagos = json.dumps(list(pagos.values_list('id',flat=True)))
+                set_pago.delay(id_pagos,corte.id)
+
+
+                contenidos.append([contrato.get_region().nombre,contrato.formador.get_full_name(),contrato.nombre,contrato.formador.cedula,valor])
+
+        fecha = pytz.utc.localize(datetime.datetime.now())
+        output = construir_reporte(titulos, contenidos, formatos, ancho_columnas, 'CORTE DE PAGO', fecha, self.request.user, 'FIN-01')
+
+
+
+
+        filename = 'CORTE-' + unicode(corte.id) + '.xlsx'
+
+        corte.archivo.save(filename, File(output))
+
+        return super(NuevoCortePago, self).form_valid(form)

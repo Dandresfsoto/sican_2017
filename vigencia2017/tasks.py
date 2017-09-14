@@ -41,6 +41,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from zipfile import ZipFile
 from vigencia2017.models import CargaMasiva2017
 from vigencia2017.models import Red
+from vigencia2017.models import Pago
+import json
 
 @app.task
 def carga_masiva_matrices(id,email_user):
@@ -1339,3 +1341,14 @@ def build_red(id_red):
     red.archivo.save(filename,File(output))
 
     return "Generado RED-" + str(id_red)
+
+
+
+@app.task
+def set_pago(pagos,corte_id):
+    pagos = json.loads(pagos)
+    for pago in pagos:
+        pago_object = Pago.objects.get(id=pago)
+        pago_object.corte_id = corte_id
+        pago_object.save()
+    return "Corte efectuado"

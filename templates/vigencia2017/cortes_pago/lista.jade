@@ -38,14 +38,14 @@ block scroll_header_panel_content
                 tr
                     th ID
                     th Fecha
-                    th Formadores
                     th Valor
+                    th Archivo
             tbody
                 tr
                     td ID
                     td Fecha
-                    td Formadores
                     td Valor
+                    td Archivo
 
 block body_script_content
     script.
@@ -80,12 +80,7 @@ block body_script_content
                     {
                         "data": 0,
                         "render": function (data, type, row, meta) {
-                            if (row[5]) {
-                                return '<a href="pendientes/' + row[0] + '" style="color:#004c99;">MAS-' + data + '</a>';
-                            }
-                            else {
-                                return 'MAS-' + data;
-                            }
+                            return 'CORTE-' + data;
                         },
                         "orderable": true,
                     },
@@ -98,8 +93,17 @@ block body_script_content
                         "orderable": false,
                     },
                     {
-                        "data": 3,
                         "orderable": false,
+                        "className": 'text-center',
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            if (row[3] != '') {
+                                return '<a target="_blank" href="' + row[3] + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
+                            }
+                            else {
+                                return '';
+                            }
+                        }
                     }
                 ]
             });

@@ -13,8 +13,10 @@ from productos.models import Entregable
 from usuarios.models import User
 import openpyxl
 from region.models import Region
-from vigencia2017.models import Evidencia, Red, Corte
-
+from vigencia2017.models import Evidencia, Red, Corte, Pago
+from django.db.models import Sum
+import locale
+from productos.models import Diplomado
 
 class DaneSEDEForm(forms.ModelForm):
 
@@ -735,22 +737,57 @@ class RedForm(forms.ModelForm):
         model = Red
         exclude = ['producto_final']
 
-class CorteVigencia2017Form(forms.ModelForm):
+class CorteVigencia2017Form(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(CorteVigencia2017Form, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
-        self.helper.layout = Layout(
-            Fieldset(
-                'CORTE DE PAGO',
-                Div(
-                    Div('diplomado',css_class='col-sm-6'),
-                    css_class = 'row'
-                )
-            ),
-        )
+        self.helper.layout = Layout()
 
-    class Meta:
-        model = Corte
-        fields = '__all__'
+
+        contratos = Contrato.objects.filter(vigencia="vigencia2017").exclude(tipo_contrato_id=None)
+        self.helper.layout.fields.append(Fieldset('Entregables'))
+
+        for diplomado in Diplomado.objects.all():
+
+            choices = []
+            for choice in Entregable.objects.filter(sesion__nivel__diplomado = diplomado).order_by('numero'):
+
+                if choice.tipo == "Presencial":
+                    tipo = "SICAN"
+                else:
+                    tipo = "CA"
+
+
+                choices.append((choice.id,tipo + " - Escencial: " + choice.escencial + " - " +choice.get_number_name()))
+
+            self.fields['diplomado_'+str(diplomado.id)] = forms.MultipleChoiceField(choices = choices,
+                                                                                    label=diplomado.nombre,
+                                                                                    required=False,
+                                                                                    initial=(c[0] for c in choices))
+
+            self.helper.layout.fields[0].append(Div(Div('diplomado_'+str(diplomado.id), css_class='col-sm-12'), css_class='row'))
+
+        self.helper.layout.fields.append(Fieldset('Formadores'))
+
+        self.helper.layout.fields[1].append(Fieldset('Región 1'))
+        self.helper.layout.fields[1].append(Fieldset('Región 2'))
+
+        for contrato in contratos:
+
+            valor = Pago.objects.filter(corte_id = None,beneficiario__grupo__contrato = contrato).aggregate(Sum('valor')).get('valor__sum','0.0')
+
+
+            if valor == None:
+                valor = 0.0
+
+            pago = locale.currency(valor,grouping=True).replace('+','')
+
+
+            self.fields[str(contrato.id)] = forms.BooleanField(label= contrato.nombre + " - " + contrato.formador.get_full_name() + " - Pago:" + pago,required=False)
+
+            if contrato.get_region().id == 1:
+                self.helper.layout.fields[1].fields[0].append(Div(Div(str(contrato.id),css_class='col-sm-12'),css_class='row'))
+            else:
+                self.helper.layout.fields[1].fields[1].append(Div(Div(str(contrato.id), css_class='col-sm-12'), css_class='row'))

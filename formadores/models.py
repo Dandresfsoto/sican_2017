@@ -121,6 +121,11 @@ class Contrato(models.Model):
     def __unicode__(self):
         return self.nombre
 
+    def get_region(self):
+        departamentos = self.municipios.all().values_list('departamento__id',flat=True)
+        region = Region.objects.filter(departamentos__id__in = departamentos)
+        return region[0]
+
     def get_contrato_url(self):
         try:
             url = self.contrato_original.url

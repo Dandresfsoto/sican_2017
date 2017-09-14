@@ -310,6 +310,14 @@ class Red(models.Model):
 
 class Corte(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
+    archivo = models.FileField(upload_to='Cortes/Vigencia 2017/', blank=True, null=True)
+
+    def get_archivo_urls(self):
+        try:
+            url = self.archivo.url
+        except:
+            url = ""
+        return url
 
 
 class CargaMasiva2017(models.Model):
