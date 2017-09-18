@@ -157,7 +157,7 @@ def carga_masiva_matrices(id,email):
 
                                         ruta = ruta[:-1]
 
-                                        grupo, grupo_creado = Grupos.objects.get_or_create(formador=formador,nombre = grupo_numero)
+                                        grupo, grupo_creado = Grupos.objects.get_or_create(formador=formador,nombre = grupo_numero,numero = int(grupo_numero))
 
                                         if grupo_creado:
                                             resultado += 'Grupo creado, '
