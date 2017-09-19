@@ -64,8 +64,8 @@
       <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/informes/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="3151" column="53" lean-forward="true" selection-start-line="3151" selection-start-column="53" selection-end-line="3151" selection-end-column="53" />
+            <state relative-caret-position="245">
+              <caret line="3147" column="28" lean-forward="true" selection-start-line="3147" selection-start-column="28" selection-end-line="3147" selection-end-column="28" />
               <folding>
                 <element signature="e#1828#1954#0" expanded="false" />
                 <element signature="e#1993#3755#0" expanded="false" />
@@ -548,13 +548,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
     </task>
-    <task id="LOCAL-00010" summary="Informes 1">
-      <created>1500995274712</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1500995274712</updated>
-    </task>
     <task id="LOCAL-00011" summary="Vigencia2017">
       <created>1501614908525</created>
       <option name="number" value="00011" />
@@ -891,7 +884,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505841599880</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Vigencia 2017 v27">
+      <created>1505848657342</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1505848657343</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1437,8 +1437,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/informes/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="3151" column="53" lean-forward="true" selection-start-line="3151" selection-start-column="53" selection-end-line="3151" selection-end-column="53" />
+        <state relative-caret-position="245">
+          <caret line="3147" column="28" lean-forward="true" selection-start-line="3147" selection-start-column="28" selection-end-line="3147" selection-end-column="28" />
           <folding>
             <element signature="e#1828#1954#0" expanded="false" />
             <element signature="e#1993#3755#0" expanded="false" />
