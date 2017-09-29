@@ -679,12 +679,12 @@ class NuevoRedView(LoginRequiredMixin,
     model = Red
     form_class = RedForm
     success_url = '../'
-    template_name = 'evidencias/red/nuevo.html'
+    template_name = 'vigencia2017/red/nuevo.html'
     permission_required = "permisos_sican.evidencias.red.crear"
 
     def get_context_data(self, **kwargs):
 
-        evidencias = Evidencia.objects.filter(red_id = None)
+        evidencias = Evidencia.objects.filter(red_id = None,entregable__escencial = "Si")
 
         region_1 = Region.objects.get(numero = 1)
         region_2 = Region.objects.get(numero = 2)
@@ -696,12 +696,16 @@ class NuevoRedView(LoginRequiredMixin,
         evidencias_r1_tecnotic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')
         evidencias_r1_directic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'DIRECTIC')
         evidencias_r1_escuelatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'ESCUELA TIC FAMILIA')
+        evidencias_r1_escuelatic_innovadores = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
+        evidencias_r1_docentic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
+
 
         evidencias_r2_innovatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
         evidencias_r2_tecnotic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')
         evidencias_r2_directic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'DIRECTIC')
         evidencias_r2_escuelatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'ESCUELA TIC FAMILIA')
-
+        evidencias_r2_escuelatic_innovadores = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
+        evidencias_r2_docentic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
 
         kwargs['formadores_innovatic_r1'] = evidencias_r1_innovatic.values_list('contrato__formador',flat=True).distinct().count()
         kwargs['beneficiarios_innovatic_r1'] = evidencias_r1_innovatic.values_list('beneficiarios_cargados',flat=True).distinct().count()
@@ -719,6 +723,16 @@ class NuevoRedView(LoginRequiredMixin,
         kwargs['beneficiarios_escuelatic_r1'] = evidencias_r1_escuelatic.values_list('beneficiarios_cargados',flat=True).distinct().count()
         kwargs['evidencias_escuelatic_r1'] = evidencias_r1_escuelatic.count()
 
+        kwargs['formadores_docentes_innovadores_r1'] = evidencias_r1_escuelatic_innovadores.values_list('contrato__formador',flat=True).distinct().count()
+        kwargs['beneficiarios_docentes_innovadores_r1'] = evidencias_r1_escuelatic_innovadores.values_list('beneficiarios_cargados',flat=True).distinct().count()
+        kwargs['evidencias_docentes_innovadores_r1'] = evidencias_r1_escuelatic_innovadores.count()
+
+        kwargs['formadores_docentic_r1'] = evidencias_r1_docentic.values_list('contrato__formador', flat=True).distinct().count()
+        kwargs['beneficiarios_docentic_r1'] = evidencias_r1_docentic.values_list('beneficiarios_cargados', flat=True).distinct().count()
+        kwargs['evidencias_docentic_r1'] = evidencias_r1_docentic.count()
+
+
+
         kwargs['formadores_innovatic_r2'] = evidencias_r2_innovatic.values_list('contrato__formador',flat=True).distinct().count()
         kwargs['beneficiarios_innovatic_r2'] = evidencias_r2_innovatic.values_list('beneficiarios_cargados',flat=True).distinct().count()
         kwargs['evidencias_innovatic_r2'] = evidencias_r2_innovatic.count()
@@ -735,6 +749,14 @@ class NuevoRedView(LoginRequiredMixin,
         kwargs['beneficiarios_escuelatic_r2'] = evidencias_r2_escuelatic.values_list('beneficiarios_cargados',flat=True).distinct().count()
         kwargs['evidencias_escuelatic_r2'] = evidencias_r2_escuelatic.count()
 
+        kwargs['formadores_docentes_innovadores_r2'] = evidencias_r2_escuelatic_innovadores.values_list('contrato__formador', flat=True).distinct().count()
+        kwargs['beneficiarios_docentes_innovadores_r2'] = evidencias_r2_escuelatic_innovadores.values_list('beneficiarios_cargados', flat=True).distinct().count()
+        kwargs['evidencias_docentes_innovadores_r2'] = evidencias_r2_escuelatic_innovadores.count()
+
+        kwargs['formadores_docentic_r2'] = evidencias_r2_docentic.values_list('contrato__formador',flat=True).distinct().count()
+        kwargs['beneficiarios_docentic_r2'] = evidencias_r2_docentic.values_list('beneficiarios_cargados',flat=True).distinct().count()
+        kwargs['evidencias_docentic_r2'] = evidencias_r2_docentic.count()
+
         return super(NuevoRedView,self).get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -743,7 +765,7 @@ class NuevoRedView(LoginRequiredMixin,
         red = Red.objects.get(id = self.object.id)
 
         if not red.producto_final:
-            evidencias = EvidenciaVigencia2017.objects.filter(red_id = None)
+            evidencias = Evidencia.objects.filter(red_id=None, entregable__escencial="Si")
 
             region_1 = Region.objects.get(numero = 1)
             region_2 = Region.objects.get(numero = 2)
@@ -751,15 +773,19 @@ class NuevoRedView(LoginRequiredMixin,
             evidencias_r1 = evidencias.filter(contrato__region = region_1)
             evidencias_r2 = evidencias.filter(contrato__region = region_2)
 
-            evidencias_r1_innovatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
-            evidencias_r1_tecnotic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')
-            evidencias_r1_directic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'DIRECTIC')
-            evidencias_r1_escuelatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'ESCUELA TIC FAMILIA')
+            evidencias_r1_innovatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='INNOVATIC')
+            evidencias_r1_tecnotic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='TECNOTIC')
+            evidencias_r1_directic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='DIRECTIC')
+            evidencias_r1_escuelatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELA TIC FAMILIA')
+            evidencias_r1_escuelatic_innovadores = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
+            evidencias_r1_docentic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
 
-            evidencias_r2_innovatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
-            evidencias_r2_tecnotic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')
-            evidencias_r2_directic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'DIRECTIC')
-            evidencias_r2_escuelatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'ESCUELA TIC FAMILIA')
+            evidencias_r2_innovatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='INNOVATIC')
+            evidencias_r2_tecnotic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='TECNOTIC')
+            evidencias_r2_directic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='DIRECTIC')
+            evidencias_r2_escuelatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELA TIC FAMILIA')
+            evidencias_r2_escuelatic_innovadores = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
+            evidencias_r2_docentic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
 
 
 
@@ -772,6 +798,10 @@ class NuevoRedView(LoginRequiredMixin,
                     evidencias_r1_directic.update(red_id = red.id)
                 elif self.object.diplomado.nombre == 'ESCUELA TIC FAMILIA':
                     evidencias_r1_escuelatic.update(red_id = red.id)
+                elif self.object.diplomado.nombre == 'ESCUELATIC DOCENTES INNOVADORES':
+                    evidencias_r1_escuelatic_innovadores.update(red_id = red.id)
+                elif self.object.diplomado.nombre == 'DOCENTIC':
+                    evidencias_r1_docentic.update(red_id = red.id)
                 else:
                     pass
 
@@ -784,6 +814,10 @@ class NuevoRedView(LoginRequiredMixin,
                     evidencias_r2_directic.update(red_id = red.id)
                 elif self.object.diplomado.nombre == 'ESCUELA TIC FAMILIA':
                     evidencias_r2_escuelatic.update(red_id = red.id)
+                elif self.object.diplomado.nombre == 'ESCUELATIC DOCENTES INNOVADORES':
+                    evidencias_r2_escuelatic_innovadores.update(red_id = red.id)
+                elif self.object.diplomado.nombre == 'DOCENTIC':
+                    evidencias_r2_docentic.update(red_id = red.id)
                 else:
                     pass
 

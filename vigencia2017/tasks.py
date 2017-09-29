@@ -52,7 +52,7 @@ def carga_masiva_matrices(id,email_user):
     wb = openpyxl.load_workbook(filename = carga.archivo.file.name,read_only=True)
     sheets = wb.get_sheet_names()
 
-    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'PuenteAranda' in sheets:
+    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'ESCUELATIC DOCENTES INNOVADORES' in sheets:
 
         titulos = ['DIPLOMADO',
                    'RESULTADO',
@@ -138,7 +138,7 @@ def carga_masiva_matrices(id,email_user):
 
         contenidos = []
 
-        for name in ['InnovaTIC','TecnoTIC','DirecTIC','PuenteAranda']:
+        for name in ['InnovaTIC','TecnoTIC','DirecTIC','ESCUELATIC DOCENTES INNOVADORES']:
             ws = wb.get_sheet_by_name(name)
 
             for fila in ws.iter_rows(row_offset=5):

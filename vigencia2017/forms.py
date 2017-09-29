@@ -657,30 +657,42 @@ class RedForm(forms.ModelForm):
                     HTML(
                         """
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p" style="margin-bottom:10px;">Innovatic</h4>
                                 <p>Formadores: {{formadores_innovatic_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_innovatic_r1}}</p>
                                 <p>Evidencias: {{evidencias_innovatic_r1}}</p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Tecnotic</h4>
                                 <p>Formadores: {{formadores_tecnotic_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_tecnotic_r1}}</p>
                                 <p>Evidencias: {{evidencias_tecnotic_r1}}</p>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Directic</h4>
                                 <p>Formadores: {{formadores_directic_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_directic_r1}}</p>
                                 <p>Evidencias: {{evidencias_directic_r1}}</p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Escuela TIC</h4>
                                 <p>Formadores: {{formadores_escuelatic_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_escuelatic_r1}}</p>
                                 <p>Evidencias: {{evidencias_escuelatic_r1}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 class="bold-p">Docentes Innovadores</h4>
+                                <p>Formadores: {{formadores_docentes_innovadores_r1}}</p>
+                                <p>Beneficiarios: {{beneficiarios_docentes_innovadores_r1}}</p>
+                                <p>Evidencias: {{evidencias_docentes_innovadores_r1}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 class="bold-p">Docentic</h4>
+                                <p>Formadores: {{formadores_docentic_r1}}</p>
+                                <p>Beneficiarios: {{beneficiarios_docentic_r1}}</p>
+                                <p>Evidencias: {{evidencias_docentic_r1}}</p>
                             </div>
                         </div>
                         """,
@@ -693,30 +705,42 @@ class RedForm(forms.ModelForm):
                     HTML(
                         """
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p" style="margin-bottom:10px;">Innovatic</h4>
                                 <p>Formadores: {{formadores_innovatic_r2}}</p>
                                 <p>Beneficiarios: {{beneficiarios_innovatic_r2}}</p>
                                 <p>Evidencias: {{evidencias_innovatic_r2}}</p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Tecnotic</h4>
                                 <p>Formadores: {{formadores_tecnotic_r2}}</p>
                                 <p>Beneficiarios: {{beneficiarios_tecnotic_r2}}</p>
                                 <p>Evidencias: {{evidencias_tecnotic_r2}}</p>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Directic</h4>
                                 <p>Formadores: {{formadores_directic_r2}}</p>
                                 <p>Beneficiarios: {{beneficiarios_directic_r2}}</p>
                                 <p>Evidencias: {{evidencias_directic_r2}}</p>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Escuela TIC</h4>
                                 <p>Formadores: {{formadores_escuelatic_r2}}</p>
                                 <p>Beneficiarios: {{beneficiarios_escuelatic_r2}}</p>
                                 <p>Evidencias: {{evidencias_escuelatic_r2}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 class="bold-p">Docentes Innovadores</h4>
+                                <p>Formadores: {{formadores_docentes_innovadores_r2}}</p>
+                                <p>Beneficiarios: {{beneficiarios_docentes_innovadores_r2}}</p>
+                                <p>Evidencias: {{evidencias_docentes_innovadores_r2}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 class="bold-p">Docentic</h4>
+                                <p>Formadores: {{formadores_docentic_r2}}</p>
+                                <p>Beneficiarios: {{beneficiarios_docentic_r2}}</p>
+                                <p>Evidencias: {{evidencias_docentic_r2}}</p>
                             </div>
                         </div>
                         """,
