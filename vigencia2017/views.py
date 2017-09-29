@@ -689,8 +689,8 @@ class NuevoRedView(LoginRequiredMixin,
         region_1 = Region.objects.get(numero = 1)
         region_2 = Region.objects.get(numero = 2)
 
-        evidencias_r1 = evidencias.filter(contrato__formador__region = region_1)
-        evidencias_r2 = evidencias.filter(contrato__formador__region = region_2)
+        evidencias_r1 = evidencias.filter(contrato__region = region_1)
+        evidencias_r2 = evidencias.filter(contrato__region = region_2)
 
         evidencias_r1_innovatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
         evidencias_r1_tecnotic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')
@@ -748,8 +748,8 @@ class NuevoRedView(LoginRequiredMixin,
             region_1 = Region.objects.get(numero = 1)
             region_2 = Region.objects.get(numero = 2)
 
-            evidencias_r1 = evidencias.filter(contrato__formador__region = region_1)
-            evidencias_r2 = evidencias.filter(contrato__formador__region = region_2)
+            evidencias_r1 = evidencias.filter(contrato__region = region_1)
+            evidencias_r2 = evidencias.filter(contrato__region = region_2)
 
             evidencias_r1_innovatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
             evidencias_r1_tecnotic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'TECNOTIC')

@@ -100,6 +100,7 @@ class SolicitudSoportes(models.Model):
 
 class Contrato(models.Model):
     nombre = models.CharField(unique=True,max_length=200)
+    region = models.ForeignKey(Region)
     formador = models.ForeignKey(Formador)
     soportes_requeridos = models.ForeignKey(SolicitudSoportes)
     codigo_ruta = models.CharField(max_length=100,blank=True,null=True)

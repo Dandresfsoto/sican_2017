@@ -194,7 +194,8 @@ class ContratoForm(forms.ModelForm):
                     css_class = 'row'
                 ),
                 Div(
-                    Div('municipios',css_class='col-sm-12'),
+                    Div('municipios',css_class='col-sm-6'),
+                    Div('region', css_class='col-sm-6'),
                     css_class = 'row'
                 )
             ),
