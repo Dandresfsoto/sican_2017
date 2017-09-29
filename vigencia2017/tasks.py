@@ -1293,7 +1293,29 @@ def build_red(id_red):
         ws = wb.get_sheet_by_name('RED BOGOTA')
         inicia = 6
 
-    evidencias_total = EvidenciaVigencia2017.objects.filter(red_id = id_red)
+    elif red.diplomado.numero == 7:
+        ids = [{'id':304,'letter':'Q'},
+               {'id':305,'letter':'R'},
+               {'id':306,'letter':'S'},
+               {'id':307,'letter':'T'},
+               {'id':308,'letter':'U'},
+               {'id':309,'letter':'V'},
+               {'id':310,'letter':'W'},
+               {'id':311,'letter':'X'},
+               {'id':312,'letter':'Y'},
+               {'id':313,'letter':'Z'},
+               {'id':314,'letter':'AA'},
+               {'id':315,'letter': 'AB'},
+               {'id':316,'letter': 'AC'},
+               {'id':317,'letter': 'AD'},
+               {'id':318,'letter': 'AE'},
+               {'id':319,'letter': 'AF'}]
+
+        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/ESCUELATIC DOCENTES INNOVADORES 2017.xlsx')
+        ws = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+        inicia = 6
+
+    evidencias_total = EvidenciaVigencia2017.objects.filter(red_id=id_red)
     beneficiarios_id = evidencias_total.exclude(beneficiarios_cargados = None).values_list('beneficiarios_cargados__id',flat=True).distinct()
 
 
