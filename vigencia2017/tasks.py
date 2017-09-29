@@ -614,7 +614,7 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
+    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
 
 
     contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
@@ -761,7 +761,7 @@ def matriz_valores_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
+    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
 
 
     contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
@@ -878,7 +878,7 @@ def matriz_chequeo_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
+    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
 
 
     contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
@@ -1016,7 +1016,7 @@ def matriz_valores_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('PuenteAranda')
+    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
 
 
 
