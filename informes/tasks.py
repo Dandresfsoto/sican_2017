@@ -3495,6 +3495,7 @@ def matriz_chequeo_virtual_compilada(email):
     output = StringIO()
     dict_productos = []
 
+    """
     dict_productos_innovatic = [{'letter':'I','id':20,'nombre':'N1S1 - Hoja de ruta'},
                                 {'letter':'J','id':21,'nombre':'N1S2 - Guía: construyendo lecciones de innovación educativa'},
                                 {'letter':'K','id':22,'nombre':'N1S2 - Taller práctico: 10 claves para la implementación de tendencias y enfoques innovadores'},
@@ -3667,6 +3668,11 @@ def matriz_chequeo_virtual_compilada(email):
             i += 1
 
     wb.close()
+    """
+
+    output = StringIO()
+    wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/FINAL_VIRTUAL.xlsx')
+    wb.save(output)
 
     filename = unicode(informe.creacion) + '.xlsx'
     informe.archivo.save(filename,File(output))
