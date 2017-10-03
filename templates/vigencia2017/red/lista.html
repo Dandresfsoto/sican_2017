@@ -147,14 +147,14 @@ $(document).ready(function () {
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Spanish.json"
         },
-        "order": [[1, "desc"]],
+        "order": [[0, "desc"]],
         "columns": [
             {
                 "data": 0,
                 "orderable": true,
                 "render": function (data, type, row, meta) {
                     if (row[7]) {
-                        return '<a href="editar/' + row[0] + '" style="color:#004c99;">RED-'+ data +'</a>';
+                        return '<a href="editar/' + row[0] + '" style="color:#004c99;">RED-VIG2017-'+ data +'</a>';
                     }
                     else {
                         return 'RED-' + data;

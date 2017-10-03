@@ -1265,16 +1265,14 @@ def build_red(id_red):
         wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED DIRECTIC.xlsx')
         ws = wb.get_sheet_by_name('RED DirecTIC')
         inicia = 6
-    elif red.diplomado.numero == 4:
-        ids = [{'id':221,'letter':'M'},
-               {'id':221,'letter':'N'},
-               {'id':221,'letter':'O'},
-               {'id':224,'letter':'P'},
-               {'id':228,'letter':'Q'}]
 
-        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED FAMILIA.xlsx')
-        ws = wb.get_sheet_by_name('RED Familia')
-        inicia = 2
+    elif red.diplomado.numero == 4:
+        ids = [{'id':224,'letter':'R'},
+               {'id':228,'letter':'S'}]
+
+        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED FAMILIA 2017.xlsx')
+        ws = wb.get_sheet_by_name('RED FAMILIA')
+        inicia = 6
 
     elif red.diplomado.numero == 6:
         ids = [{'id':258,'letter':'M'},
@@ -1327,18 +1325,18 @@ def build_red(id_red):
 
         ws.cell('A'+str(i)).value = i - inicia + 1
         ws.cell('B'+str(i)).value = beneficiario.region.nombre.upper()
-        ws.cell('C'+str(i)).value = beneficiario.dane_sede.dane_sede
-        ws.cell('C' + str(i)).number_format = '0'
-        ws.cell('D'+str(i)).value = beneficiario.dane_sede.nombre_sede
-        ws.cell('E'+str(i)).value = beneficiario.dane_sede.dane_ie
-        ws.cell('E' + str(i)).number_format = '0'
-        ws.cell('F'+str(i)).value = beneficiario.dane_sede.nombre_ie
-        ws.cell('G'+str(i)).value = beneficiario.dane_sede.municipio.codigo_municipio
+        ws.cell('C'+str(i)).value = beneficiario.dane_sede.dane_sede if red.diplomado.id != 4 else 'N/A'
+        ws.cell('C' + str(i)).number_format = '0' if red.diplomado.id != 4 else 'General'
+        ws.cell('D'+str(i)).value = beneficiario.dane_sede.nombre_sede if red.diplomado.id != 4 else 'N/A'
+        ws.cell('E'+str(i)).value = beneficiario.dane_sede.dane_ie if red.diplomado.id != 4 else 'N/A'
+        ws.cell('E' + str(i)).number_format = '0' if red.diplomado.id != 4 else 'General'
+        ws.cell('F'+str(i)).value = beneficiario.dane_sede.nombre_ie if red.diplomado.id != 4 else 'N/A'
+        ws.cell('G'+str(i)).value = beneficiario.dane_sede.municipio.codigo_municipio if red.diplomado.id != 4 else beneficiario.municipio.codigo_municipio
         ws.cell('G'+str(i)).number_format = '0'
-        ws.cell('H'+str(i)).value = beneficiario.dane_sede.municipio.nombre.upper()
-        ws.cell('I'+str(i)).value = beneficiario.dane_sede.municipio.departamento.codigo_departamento
+        ws.cell('H'+str(i)).value = beneficiario.dane_sede.municipio.nombre.upper() if red.diplomado.id != 4 else beneficiario.municipio.nombre.upper()
+        ws.cell('I'+str(i)).value = beneficiario.dane_sede.municipio.departamento.codigo_departamento if red.diplomado.id != 4 else beneficiario.municipio.departamento.codigo_departamento
         ws.cell('I' + str(i)).number_format = '0'
-        ws.cell('J'+str(i)).value = beneficiario.dane_sede.municipio.departamento.nombre.upper()
+        ws.cell('J'+str(i)).value = beneficiario.dane_sede.municipio.departamento.nombre.upper() if red.diplomado.id != 4 else beneficiario.municipio.departamento.nombre.upper()
 
         ws.cell('K'+str(i)).value = beneficiario.grupo.get_nombre_grupo()
         ws.cell('L'+str(i)).value = beneficiario.grupo.contrato.formador.get_full_name().upper()

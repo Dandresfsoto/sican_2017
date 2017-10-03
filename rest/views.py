@@ -4479,7 +4479,7 @@ class RedListVigencia2017(BaseDatatableView):
                 item.diplomado.nombre,
                 item.region.nombre,
                 localtime(item.fecha).strftime('%d/%m/%Y %I:%M:%S %p'),
-                Evidencia.objects.filter(red_id = item.id).count(),
+                EvidenciaVigencia2017.objects.filter(red_id = item.id).count(),
                 'Si' if item.retroalimentacion else 'No',
                 item.get_archivo_url(),
                 self.request.user.has_perm('permisos_sican.evidencias.red.editar'),
