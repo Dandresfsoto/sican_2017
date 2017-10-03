@@ -686,7 +686,7 @@ class ListaSoportesVigencia2017(BaseDatatableView):
         search = self.request.GET.get(u'search[value]', None)
 
         if search:
-            q = Q(nombre__icontains=search.capitalize())
+            q = Q(beneficiarios_cargados__cedula__iexact=search) | Q(id__iexact=search)
             qs = qs.filter(q)
         return qs
 
@@ -715,6 +715,7 @@ class ListaSoportesVigencia2017(BaseDatatableView):
                 item.id,
                 item.get_beneficiarios_cantidad(),
                 item.get_validados_cantidad(),
+                "RED-VIG2017-" + str(item.red_id) if item.red_id != None else '',
                 item.get_archivo_url(),
                 self.request.user.has_perm('permisos_sican.vigencia_2017.vigencia_2017_evidencias.editar') if item.red_id == None else False,
                 self.request.user.has_perm('permisos_sican.vigencia_2017.vigencia_2017_evidencias.eliminar') if item.red_id == None else False,

@@ -36,7 +36,8 @@ import pytz
 from django.core.files import File
 from vigencia2017.tasks import set_pago
 import json
-
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from vigencia2017.tasks import carga_masiva_evidencia
 
@@ -437,6 +438,9 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
 
     def form_valid(self, form):
 
+        context = self.get_context_data()
+
+
         carga = CargaMasiva2017.objects.create(archivo=form.cleaned_data['archivo'])
 
         #carga_masiva_evidencia.delay(carga.id,self.kwargs['pk'],self.kwargs['id_entregable'],self.request.user.id)
@@ -448,8 +452,16 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
 
         soportes = ZipFile(carga.archivo, 'r')
 
+        resultados = []
+
+        cantidad_cargados = 0
+        cantidad_rechazados = 0
+
         for soporte_info in soportes.infolist():
             soporte = soporte_info.filename
+            archivo = SimpleUploadedFile(name=soporte, content=soportes.read(soporte_info))
+            resultado = ""
+
             try:
                 cedula = soporte.split('/')[-1].split('.')[-2]
             except:
@@ -458,30 +470,59 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
                 try:
                     beneficiario = BeneficiarioVigencia2017.objects.get(cedula=cedula)
                 except:
-                    pass
+                    resultado = "La cedula no esta registrada en el sistema"
+                    cantidad_rechazados += 1
                 else:
-                    evidencias = EvidenciaVigencia2017.objects.filter(entregable=entregable, contrato=beneficiario.grupo.contrato)
-                    if evidencias.filter(beneficiarios_validados=beneficiario).count() == 0:
-                        if evidencias.filter(beneficiarios_cargados=beneficiario).count() > 0:
-                            evidencias_cargadas = evidencias.filter(beneficiarios_cargados=beneficiario)
+                    if beneficiario.grupo.contrato == contrato:
+                        evidencias = EvidenciaVigencia2017.objects.filter(entregable=entregable, contrato=beneficiario.grupo.contrato)
 
-                            for evidencia_cargada in evidencias_cargadas:
-                                evidencia_cargada.beneficiarios_cargados.remove(beneficiario)
-                                beneficiario.delete_pago_entregable(id_entregable=entregable.id)
+                        if evidencias.filter(beneficiarios_validados=beneficiario).count() == 0:
+                            #si la evidencia no esta validada
+                            cuenta_reportadas = 0
+                            if evidencias.filter(beneficiarios_cargados=beneficiario).count() > 0:
+                                #si la evidencia esta cargada
+                                evidencias_cargadas = evidencias.filter(beneficiarios_cargados=beneficiario)
+                                for evidencia_cargada in evidencias_cargadas:
+                                    if evidencia_cargada.red_id == None:
+                                        #si la evidencia no esta reportada
+                                        evidencia_cargada.beneficiarios_cargados.remove(beneficiario)
+                                        beneficiario.delete_pago_entregable(id_entregable=entregable.id)
+                                    else:
+                                        #si la evidencia esta reportada
+                                        resultado = "La evidencia fue reportada en el RED-VIG2017-" + str(evidencia_cargada.red_id)
+                                        cuenta_reportadas += 1
+                            if cuenta_reportadas == 0:
+                                evidencia = self.create_evidencia(archivo, user, entregable, beneficiario)
+                                resultado = "La evidencia se cargo exitosamente con el codigo SIC-" + str(evidencia.id)
+                                cantidad_cargados += 1
+                            else:
+                                cantidad_rechazados += 1
 
-                        archivo = SimpleUploadedFile(name=soporte, content=soportes.read(soporte_info))
-                        evidencia = EvidenciaVigencia2017.objects.create(usuario=user, archivo=archivo,
-                                                                         entregable=entregable,
-                                                                         contrato=beneficiario.grupo.contrato)
-                        evidencia.beneficiarios_cargados.add(beneficiario)
-                        beneficiario.set_pago_entregable(id_entregable=entregable.id, evidencia_id=evidencia.id)
+                        else:
+                            # si la evidencia esta validada
+                            resultado = "La evidencia ya fue aprobada y no es necesario cargarla nuevamente"
+                            cantidad_rechazados += 1
+                    else:
+                        resultado = "La cedula no corresponde a un beneficiario del contrato"
+                        cantidad_rechazados += 1
+
+            resultados.append({'cedula': cedula, 'resultado': resultado})
+
+        context['resultados'] = resultados
+        context['cantidad_cargados'] = cantidad_cargados
+        context['cantidad_rechazados'] = cantidad_rechazados
+
+        return render_to_response('vigencia2017/grupos_formacion/resultado_masivo.html',context,context_instance=RequestContext(self.request))
 
 
-
-        return super(MasivoEvidenciasEntregableView,self).form_valid(form)
-
-
-
+    def create_evidencia(self,archivo,user,entregable,beneficiario):
+        evidencia = EvidenciaVigencia2017.objects.create(usuario=user,
+                                                         archivo=archivo,
+                                                         entregable=entregable,
+                                                         contrato=beneficiario.grupo.contrato)
+        evidencia.beneficiarios_cargados.add(beneficiario)
+        beneficiario.set_pago_entregable(id_entregable=entregable.id, evidencia_id=evidencia.id)
+        return evidencia
 
 
 

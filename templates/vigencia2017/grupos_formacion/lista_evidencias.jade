@@ -41,8 +41,9 @@ block scroll_header_panel_content
                 tr
                     th
                     th Id
-                    th Beneficiarios
+                    th Cargados
                     th Aprobados
+                    th Red
                     th Archivo
                     th Eliminar
 
@@ -50,8 +51,9 @@ block scroll_header_panel_content
                 tr
                     th
                     td Id
-                    td Beneficiarios
+                    td Cargados
                     td Aprobados
+                    td Red
                     td Archivo
                     td Eliminar
 
@@ -79,7 +81,7 @@ block body_script_content
                     {
                         "data": 0,
                         "render": function (data, type, row, meta) {
-                            if (row[4]) {
+                            if (row[5]) {
                                 return '<a href="editar/' + data + '" style="color:#004c99;">SIC-' + data + '</a>';
                             }
                             else {
@@ -97,12 +99,16 @@ block body_script_content
                         "orderable": false,
                     },
                     {
+                        "data": 3,
+                        "orderable": false,
+                    },
+                    {
                         "orderable": false,
                         "className": 'text-center',
                         "data": null,
                         "render": function (data, type, row, meta) {
-                            if (row[3] != '') {
-                                return '<a href="' + row[3] + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
+                            if (row[4] != '') {
+                                return '<a href="' + row[4] + '" style="color:#004c99;"><img src="/static/img/file.png" height="32"></a>';
                             }
                             else {
                                 return '';
@@ -114,7 +120,7 @@ block body_script_content
                         "className": 'text-center',
                         "data": null,
                         "render": function (data, type, row, meta) {
-                            if (row[5]) {
+                            if (row[6]) {
                                 return '<a href="eliminar/' + row[0] + '" style="color:#004c99;"><img src="/static/img/delete.png" height="24"></a>';
                             }
                             else {
@@ -152,16 +158,8 @@ block body_script_content
             var aprobados = '';
             var rechazados = '';
 
-            for(i = 0;i < d[6].length;i++){
-                cargados += '<tr>' +
-                            '<td colspan=2><p>' + d[6][i][0] + '</p></td>' +
-                            '<td><p>' + d[6][i][1] + '</p></td>' +
-                            '<td><p>' + d[6][i][2] + '</p></td>' +
-                        '</tr>'
-            }
-
             for(i = 0;i < d[7].length;i++){
-                aprobados += '<tr>' +
+                cargados += '<tr>' +
                             '<td colspan=2><p>' + d[7][i][0] + '</p></td>' +
                             '<td><p>' + d[7][i][1] + '</p></td>' +
                             '<td><p>' + d[7][i][2] + '</p></td>' +
@@ -169,11 +167,19 @@ block body_script_content
             }
 
             for(i = 0;i < d[8].length;i++){
-                rechazados += '<tr>' +
-                            '<td><p>' + d[8][i][0] + '</p></td>' +
+                aprobados += '<tr>' +
+                            '<td colspan=2><p>' + d[8][i][0] + '</p></td>' +
                             '<td><p>' + d[8][i][1] + '</p></td>' +
                             '<td><p>' + d[8][i][2] + '</p></td>' +
-                            '<td><p>' + d[8][i][3] + '</p></td>' +
+                        '</tr>'
+            }
+
+            for(i = 0;i < d[9].length;i++){
+                rechazados += '<tr>' +
+                            '<td><p>' + d[9][i][0] + '</p></td>' +
+                            '<td><p>' + d[9][i][1] + '</p></td>' +
+                            '<td><p>' + d[9][i][2] + '</p></td>' +
+                            '<td><p>' + d[9][i][3] + '</p></td>' +
                         '</tr>'
             }
 
