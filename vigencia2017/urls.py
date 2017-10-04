@@ -44,4 +44,7 @@ urlpatterns = [
 
     url(r'^cortes_pago/$', views.ListadoCortesPago.as_view()),
     url(r'^cortes_pago/nuevo/$', views.NuevoCortePago.as_view()),
+
+
+    url(r'^rendimiento_evidencias/$', views.RendimientoCargaEvidencias.as_view()),
 ]

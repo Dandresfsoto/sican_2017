@@ -936,3 +936,13 @@ class NuevoCortePago(LoginRequiredMixin,
         corte.archivo.save(filename, File(output))
 
         return super(NuevoCortePago, self).form_valid(form)
+
+
+
+
+
+class RendimientoCargaEvidencias(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/rendimiento_evidencias/lista.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_rendimiento.ver"

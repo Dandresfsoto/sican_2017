@@ -96,6 +96,7 @@ from vigencia2017.models import Red as RedVigencia2017
 from vigencia2017.models import Corte as CorteVigencia2017
 from vigencia2017.models import Pago as PagoVigencia2017
 import locale
+import random
 # Create your views here.
 
 
@@ -210,6 +211,9 @@ class UserPermissionList(APIView):
         }
 
         links = {
+            'vigencia_2017_rendimiento': {
+                'ver': {'name': 'Rendimiento carga de evidencias', 'link': '/vigencia2017/rendimiento_evidencias/'}
+            },
             'vigencia_2017_cortes_pago': {
                 'ver': {'name': 'Cortes de pago', 'link': '/vigencia2017/cortes_pago/'}
             },
@@ -822,6 +826,54 @@ class Vigencia2017TreeDiplomado(APIView):
             r.append({'text':nivel,'state':{'expanded':False},'nodes':childs})
 
 
+
+        return Response(r)
+
+class RendimientoCargaEvidencias(APIView):
+
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+
+    def get_random_rgb_02(self):
+        return 'rgba(%d,%d,%d,0.2)' % (random.randint(1,255),random.randint(1,255),random.randint(1,255))
+
+    def get_random_rgb_1(self):
+        return 'rgba(%d,%d,%d,1)' % (random.randint(1,255),random.randint(1,255),random.randint(1,255))
+
+    def get(self, request):
+
+        desde = datetime.datetime.strptime(request._request.GET['desde'],'%d/%m/%Y')
+        hasta = datetime.datetime.strptime(request._request.GET['hasta'],'%d/%m/%Y').replace(hour=23,minute=59,second=59)
+        diplomado = request._request.GET['diplomado']
+        reporte = request._request.GET['reporte']
+
+
+        evidencias = EvidenciaVigencia2017.objects.filter(fecha__gte=desde,fecha__lte=hasta,
+                                                          entregable__sesion__nivel__diplomado__id=diplomado)
+
+        labels = evidencias.values_list('usuario__first_name',flat=True).distinct()
+
+        data = []
+        background_color = []
+        border_color = []
+
+        for label in labels:
+            if reporte == '1':
+                data.append(evidencias.filter(usuario__first_name=label).count())
+                background_color.append(self.get_random_rgb_02())
+                border_color.append(self.get_random_rgb_1())
+                label = "# Evidencias cargadas"
+            if reporte == '2':
+                data.append(evidencias.filter(usuario__first_name=label).values_list('beneficiarios_cargados',flat=True).count())
+                background_color.append(self.get_random_rgb_02())
+                border_color.append(self.get_random_rgb_1())
+                label = "# Registros asignados"
+            if reporte == '3':
+                data.append(evidencias.filter(usuario__first_name=label).values_list('beneficiarios_cargados',flat=True).distinct().count())
+                background_color.append(self.get_random_rgb_02())
+                border_color.append(self.get_random_rgb_1())
+                label = "# Cantidad de beneficiarios"
+        r = {'labels':labels,'data':data,'background_color':background_color,'border_color':border_color,'label':label}
 
         return Response(r)
 #-----------------------------------------------------------------------------------------------------------------------

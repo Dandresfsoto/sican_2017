@@ -1,0 +1,129 @@
+extends ../../inicio
+block scroll_header_panel_title
+    span(class="title") RENDIMIENTO CARGA EVIDENCIAS
+block help_content
+    p(class="title-help") Descripción:
+    p.
+
+block head_content_inicio
+    link(rel="import",href="{% static 'bower_components/paper-button/paper-button.html'%}")
+block custom_style_panel
+    style(is="custom-style")
+        | paper-button{
+        |   margin-bottom:15px;
+        | }
+block breadcrum
+    a(href="/proyectos/",class="link_button")
+        paper-icon-item(class="breadcrumb-paper-icon-item-class") Inicio
+            iron-icon(icon="check",item-icon)
+    paper-icon-item(class="breadcrum_active",disabled) Rendimiento carga de evidencias
+        iron-icon(icon="check",item-icon)
+block scroll_header_panel_content
+    div(class="container-fluid container-index")
+        div(class="row")
+            div(class="col-sm-2 col-sm-offset-1")
+                label(for = "desde") Desde:
+                input(class="textInput form-control",type="text",placeholder="Desde:",id="desde")
+            div(class="col-sm-2")
+                label(for = "hasta") Hasta:
+                input(class="textInput form-control",type="text",placeholder="Hasta:",id="hasta")
+            div(class="col-sm-2")
+                div(class="form-group")
+                    label(for = "diplomado") Diplomado:
+                    select(class="form-control",id="diplomado")
+                        option(value="1") InnovaTIC
+                        option(value="2") TecnoTIC
+                        option(value="3") DirecTIC
+                        option(value="8") DocenTIC
+                        option(value="4") EscuelaTIC
+                        option(value="7") Docentes Innovadores
+            div(class="col-sm-3")
+                div(class="form-group")
+                    label(for = "reporte") Tipo de reporte:
+                    select(class="form-control",id="reporte")
+                        option(value="1") Evidencias cargadas
+                        option(value="2") Registros asignados
+                        option(value="3") Cantidad de beneficiarios
+            div(class="col-sm-2")
+                button(class="btn btn-success",id="actualizar",style="margin-top:25px;") Actualizar
+
+        div(class="row",style="margin-top:30px;")
+            div(class="col-sm-10 col-sm-offset-1")
+                canvas(id="myChart")
+
+
+block body_script_content
+
+    script.
+        var currentDate = new Date();
+        $('#desde').datetimepicker({
+            defaultDate: currentDate,
+            locale: 'es',
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+
+        $('#hasta').datetimepicker({
+            defaultDate: currentDate,
+            locale: 'es',
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+
+
+
+        $(document).ready(function () {
+
+
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '',
+                        data: [],
+                        backgroundColor: [],
+                        borderColor: [],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+            $("#actualizar").click(function () {
+
+                var desde = $("#desde").val();
+                var hasta = $("#hasta").val();
+                var diplomado = $("#diplomado").val();
+                var reporte = $("#reporte").val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "/rest/vigencia_2017/rendimiento_carga/?desde=" + desde + "&hasta=" + hasta + "&diplomado=" + diplomado + "&reporte=" + reporte,
+                    cache: false,
+                    success: function (data) {
+                        console.log(data);
+                        myChart.data.labels = data.labels
+                        myChart.data.datasets[0].data = data.data
+                        myChart.data.datasets[0].backgroundColor = data.background_color
+                        myChart.data.datasets[0].borderColor = data.border_color
+                        myChart.data.datasets[0].label = data.label
+                        myChart.update();
+                    }
+                });
+
+
+            });
+
+
+        });

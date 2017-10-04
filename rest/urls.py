@@ -83,6 +83,8 @@ urlpatterns = [
     url(r'vigencia_2017/reds/lista/',views.RedListVigencia2017.as_view()),
 
     url(r'vigencia_2017/cortes_pago/',views.CortesPagoList.as_view()),
+
+    url(r'vigencia_2017/rendimiento_carga/',views.RendimientoCargaEvidencias.as_view()),
     #-------------------------------------------------------------------------------------------------------------------
 
     #--------------------------------------------- BENEFICIARIOS -------------------------------------------------------
