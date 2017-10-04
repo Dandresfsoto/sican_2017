@@ -857,6 +857,8 @@ class RendimientoCargaEvidencias(APIView):
         background_color = []
         border_color = []
 
+        label = ""
+
         for label in labels:
             if reporte == '1':
                 data.append(evidencias.filter(usuario__first_name=label).count())
