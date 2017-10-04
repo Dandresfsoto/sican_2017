@@ -112,7 +112,6 @@ block body_script_content
                     url: "/rest/vigencia_2017/rendimiento_carga/?desde=" + desde + "&hasta=" + hasta + "&diplomado=" + diplomado + "&reporte=" + reporte,
                     cache: false,
                     success: function (data) {
-                        console.log(data);
                         myChart.data.labels = data.labels
                         myChart.data.datasets[0].data = data.data
                         myChart.data.datasets[0].backgroundColor = data.background_color
