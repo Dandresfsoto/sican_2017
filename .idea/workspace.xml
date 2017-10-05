@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e18cb84-08cb-4a48-bd8c-243afd6a43a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/documentos/chequeo_2017.xlsx" afterPath="$PROJECT_DIR$/static/documentos/chequeo_2017.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vigencia2017/tasks.py" afterPath="$PROJECT_DIR$/vigencia2017/tasks.py" />
     </list>
@@ -65,17 +64,17 @@
       <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="495" column="33" lean-forward="true" selection-start-line="495" selection-start-column="33" selection-end-line="495" selection-end-column="33" />
+            <state relative-caret-position="390">
+              <caret line="1289" column="40" lean-forward="true" selection-start-line="1289" selection-start-column="40" selection-end-line="1289" selection-end-column="40" />
               <folding>
                 <element signature="e#1796#26212#0" expanded="false" />
-                <element signature="e#26281#34425#0" expanded="false" />
-                <element signature="e#34494#41331#0" expanded="false" />
-                <element signature="e#41394#49222#0" expanded="false" />
-                <element signature="e#49285#55806#0" expanded="false" />
-                <element signature="e#55894#57740#0" expanded="false" />
-                <element signature="e#57780#66978#0" expanded="false" />
-                <element signature="e#67024#67216#0" expanded="false" />
+                <element signature="e#26281#34636#0" expanded="false" />
+                <element signature="e#34705#41753#0" expanded="false" />
+                <element signature="e#41816#49855#0" expanded="false" />
+                <element signature="e#49918#56650#0" expanded="false" />
+                <element signature="e#56738#58584#0" expanded="false" />
+                <element signature="e#58624#67822#0" expanded="false" />
+                <element signature="e#67868#68060#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -94,7 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>output</find>
       <find>settings</find>
       <find>virtual</find>
       <find>matriz_chequeo_virtual_compilada</find>
@@ -124,6 +122,7 @@
       <find>set_pago</find>
       <find>Pago</find>
       <find>set_pago_entregable</find>
+      <find>puente</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -518,13 +517,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
     </task>
-    <task id="LOCAL-00027" summary="Vigencia 2017 v12">
-      <created>1503870310726</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1503870310726</updated>
-    </task>
     <task id="LOCAL-00028" summary="Vigencia 2017 v12">
       <created>1503873498279</created>
       <option name="number" value="00028" />
@@ -861,7 +853,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507213096688</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Vigencia 2017 v43">
+      <created>1507222998620</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1507222998620</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -911,7 +910,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vigencia 2017 v18" />
     <MESSAGE value="Vigencia 2017 v20" />
     <MESSAGE value="Vigencia 2017 v21" />
     <MESSAGE value="Vigencia 2017 v22" />
@@ -936,7 +934,8 @@
     <MESSAGE value="Vigencia 2017 v41" />
     <MESSAGE value="Vigencia 2017 v42" />
     <MESSAGE value="Vigencia 2017 v43" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v43" />
+    <MESSAGE value="Vigencia 2017 v44" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v44" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1541,17 +1540,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="495" column="33" lean-forward="true" selection-start-line="495" selection-start-column="33" selection-end-line="495" selection-end-column="33" />
+        <state relative-caret-position="390">
+          <caret line="1289" column="40" lean-forward="true" selection-start-line="1289" selection-start-column="40" selection-end-line="1289" selection-end-column="40" />
           <folding>
             <element signature="e#1796#26212#0" expanded="false" />
-            <element signature="e#26281#34425#0" expanded="false" />
-            <element signature="e#34494#41331#0" expanded="false" />
-            <element signature="e#41394#49222#0" expanded="false" />
-            <element signature="e#49285#55806#0" expanded="false" />
-            <element signature="e#55894#57740#0" expanded="false" />
-            <element signature="e#57780#66978#0" expanded="false" />
-            <element signature="e#67024#67216#0" expanded="false" />
+            <element signature="e#26281#34636#0" expanded="false" />
+            <element signature="e#34705#41753#0" expanded="false" />
+            <element signature="e#41816#49855#0" expanded="false" />
+            <element signature="e#49918#56650#0" expanded="false" />
+            <element signature="e#56738#58584#0" expanded="false" />
+            <element signature="e#58624#67822#0" expanded="false" />
+            <element signature="e#67868#68060#0" expanded="false" />
           </folding>
         </state>
       </provider>

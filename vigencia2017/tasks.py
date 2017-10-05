@@ -521,10 +521,11 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_docentic = wb.get_sheet_by_name('Docentic')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -581,7 +582,9 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
         elif id_diplomado == 4:
             ws = ws_escuelatic
         elif id_diplomado == 7:
-            ws = ws_puente_aranda
+            ws = ws_escuelatic_innovadores
+        elif id_diplomado == 8:
+            ws = ws_docentic
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -634,7 +637,9 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
     if contadores['7'] == 6:
-        wb.remove_sheet(ws_puente_aranda)
+        wb.remove_sheet(ws_escuelatic_innovadores)
+    if contadores['8'] == 6:
+        wb.remove_sheet(ws_docentic)
 
     wb.save(output)
 
@@ -668,10 +673,11 @@ def matriz_valores_vigencia_2017(email,id_contrato):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_docentic = wb.get_sheet_by_name('DocenTIC')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
 
 
 
@@ -710,7 +716,9 @@ def matriz_valores_vigencia_2017(email,id_contrato):
         elif id_diplomado == 4:
             ws = ws_escuelatic
         elif id_diplomado == 7:
-            ws = ws_puente_aranda
+            ws = ws_escuelatic_innovadores
+        elif id_diplomado == 8:
+            ws = ws_docentic
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -759,7 +767,9 @@ def matriz_valores_vigencia_2017(email,id_contrato):
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
     if contadores['7'] == 6:
-        wb.remove_sheet(ws_puente_aranda)
+        wb.remove_sheet(ws_escuelatic_innovadores)
+    if contadores['8'] == 6:
+        wb.remove_sheet(ws_docentic)
 
     wb.save(output)
 
@@ -785,10 +795,11 @@ def matriz_chequeo_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_docentic = wb.get_sheet_by_name('DocenTIC')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -845,7 +856,9 @@ def matriz_chequeo_vigencia_2017_total(email):
         elif id_diplomado == 4:
             ws = ws_escuelatic
         elif id_diplomado == 7:
-            ws = ws_puente_aranda
+            ws = ws_escuelatic_innovadores
+        elif id_diplomado == 8:
+            ws = ws_docentic
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -898,7 +911,9 @@ def matriz_chequeo_vigencia_2017_total(email):
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
     if contadores['7'] == 6:
-        wb.remove_sheet(ws_puente_aranda)
+        wb.remove_sheet(ws_escuelatic_innovadores)
+    if contadores['8'] == 6:
+        wb.remove_sheet(ws_docentic)
 
     wb.save(output)
 
@@ -923,11 +938,12 @@ def matriz_valores_vigencia_2017_total(email):
     ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
-    ws_puente_aranda = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_docentic = wb.get_sheet_by_name('DocenTIC')
 
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
 
 
 
@@ -966,7 +982,9 @@ def matriz_valores_vigencia_2017_total(email):
         elif id_diplomado == 4:
             ws = ws_escuelatic
         elif id_diplomado == 7:
-            ws = ws_puente_aranda
+            ws = ws_escuelatic_innovadores
+        elif id_diplomado == 8:
+            ws = ws_docentic
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -1015,7 +1033,9 @@ def matriz_valores_vigencia_2017_total(email):
     if contadores['4'] == 6:
         wb.remove_sheet(ws_escuelatic)
     if contadores['7'] == 6:
-        wb.remove_sheet(ws_puente_aranda)
+        wb.remove_sheet(ws_escuelatic_innovadores)
+    if contadores['8'] == 6:
+        wb.remove_sheet(ws_docentic)
 
     wb.save(output)
 
