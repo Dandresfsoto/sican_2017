@@ -911,7 +911,7 @@ class InformacionContrato(APIView):
 
         pagos = PagoVigencia2017.objects.filter(contrato=contrato)
 
-        pendiente = pagos.filter(corte_id = None).aggregate(Sum('valor')).get('valor__sum','0.0')
+        pendiente = pagos.filter(corte_id = None).aggregate(Sum('valor')).get('valor__sum',0)
 
         cortes = sorted(pagos.exclude(corte_id = None).values_list('corte_id',flat=True).distinct())
 
