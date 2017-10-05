@@ -946,3 +946,17 @@ class RendimientoCargaEvidencias(LoginRequiredMixin,
                          TemplateView):
     template_name = 'vigencia2017/rendimiento_evidencias/lista.html'
     permission_required = "permisos_sican.vigencia_2017.vigencia_2017_rendimiento.ver"
+
+
+
+class InformacionContrato(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/informacion_contrato/contrato.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_grupos.ver"
+
+    def get_context_data(self, **kwargs):
+        kwargs['nombre_contrato'] = Contrato.objects.get(id=self.kwargs['id_contrato']).nombre
+        kwargs['id_contrato'] = self.kwargs['id_contrato']
+        kwargs['nombre_formador'] = Contrato.objects.get(id=self.kwargs['id_contrato']).formador.get_full_name()
+        return super(InformacionContrato,self).get_context_data(**kwargs)

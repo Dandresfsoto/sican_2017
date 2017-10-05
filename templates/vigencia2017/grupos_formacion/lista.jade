@@ -38,6 +38,8 @@ block scroll_header_panel_content
                     th Contrato
                     th Grupos
                     th Ruta
+                    th Región
+                    th Diplomados
             tbody
                 tr
                     td
@@ -45,6 +47,8 @@ block scroll_header_panel_content
                     td Contrato
                     td Grupos
                     td Ruta
+                    td Región
+                    td Diplomados
 
 
 block body_script_content
@@ -97,7 +101,15 @@ block body_script_content
                     },
                     {
                         "data": 2,
-                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            if (row[6]) {
+                                return '<a href="informacion_contrato/' + row[0] + '" style="color:#004c99;">' + data + '</a>';
+                            }
+                            else {
+                                return data;
+                            }
+                        },
+                        "orderable": true,
                     },
                     {
                         "data": 3,
@@ -105,6 +117,14 @@ block body_script_content
                     },
                     {
                         "data": 4,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 7,
+                        "orderable": false,
+                    },
+                    {
+                        "data": 8,
                         "orderable": false,
                     }
                 ]

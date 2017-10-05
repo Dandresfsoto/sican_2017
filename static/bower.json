@@ -39,6 +39,7 @@
     "picEdit": "*",
     "jqTree": "jqtree#^1.4.2",
     "bootstrap-treeview": "^1.2.0",
-    "datatables": "^1.10.16"
+    "datatables": "^1.10.16",
+    "chartjs-plugin-annotation": "^0.5.5"
   }
 }

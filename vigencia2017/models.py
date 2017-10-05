@@ -138,7 +138,7 @@ class Beneficiario(models.Model):
         if pago == None:
             entregable = Entregable.objects.get(id = id_entregable)
             valor = self.get_valor_entregable(id_entregable)
-            pago = Pago.objects.create(beneficiario=self,evidencia_id = evidencia_id, entregable = entregable, valor = valor)
+            pago = Pago.objects.create(beneficiario=self,evidencia_id = evidencia_id, entregable = entregable, valor = valor, contrato = self.grupo.contrato)
 
         else:
             pago.evidencia_id = evidencia_id
@@ -167,7 +167,7 @@ class TipoContrato(models.Model):
         string = ''
         for diplomado in self.diplomados.all():
             string += diplomado.nombre + ", "
-        return string
+        return string[:-2]
 
     def get_valor_beneficiario(self):
 
@@ -182,6 +182,19 @@ class TipoContrato(models.Model):
             string += diplomado.nombre + ": " + locale.currency(valor,grouping=True).replace("+",'') + " "
 
         return string
+
+    def get_valor_beneficiario_diplomado(self):
+
+        dict = []
+
+        diplomados = ValorEntregableVigencia2017.objects.filter(tipo_contrato__id=self.id).values_list('entregable__sesion__nivel__diplomado__id',flat=True).distinct()
+
+        for id_diplomado in diplomados:
+            diplomado = Diplomado.objects.get(id = id_diplomado)
+            valor = ValorEntregableVigencia2017.objects.filter(tipo_contrato__id=self.id,entregable__sesion__nivel__diplomado__id = id_diplomado).aggregate(Sum('valor')).get('valor__sum')
+            dict.append(valor)
+
+        return dict
 
 
 class ValorEntregableVigencia2017(models.Model):
@@ -285,6 +298,7 @@ class Pago(models.Model):
     entregable = models.ForeignKey(Entregable)
     valor = models.FloatField()
     corte_id = models.IntegerField(blank=True, null=True)
+    contrato = models.ForeignKey(Contrato)
 
 
 

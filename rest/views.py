@@ -542,6 +542,7 @@ class Vigencia2017GruposList(BaseDatatableView):
     def prepare_results(self, qs):
         json_data = []
         for item in qs:
+            diplomados = TipoContrato.objects.get(id = item.tipo_contrato_id).get_diplomado_string()
             json_data.append([
                 item.id,
                 item.formador.get_full_name(),
@@ -550,6 +551,8 @@ class Vigencia2017GruposList(BaseDatatableView):
                 item.codigo_ruta,
                 item.get_municipios_list(),
                 self.request.user.has_perm('permisos_sican.vigencia_2017.vigencia_2017_grupos.editar'),
+                item.region.nombre,
+                diplomados
             ])
         return json_data
 
@@ -876,6 +879,73 @@ class RendimientoCargaEvidencias(APIView):
                 border_color.append(self.get_random_rgb_1())
                 label = "# Cantidad de beneficiarios"
         r = {'labels':labels,'data':data,'background_color':background_color,'border_color':border_color,'label':label}
+
+        return Response(r)
+
+
+class InformacionContrato(APIView):
+
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+
+    def get_random_rgb_02(self):
+        return 'rgba(%d,%d,%d,0.2)' % (random.randint(1,255),random.randint(1,255),random.randint(1,255))
+
+    def get_random_rgb_1(self):
+        return 'rgba(%d,%d,%d,1)' % (random.randint(1,255),random.randint(1,255),random.randint(1,255))
+
+    def get(self, request):
+
+        contrato = Contrato.objects.get(id=request._request.GET['id_contrato'])
+        tipo_contrato = TipoContrato.objects.get(id=contrato.tipo_contrato_id)
+
+        labels = []
+        data = []
+        background_color = []
+        border_color = []
+
+        valor_contrato = tipo_contrato.get_valor_beneficiario_diplomado()[0]*contrato.meta_beneficiarios
+
+        label = contrato.nombre
+
+
+        pagos = PagoVigencia2017.objects.filter(contrato=contrato)
+
+        pendiente = pagos.filter(corte_id = None).aggregate(Sum('valor')).get('valor__sum','0.0')
+
+        cortes = sorted(pagos.exclude(corte_id = None).values_list('corte_id',flat=True).distinct())
+
+        valor_total = 0
+
+
+        labels.append("Para reportar")
+        data.append(pendiente)
+        background_color.append(self.get_random_rgb_02())
+        border_color.append(self.get_random_rgb_1())
+
+
+
+        for corte in cortes:
+            fecha = CorteVigencia2017.objects.get(id=corte).fecha.strftime('%d/%m/%Y')
+            valor = pagos.filter(corte_id=corte).aggregate(Sum('valor')).get('valor__sum','0.0')
+            valor_total += valor
+            labels.append("#" + str(corte) + " (" + fecha + ")")
+            data.append(valor)
+            background_color.append(self.get_random_rgb_02())
+            border_color.append(self.get_random_rgb_1())
+
+        labels.append("Total pagos")
+        data.append(valor_total)
+        background_color.append(self.get_random_rgb_02())
+        border_color.append(self.get_random_rgb_1())
+
+        labels.append("Proyección")
+        data.append(pendiente+valor_total)
+        background_color.append(self.get_random_rgb_02())
+        border_color.append(self.get_random_rgb_1())
+
+
+        r = {'labels':labels,'data':data,'background_color':background_color,'border_color':border_color,'label':label,'valor_contrato':valor_contrato}
 
         return Response(r)
 #-----------------------------------------------------------------------------------------------------------------------
