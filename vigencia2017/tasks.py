@@ -52,7 +52,7 @@ def carga_masiva_matrices(id,email_user):
     wb = openpyxl.load_workbook(filename = carga.archivo.file.name,read_only=True)
     sheets = wb.get_sheet_names()
 
-    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'ESCUELATIC DOCENTES INNOVADORES' in sheets:
+    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'ESCUELATIC DOCENTES INNOVADORES' in sheets and 'DocenTIC' in sheets and 'ESCUELA TIC FAMILIA' in sheets:
 
         titulos = ['DIPLOMADO',
                    'RESULTADO',
@@ -138,7 +138,7 @@ def carga_masiva_matrices(id,email_user):
 
         contenidos = []
 
-        for name in ['InnovaTIC','TecnoTIC','DirecTIC','ESCUELATIC DOCENTES INNOVADORES']:
+        for name in ['InnovaTIC','TecnoTIC','DirecTIC','ESCUELATIC DOCENTES INNOVADORES','DocenTIC']:
             ws = wb.get_sheet_by_name(name)
 
             for fila in ws.iter_rows(row_offset=5):
@@ -310,100 +310,7 @@ def carga_masiva_matrices(id,email_user):
                     fila[23].value
                 ])
 
-        usuario = User.objects.get(email=email_user)
-        nombre = "Resultado carga masiva matrices"
-        proceso = "FOR-MAS01"
-        fecha = pytz.utc.localize(datetime.now())
-        output = construir_reporte(titulos,contenidos,formatos,ancho_columnas,nombre,fecha,usuario,proceso)
-        filename = unicode(fecha) + '.xlsx'
-        carga.resultado.save(filename,File(output))
-
-    elif 'Matriz revisión documental' in sheets:
-        titulos = ['DIPLOMADO',
-                   'RESULTADO',
-                   'REGION',
-                   'CODIGO DANE SEDE EDUCATIVA',
-                   'NOMBRE DE LA SEDE EDUCATIVA',
-                   'CODIGO DANE INSTITUCION EDUCATIVA',
-                   'NOMBRE INSTITUCION EDUCATIVA',
-                   'CODIGO MUNICIPIO',
-                   'MUNICIPIO',
-                   'CODIGO DEPARTAMENTO',
-                   'DEPARTAMENTO',
-                   'SECRETARIA DE EDUCACION',
-                   'ZONA (URBANA/RURAL)',
-                   'CODIGO DEL GRUPO',
-                   'NOMBRE DEL FORMADOR',
-                   'NUMERO DE CEDULA DEL FORMADOR',
-                   'APELLIDOS DEL DOCENTE',
-                   'NOMBRES DEL DOCENTE',
-                   'NUMERO DE CEDULA DEL DOCENTE',
-                   'CORREO ELECTRONICO',
-                   'TELEFONO FIJO',
-                   'TELEFONO CELULAR',
-                   'AREA CURRICULAR',
-                   'GRADO',
-                   'TIPO DE BENEFICIARIO',
-                   'GENERO']
-
-        formatos = ['General',
-                    'General',
-                    'General',
-                    '0',
-                    'General',
-                    '0',
-                    'General',
-                    '0',
-                    'General',
-                    '0',
-                    'General',
-                    'General',
-                    'General',
-                    'General',
-                    'General',
-                    '0',
-                    'General',
-                    'General',
-                    '0',
-                    'General',
-                    'General',
-                    'General',
-                    '0',
-                    '0',
-                    'General',
-                    'General']
-
-        ancho_columnas = [30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          30,
-                          ]
-
-        contenidos = []
-
-        for name in ['Matriz revisión documental']:
+        for name in ['ESCUELA TIC FAMILIA']:
             ws = wb.get_sheet_by_name(name)
 
             for fila in ws.iter_rows(row_offset=9):
@@ -1361,8 +1268,6 @@ def build_red(id_red):
     red.archivo.save(filename,File(output))
 
     return "Generado RED-" + str(id_red)
-
-
 
 @app.task
 def set_pago(pagos,corte_id):
