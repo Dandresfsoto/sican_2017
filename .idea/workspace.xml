@@ -128,8 +128,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="920" column="38" lean-forward="true" selection-start-line="920" selection-start-column="38" selection-end-line="920" selection-end-column="38" />
+            <state relative-caret-position="230">
+              <caret line="916" column="25" lean-forward="true" selection-start-line="916" selection-start-column="25" selection-end-line="916" selection-end-column="25" />
               <folding>
                 <element signature="e#46#85#0" expanded="true" />
                 <element signature="e#5523#18593#0" expanded="false" />
@@ -590,13 +590,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
     </task>
-    <task id="LOCAL-00025" summary="Vigencia 2017 v11">
-      <created>1503868936246</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1503868936246</updated>
-    </task>
     <task id="LOCAL-00026" summary="Vigencia 2017 v11">
       <created>1503869868094</created>
       <option name="number" value="00026" />
@@ -933,7 +926,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507211813394</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Vigencia 2017 v42">
+      <created>1507212597189</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1507212597189</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -983,7 +983,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vigencia 2017 v16" />
     <MESSAGE value="Vigencia 2017 v17" />
     <MESSAGE value="Vigencia 2017 v18" />
     <MESSAGE value="Vigencia 2017 v20" />
@@ -1008,7 +1007,8 @@
     <MESSAGE value="Vigencia 2017 v39" />
     <MESSAGE value="Vigencia 2017 v40" />
     <MESSAGE value="Vigencia 2017 v41" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v41" />
+    <MESSAGE value="Vigencia 2017 v42" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v42" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1607,8 +1607,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="920" column="38" lean-forward="true" selection-start-line="920" selection-start-column="38" selection-end-line="920" selection-end-column="38" />
+        <state relative-caret-position="230">
+          <caret line="916" column="25" lean-forward="true" selection-start-line="916" selection-start-column="25" selection-end-line="916" selection-end-column="25" />
           <folding>
             <element signature="e#46#85#0" expanded="true" />
             <element signature="e#5523#18593#0" expanded="false" />

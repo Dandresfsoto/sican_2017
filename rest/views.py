@@ -913,6 +913,9 @@ class InformacionContrato(APIView):
 
         pendiente = pagos.filter(corte_id = None).aggregate(Sum('valor')).get('valor__sum',0)
 
+        if pendiente == None:
+            pendiente = 0
+
         cortes = sorted(pagos.exclude(corte_id = None).values_list('corte_id',flat=True).distinct())
 
         valor_total = 0
