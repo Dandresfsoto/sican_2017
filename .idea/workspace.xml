@@ -64,11 +64,10 @@
       <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="1289" column="40" lean-forward="true" selection-start-line="1289" selection-start-column="40" selection-end-line="1289" selection-end-column="40" />
+            <state relative-caret-position="177">
+              <caret line="524" column="50" lean-forward="true" selection-start-line="524" selection-start-column="50" selection-end-line="524" selection-end-column="50" />
               <folding>
                 <element signature="e#1796#26212#0" expanded="false" />
-                <element signature="e#26281#34636#0" expanded="false" />
                 <element signature="e#34705#41753#0" expanded="false" />
                 <element signature="e#41816#49855#0" expanded="false" />
                 <element signature="e#49918#56650#0" expanded="false" />
@@ -93,7 +92,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>settings</find>
       <find>virtual</find>
       <find>matriz_chequeo_virtual_compilada</find>
       <find>masivo</find>
@@ -123,6 +121,7 @@
       <find>Pago</find>
       <find>set_pago_entregable</find>
       <find>puente</find>
+      <find>ws_docentic = wb.get_sheet_by_name('Docentic')</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -517,13 +516,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
     </task>
-    <task id="LOCAL-00028" summary="Vigencia 2017 v12">
-      <created>1503873498279</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1503873498279</updated>
-    </task>
     <task id="LOCAL-00029" summary="Vigencia 2017 v13">
       <created>1503876723370</created>
       <option name="number" value="00029" />
@@ -860,7 +852,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507222998620</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Vigencia 2017 v44">
+      <created>1507232135436</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1507232135436</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1540,11 +1539,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="1289" column="40" lean-forward="true" selection-start-line="1289" selection-start-column="40" selection-end-line="1289" selection-end-column="40" />
+        <state relative-caret-position="177">
+          <caret line="524" column="50" lean-forward="true" selection-start-line="524" selection-start-column="50" selection-end-line="524" selection-end-column="50" />
           <folding>
             <element signature="e#1796#26212#0" expanded="false" />
-            <element signature="e#26281#34636#0" expanded="false" />
             <element signature="e#34705#41753#0" expanded="false" />
             <element signature="e#41816#49855#0" expanded="false" />
             <element signature="e#49918#56650#0" expanded="false" />

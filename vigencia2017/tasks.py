@@ -522,7 +522,7 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     ws_directic = wb.get_sheet_by_name('DirecTIC')
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
     ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
-    ws_docentic = wb.get_sheet_by_name('Docentic')
+    ws_docentic = wb.get_sheet_by_name('DocenTIC')
 
 
     contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
