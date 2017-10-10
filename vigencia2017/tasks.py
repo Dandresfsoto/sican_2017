@@ -43,6 +43,7 @@ from vigencia2017.models import Red
 from vigencia2017.models import Pago
 import json
 from vigencia2017.models import Rechazo as RechazoVigencia2017
+from openpyxl.comments import Comment
 
 @app.task
 def carga_masiva_matrices(id,email_user):
@@ -551,14 +552,13 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     enviado = Style(font=Font(name='Calibri', size=12),
                     alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
                     number_format='General',
-                    fill=PatternFill(fill_type='solid', start_color='FFFFC000', end_color='FFFFC000')
+                    fill=PatternFill(fill_type='solid', start_color='FFC65911', end_color='FFC65911')
                     )
 
     cargado = Style(font=Font(name='Calibri', size=12),
                     alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
                     number_format='General',
-                    border=Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'),
-                                  bottom=Side(style='thin')),
+                    fill=PatternFill(fill_type='solid', start_color='FFFFC000', end_color='FFFFC000')
                     )
 
     rechazado = Style(font=Font(name='Calibri', size=12),
@@ -617,13 +617,19 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
 
             if estado['state'] == 'cargado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="C")
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = cargado
+            elif estado['state'] == 'enviado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="E")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = enviado
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'], "SICAN")
             elif estado['state'] == 'validado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="V")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = validado
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'], "SICAN")
             elif estado['state'] == 'rechazado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="R")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = rechazado
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'] + ": " + estado['observacion'], "SICAN")
 
         contadores[str(id_diplomado)] += 1
 

@@ -80,7 +80,7 @@ class Beneficiario(models.Model):
 
 
     def get_evidencia_state(self,id_entregable):
-        data = {'state': None,'observacion':None}
+        data = {'state': None,'observacion':None,'red':None}
 
         evidencias = Evidencia.objects.filter(entregable__id = id_entregable).filter(beneficiarios_cargados = self).order_by('id')
 
@@ -92,14 +92,20 @@ class Beneficiario(models.Model):
             except:
                 rechazo = None
 
-            data['state'] = 'cargado'
+            if evidencia.red_id != None:
 
-            if self in evidencia.beneficiarios_validados.all():
-                data['state'] = 'validado'
+                data['state'] = 'cargado'
+                data['red'] = 'RED-VIG2017-' + str(evidencia.red_id)
 
-            if rechazo in evidencia.beneficiarios_rechazados.all():
-                data['state'] = 'rechazado'
-                data['observacion'] = rechazo.observacion
+                if self in evidencia.beneficiarios_validados.all():
+                    data['state'] = 'validado'
+
+                if rechazo in evidencia.beneficiarios_rechazados.all():
+                    data['state'] = 'rechazado'
+                    data['observacion'] = rechazo.observacion
+
+            else:
+                data['state'] = 'enviado'
 
         return data
 
