@@ -88,7 +88,7 @@ class Beneficiario(models.Model):
             evidencia = evidencias[0]
 
             try:
-                rechazo = Rechazo.objects.filter(beneficiario_rechazo=self,evidencia_id = evidencia.id)
+                rechazo = Rechazo.objects.get(beneficiario_rechazo=self,evidencia_id = evidencia.id)
             except:
                 rechazo = None
 
