@@ -815,3 +815,35 @@ class CorteVigencia2017Form(forms.Form):
                 self.helper.layout.fields[1].fields[0].append(Div(Div(str(contrato.id),css_class='col-sm-12'),css_class='row'))
             else:
                 self.helper.layout.fields[1].fields[1].append(Div(Div(str(contrato.id), css_class='col-sm-12'), css_class='row'))
+
+class RedRetroalimentacionForm(forms.ModelForm):
+
+    def clean(self):
+        cleaned_data = super(RedRetroalimentacionForm, self).clean()
+        archivo_retroalimentacion = cleaned_data.get('archivo_retroalimentacion')
+
+        if archivo_retroalimentacion == None:
+            self.add_error('archivo_retroalimentacion','Este campo es requerido.')
+
+
+    def __init__(self, *args, **kwargs):
+        super(RedRetroalimentacionForm, self).__init__(*args, **kwargs)
+
+
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            Fieldset(
+                'RETROALIMENTACIÓN',
+                Div(
+                    Div('archivo_retroalimentacion',css_class='col-sm-12'),
+                    css_class = 'row'
+                )
+            ),
+        )
+
+    class Meta:
+        model = Red
+        fields = ['archivo_retroalimentacion']
+        labels = {
+            'archivo_retroalimentacion': 'Archivo de retroalimentación'
+        }

@@ -41,6 +41,7 @@ urlpatterns = [
 
     url(r'^reds/$', views.RedsListView.as_view()),
     url(r'^reds/nuevo/$', views.NuevoRedView.as_view()),
+    url(r'^reds/editar/(?P<pk>[0-9]+)/$', views.UpdateRedView.as_view()),
 
     url(r'^cortes_pago/$', views.ListadoCortesPago.as_view()),
     url(r'^cortes_pago/nuevo/$', views.NuevoCortePago.as_view()),

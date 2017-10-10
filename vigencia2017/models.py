@@ -272,6 +272,7 @@ class Evidencia(models.Model):
     subsanacion = models.BooleanField(default=False)
     cantidad_cargados = models.IntegerField(blank=True,null=True)
     red_id = models.IntegerField(blank=True,null=True)
+    completa = models.BooleanField(default=False)
 
     def get_archivo_url(self):
         try:

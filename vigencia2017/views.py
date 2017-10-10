@@ -40,6 +40,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from vigencia2017.tasks import carga_masiva_evidencia
+from vigencia2017.tasks import retroalimentacion_red
+from vigencia2017.forms import RedRetroalimentacionForm
 
 # Create your views here.
 class ListadoCodigosDaneView(LoginRequiredMixin,
@@ -960,3 +962,23 @@ class InformacionContrato(LoginRequiredMixin,
         kwargs['id_contrato'] = self.kwargs['id_contrato']
         kwargs['nombre_formador'] = Contrato.objects.get(id=self.kwargs['id_contrato']).formador.get_full_name()
         return super(InformacionContrato,self).get_context_data(**kwargs)
+
+
+class UpdateRedView(LoginRequiredMixin,
+                              PermissionRequiredMixin,
+                              UpdateView):
+    model = Red
+    form_class = RedRetroalimentacionForm
+    success_url = '../../'
+    template_name = 'vigencia2017/red/editar.html'
+    permission_required = "permisos_sican.evidencias.red.editar"
+
+
+    def form_valid(self, form):
+        self.object = form.save()
+        retroalimentacion_red.delay(self.object.id)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        kwargs['id_red'] = self.kwargs['pk']
+        return super(UpdateRedView, self).get_context_data(**kwargs)
