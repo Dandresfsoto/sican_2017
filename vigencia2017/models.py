@@ -94,7 +94,7 @@ class Beneficiario(models.Model):
 
             if evidencia.red_id != None:
 
-                data['state'] = 'cargado'
+                data['state'] = 'enviado'
                 data['red'] = 'RED-VIG2017-' + str(evidencia.red_id)
 
                 if self in evidencia.beneficiarios_validados.all():
@@ -105,7 +105,7 @@ class Beneficiario(models.Model):
                     data['observacion'] = rechazo.observacion
 
             else:
-                data['state'] = 'enviado'
+                data['state'] = 'cargado'
 
         return data
 
