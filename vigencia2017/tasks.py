@@ -621,15 +621,15 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
             elif estado['state'] == 'enviado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="E")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = enviado
-                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'], "SICAN")
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'] + " \n" + estado['codigo'], "SICAN")
             elif estado['state'] == 'validado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="V")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = validado
-                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'], "SICAN")
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'] + " \n" + estado['codigo'], "SICAN")
             elif estado['state'] == 'rechazado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="R")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = rechazado
-                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'] + ": " + estado['observacion'], "SICAN")
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['red'] + ": " + " \n" + estado['codigo'] + ": " + " \n" + estado['observacion'], "SICAN")
 
         contadores[str(id_diplomado)] += 1
 

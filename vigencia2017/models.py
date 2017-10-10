@@ -80,12 +80,13 @@ class Beneficiario(models.Model):
 
 
     def get_evidencia_state(self,id_entregable):
-        data = {'state': None,'observacion':None,'red':None}
+        data = {'state': None,'observacion':None,'red':None,'codigo':None}
 
         evidencias = Evidencia.objects.filter(entregable__id = id_entregable).filter(beneficiarios_cargados = self).order_by('id')
 
         if evidencias.count() > 0:
             evidencia = evidencias[0]
+            data['codigo'] = 'SIC-' + str(evidencia.id)
 
             try:
                 rechazo = Rechazo.objects.get(beneficiario_rechazo=self,evidencia_id = evidencia.id)
