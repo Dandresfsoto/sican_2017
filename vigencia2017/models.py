@@ -80,19 +80,24 @@ class Beneficiario(models.Model):
 
 
     def get_evidencia_state(self,id_entregable):
-        data = {'state': None}
+        data = {'state': None,'observacion':None}
 
         evidencias = Evidencia.objects.filter(entregable__id = id_entregable).filter(beneficiarios_cargados = self).order_by('id')
 
         if evidencias.count() > 0:
             evidencia = evidencias[0]
 
+            try:
+                rechazo = Rechazo.objects.filter(beneficiario_rechazo=self,evidencia_id = evidencia.id)
+            except:
+                rechazo = None
+
             data['state'] = 'cargado'
 
             if self in evidencia.beneficiarios_validados.all():
                 data['state'] = 'validado'
 
-            if self in evidencia.beneficiarios_rechazados.all():
+            if rechazo in evidencia.beneficiarios_rechazados.all():
                 data['state'] = 'rechazado'
 
         return data
