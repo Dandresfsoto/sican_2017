@@ -99,6 +99,7 @@ class Beneficiario(models.Model):
 
             if rechazo in evidencia.beneficiarios_rechazados.all():
                 data['state'] = 'rechazado'
+                data['observacion'] = rechazo.observacion
 
         return data
 
