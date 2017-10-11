@@ -925,14 +925,20 @@ class ResumenEvidencias(APIView):
                 actividades = [8,72,127,304,334]
                 evidencias = EvidenciaVigencia2017.objects.filter(entregable__id__in = actividades,beneficiarios_cargados__region = region)
 
+                cargados = evidencias.values_list('beneficiarios_cargados__id',flat=True).distinct()
+                revision = evidencias.filter(completa = False).values_list('beneficiarios_cargados__id',flat=True).distinct()
+                aprobados = evidencias.values_list('beneficiarios_validados__id',flat=True).distinct()
+                rechazados = evidencias.exclude(beneficiarios_rechazados__beneficiario_rechazo__id__in = revision).values_list('beneficiarios_rechazados__beneficiario_rechazo__id',flat=True).distinct()
+
+
                 if label == "Cargados":
-                    data.append(evidencias.values_list('beneficiarios_cargados',flat=True).distinct().count()+pta)
+                    data.append(cargados.count()+pta)
                 elif label == "Revisión":
-                    data.append(evidencias.filter(completa = False).values_list('beneficiarios_cargados',flat=True).distinct().count())
+                    data.append(revision.count())
                 elif label == "Aprobados":
-                    data.append(evidencias.values_list('beneficiarios_validados',flat=True).distinct().count()+pta)
+                    data.append(aprobados.count()+pta)
                 elif label == "Rechazados":
-                    data.append(evidencias.values_list('beneficiarios_rechazados__beneficiario_rechazo',flat=True).distinct().count())
+                    data.append(rechazados.count())
 
                 background_color.append(self.get_random_rgb_02())
                 border_color.append(self.get_random_rgb_1())
