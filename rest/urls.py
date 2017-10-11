@@ -85,6 +85,9 @@ urlpatterns = [
     url(r'vigencia_2017/cortes_pago/',views.CortesPagoList.as_view()),
 
     url(r'vigencia_2017/rendimiento_carga/',views.RendimientoCargaEvidencias.as_view()),
+
+    url(r'vigencia_2017/resumen_evidencias/',views.ResumenEvidencias.as_view()),
+
     url(r'vigencia_2017/informacion_contrato/',views.InformacionContrato.as_view()),
     #-------------------------------------------------------------------------------------------------------------------
 

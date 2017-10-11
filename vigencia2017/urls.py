@@ -50,4 +50,6 @@ urlpatterns = [
     url(r'^rendimiento_evidencias/$', views.RendimientoCargaEvidencias.as_view()),
 
     url(r'^grupos/informacion_contrato/(?P<id_contrato>[0-9]+)/$', views.InformacionContrato.as_view()),
+
+    url(r'^resumen_evidencias/$', views.ResumenEvidencias.as_view()),
 ]

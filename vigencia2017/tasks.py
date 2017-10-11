@@ -831,7 +831,7 @@ def matriz_chequeo_vigencia_2017_total(email):
     enviado = Style(font=Font(name='Calibri', size=12),
                     alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
                     number_format='General',
-                    fill=PatternFill(fill_type='solid', start_color='FFFFC000', end_color='FFFFC000')
+                    fill=PatternFill(fill_type='solid', start_color='FFC65911', end_color='FFC65911')
                     )
 
     cargado = Style(font=Font(name='Calibri', size=12),
@@ -897,6 +897,9 @@ def matriz_chequeo_vigencia_2017_total(email):
 
             if estado['state'] == 'cargado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="C")
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = cargado
+            elif estado['state'] == 'enviado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="E")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = enviado
             elif estado['state'] == 'validado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="V")

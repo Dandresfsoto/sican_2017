@@ -951,6 +951,14 @@ class RendimientoCargaEvidencias(LoginRequiredMixin,
 
 
 
+class ResumenEvidencias(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/resumen_evidencias/lista.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_resumen_evidencias.ver"
+
+
+
 class InformacionContrato(LoginRequiredMixin,
                          PermissionRequiredMixin,
                          TemplateView):
