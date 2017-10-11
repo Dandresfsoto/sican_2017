@@ -898,13 +898,13 @@ class ResumenEvidencias(APIView):
     def get_random_rgb_1(self):
         return 'rgba(%d,%d,%d,1)' % (random.randint(1,255),random.randint(1,255),random.randint(1,255))
 
+    def percent(self,data,meta):
+        return (data/meta)*100
+
     def get(self, request):
 
         resumen = request._request.GET['resumen']
         region = Region.objects.get(id = request._request.GET['region'])
-
-
-
 
         labels = ["Cargados","Revisión",'Aprobados','Rechazados']
 
@@ -917,33 +917,26 @@ class ResumenEvidencias(APIView):
         for label in labels:
             if resumen == '1':
 
+                if region.id == 2:
+                    pta = 793
+                else:
+                    pta = 0
+
                 actividades = [8,72,127,304,334]
                 evidencias = EvidenciaVigencia2017.objects.filter(entregable__id__in = actividades,beneficiarios_cargados__region = region)
 
                 if label == "Cargados":
-                    data.append(evidencias.values_list('beneficiarios_cargados',flat=True).distinct().count())
+                    data.append(evidencias.values_list('beneficiarios_cargados',flat=True).distinct().count()+pta)
                 elif label == "Revisión":
                     data.append(evidencias.filter(completa = False).values_list('beneficiarios_cargados',flat=True).distinct().count())
                 elif label == "Aprobados":
-                    data.append(evidencias.values_list('beneficiarios_validados',flat=True).distinct().count())
+                    data.append(evidencias.values_list('beneficiarios_validados',flat=True).distinct().count()+pta)
                 elif label == "Rechazados":
                     data.append(evidencias.values_list('beneficiarios_rechazados__beneficiario_rechazo',flat=True).distinct().count())
 
                 background_color.append(self.get_random_rgb_02())
                 border_color.append(self.get_random_rgb_1())
                 label = 'Actas de compromiso'
-
-            if resumen == '2':
-                data.append(100)
-                background_color.append(self.get_random_rgb_02())
-                border_color.append(self.get_random_rgb_1())
-                label = "Evidencias presenciales"
-
-            if resumen == '3':
-                data.append(100)
-                background_color.append(self.get_random_rgb_02())
-                border_color.append(self.get_random_rgb_1())
-                label = "Evidencias virtuales"
 
         r = {'labels':labels,'data':data,'background_color':background_color,'border_color':border_color,'label':label}
 
