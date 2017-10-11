@@ -837,8 +837,7 @@ def matriz_chequeo_vigencia_2017_total(email):
     cargado = Style(font=Font(name='Calibri', size=12),
                     alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
                     number_format='General',
-                    border=Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'),
-                                  bottom=Side(style='thin')),
+                    fill=PatternFill(fill_type='solid', start_color='FFFFC000', end_color='FFFFC000')
                     )
 
     rechazado = Style(font=Font(name='Calibri', size=12),
