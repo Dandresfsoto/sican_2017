@@ -82,7 +82,7 @@ class Beneficiario(models.Model):
     def get_evidencia_state(self,id_entregable):
         data = {'state': None,'observacion':None,'red':None,'codigo':None}
 
-        evidencias = Evidencia.objects.filter(entregable__id = id_entregable).filter(beneficiarios_cargados = self).order_by('id')
+        evidencias = Evidencia.objects.filter(entregable__id = id_entregable).filter(beneficiarios_cargados = self).order_by('-id')
 
         if evidencias.count() > 0:
             evidencia = evidencias[0]
