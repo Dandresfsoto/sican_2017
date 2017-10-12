@@ -1164,40 +1164,41 @@ def build_red(id_red):
         ws = wb.get_sheet_by_name('RED TecnoTIC')
         inicia = 6
     elif red.diplomado.numero == 3:
-        ids = [{'id':127,'letter':'M'},
-               {'id':128,'letter':'N'},
-               {'id':131,'letter':'O'},
-               {'id':132,'letter':'P'},
-               {'id':134,'letter':'Q'},
-               {'id':133,'letter':'R'},
-               {'id':142,'letter':'S'},
-               {'id':143,'letter':'T'},
-               {'id':135,'letter':'U'},
-               {'id':144,'letter':'V'},
-               {'id':137,'letter':'W'},
-               {'id':140,'letter':'X'},
-               {'id':139,'letter':'Y'},
-               {'id':147,'letter':'Z'},
-               {'id':146,'letter':'AA'},
-               {'id':152,'letter':'AB'},
-               {'id':148,'letter':'AC'},
-               {'id':149,'letter':'AD'},
-               {'id':151,'letter':'AE'},
-               {'id':150,'letter':'AF'},
-               {'id':156,'letter':'AG'},
-               {'id':155,'letter':'AH'},
-               {'id':157,'letter':'AI'},
-               {'id':164,'letter':'AJ'},
-               {'id':165,'letter':'AK'},
-               {'id':159,'letter':'AL'},
-               {'id':162,'letter':'AM'},
-               {'id':161,'letter':'AN'},
-               {'id':166,'letter':'AO'},
-               {'id':167,'letter':'AP'},
-               {'id':171,'letter':'AQ'},
-               {'id':171,'letter':'AR'},
-               {'id':169,'letter':'AS'}]
-        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED DIRECTIC.xlsx')
+        ids = [{'id':125,'letter':'Q'},
+               {'id':128,'letter':'R'},
+               {'id':131,'letter':'S'},
+               {'id':132,'letter':'T'},
+               {'id':134,'letter':'U'},
+               {'id':133,'letter':'V'},
+               {'id':142,'letter':'W'},
+               {'id':143,'letter':'X'},
+               {'id':135,'letter':'Y'},
+               {'id':144,'letter':'Z'},
+               {'id':137,'letter':'AA'},
+               {'id':145,'letter':'AB'},
+               {'id':139,'letter':'AC'},
+               {'id':147,'letter':'AD'},
+               {'id':146,'letter':'AE'},
+               {'id':156,'letter':'AF'},
+               {'id':148,'letter':'AG'},
+               {'id':149,'letter':'AH'},
+               {'id':151,'letter':'AI'},
+               {'id':150,'letter':'AJ'},
+               {'id':294,'letter':'AK'},
+               {'id':155,'letter':'AL'},
+               {'id':157,'letter':'AM'},
+               {'id':164,'letter':'AN'},
+               {'id':165,'letter':'AO'},
+               {'id': 159, 'letter': 'AP'},
+               {'id': 162, 'letter': 'AQ'},
+               {'id': 161, 'letter': 'AR'},
+               {'id': 166, 'letter': 'AS'},
+               {'id': 167, 'letter': 'AT'},
+               {'id': 171, 'letter': 'AU'},
+               {'id': 170, 'letter': 'AV'},
+               {'id': 169, 'letter': 'AW'},
+               ]
+        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED DIRECTIC 2017.xlsx')
         ws = wb.get_sheet_by_name('RED DirecTIC')
         inicia = 6
 
@@ -1292,7 +1293,7 @@ def build_red(id_red):
 
 
     wb.save(output)
-    filename = 'RED-VIG2017' + unicode(red.id) + '-'+ red.region.nombre +'.xlsx'
+    filename = 'RED-VIG2017-' + unicode(red.id) + '-'+ red.region.nombre +'.xlsx'
     red.archivo.save(filename,File(output))
 
     return "Generado RED-" + str(id_red)
