@@ -40,6 +40,7 @@
     "jqTree": "jqtree#^1.4.2",
     "bootstrap-treeview": "^1.2.0",
     "datatables": "^1.10.16",
-    "chartjs-plugin-annotation": "^0.5.5"
+    "chartjs-plugin-annotation": "^0.5.5",
+    "jquery-treegrid": "^0.3.0"
   }
 }

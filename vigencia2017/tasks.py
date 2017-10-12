@@ -618,6 +618,7 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
             if estado['state'] == 'cargado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="C")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = cargado
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).comment = Comment(estado['codigo'], "SICAN")
             elif estado['state'] == 'enviado':
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value="E")
                 ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = enviado

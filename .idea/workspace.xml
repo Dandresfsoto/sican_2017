@@ -2,7 +2,302 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e18cb84-08cb-4a48-bd8c-243afd6a43a7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/img/collapse.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/img/expand.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/img/file.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/img/folder.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/.bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/CHANGELOG.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/Gruntfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/css/jquery.treegrid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/js/jquery.cookie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/js/jquery.treegrid.bootstrap2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/js/jquery.treegrid.bootstrap3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/js/jquery.treegrid.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/js/jquery.treegrid.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/bower_components/jquery-treegrid/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower.json" afterPath="$PROJECT_DIR$/static/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/radicadosretoma/editar.html" afterPath="$PROJECT_DIR$/templates/acceso/radicadosretoma/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/radicadosretoma/eliminar.html" afterPath="$PROJECT_DIR$/templates/acceso/radicadosretoma/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/radicadosretoma/lista.html" afterPath="$PROJECT_DIR$/templates/acceso/radicadosretoma/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/radicadosretoma/nuevo.html" afterPath="$PROJECT_DIR$/templates/acceso/radicadosretoma/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/retoma/lista.html" afterPath="$PROJECT_DIR$/templates/acceso/retoma/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acceso/retoma/nuevo.html" afterPath="$PROJECT_DIR$/templates/acceso/retoma/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/grupos/editar.html" afterPath="$PROJECT_DIR$/templates/adminuser/grupos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/grupos/eliminar.html" afterPath="$PROJECT_DIR$/templates/adminuser/grupos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/grupos/lista.html" afterPath="$PROJECT_DIR$/templates/adminuser/grupos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/grupos/nuevo.html" afterPath="$PROJECT_DIR$/templates/adminuser/grupos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/permisos/editar.html" afterPath="$PROJECT_DIR$/templates/adminuser/permisos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/permisos/eliminar.html" afterPath="$PROJECT_DIR$/templates/adminuser/permisos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/permisos/lista.html" afterPath="$PROJECT_DIR$/templates/adminuser/permisos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/permisos/nuevo.html" afterPath="$PROJECT_DIR$/templates/adminuser/permisos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/usuarios/editar.html" afterPath="$PROJECT_DIR$/templates/adminuser/usuarios/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/usuarios/lista.html" afterPath="$PROJECT_DIR$/templates/adminuser/usuarios/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adminuser/usuarios/nuevo.html" afterPath="$PROJECT_DIR$/templates/adminuser/usuarios/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.jade" afterPath="$PROJECT_DIR$/templates/base.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/departamentos/editar.html" afterPath="$PROJECT_DIR$/templates/bases/departamentos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/departamentos/eliminar.html" afterPath="$PROJECT_DIR$/templates/bases/departamentos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/departamentos/lista.html" afterPath="$PROJECT_DIR$/templates/bases/departamentos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/departamentos/nuevo.html" afterPath="$PROJECT_DIR$/templates/bases/departamentos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/municipios/editar.html" afterPath="$PROJECT_DIR$/templates/bases/municipios/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/municipios/eliminar.html" afterPath="$PROJECT_DIR$/templates/bases/municipios/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/municipios/lista.html" afterPath="$PROJECT_DIR$/templates/bases/municipios/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/municipios/nuevo.html" afterPath="$PROJECT_DIR$/templates/bases/municipios/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/radicados/editar.html" afterPath="$PROJECT_DIR$/templates/bases/radicados/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/radicados/eliminar.html" afterPath="$PROJECT_DIR$/templates/bases/radicados/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/radicados/lista.html" afterPath="$PROJECT_DIR$/templates/bases/radicados/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/radicados/nuevo.html" afterPath="$PROJECT_DIR$/templates/bases/radicados/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/secretarias/editar.html" afterPath="$PROJECT_DIR$/templates/bases/secretarias/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/secretarias/eliminar.html" afterPath="$PROJECT_DIR$/templates/bases/secretarias/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/secretarias/lista.html" afterPath="$PROJECT_DIR$/templates/bases/secretarias/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/bases/secretarias/nuevo.html" afterPath="$PROJECT_DIR$/templates/bases/secretarias/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/editar_beneficiario.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/editar_beneficiario.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/editar_grupo.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/editar_grupo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/lista.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/lista_beneficiarios_grupo.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/lista_beneficiarios_grupo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/nuevo_beneficiario.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/nuevo_beneficiario.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beneficiarios/registrar/nuevo_grupo.html" afterPath="$PROJECT_DIR$/templates/beneficiarios/registrar/nuevo_grupo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/administrativos/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/administrativos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/formadores/legalizacion.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/formadores/legalizacion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/formadores/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/lideres/legalizacion.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/lideres/legalizacion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/lideres/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/lideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/negociadores/legalizacion.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/negociadores/legalizacion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/negociadores/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/negociadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/seguridad_social.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/seguridad_social.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/legalizacion/seleccion.html" afterPath="$PROJECT_DIR$/templates/contratos/legalizacion/seleccion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/seguridad_social/administrativos/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/seguridad_social/administrativos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/seguridad_social/formadores/lista.html" afterPath="$PROJECT_DIR$/templates/contratos/seguridad_social/formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contratos/seguridad_social/formadores/seguridad_social.html" afterPath="$PROJECT_DIR$/templates/contratos/seguridad_social/formadores/seguridad_social.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encuestas/percepcion/resultados.html" afterPath="$PROJECT_DIR$/templates/encuestas/percepcion/resultados.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encuestas/resultados_percepcion/lista.html" afterPath="$PROJECT_DIR$/templates/encuestas/resultados_percepcion/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/actividades/lista_actividades.html" afterPath="$PROJECT_DIR$/templates/evidencias/actividades/lista_actividades.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/actividades/lista_beneficiarios.html" afterPath="$PROJECT_DIR$/templates/evidencias/actividades/lista_beneficiarios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/actividades/lista_diplomados.html" afterPath="$PROJECT_DIR$/templates/evidencias/actividades/lista_diplomados.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/cargamasiva/lista.html" afterPath="$PROJECT_DIR$/templates/evidencias/cargamasiva/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/cargamasiva/nuevo.html" afterPath="$PROJECT_DIR$/templates/evidencias/cargamasiva/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/cedula/lista_beneficiarios.html" afterPath="$PROJECT_DIR$/templates/evidencias/cedula/lista_beneficiarios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/cedula/lista_productos.html" afterPath="$PROJECT_DIR$/templates/evidencias/cedula/lista_productos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/codigos/lista.html" afterPath="$PROJECT_DIR$/templates/evidencias/codigos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/eliminar.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_diplomados.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_diplomados.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_entregables.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_entregables.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_formadores.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_formadores.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_niveles.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_niveles.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_sesiones.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_sesiones.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/lista_soportes.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/lista_soportes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/general/nuevo.html" afterPath="$PROJECT_DIR$/templates/evidencias/general/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/ple/editar.html" afterPath="$PROJECT_DIR$/templates/evidencias/ple/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/ple/lista.html" afterPath="$PROJECT_DIR$/templates/evidencias/ple/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/red/editar.html" afterPath="$PROJECT_DIR$/templates/evidencias/red/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/red/lista.html" afterPath="$PROJECT_DIR$/templates/evidencias/red/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/red/nuevo.html" afterPath="$PROJECT_DIR$/templates/evidencias/red/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/rendimiento/lista.html" afterPath="$PROJECT_DIR$/templates/evidencias/rendimiento/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/subsanacion/actualizar_participante.html" afterPath="$PROJECT_DIR$/templates/evidencias/subsanacion/actualizar_participante.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/subsanacion/evidencia.html" afterPath="$PROJECT_DIR$/templates/evidencias/subsanacion/evidencia.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_evidencias.html" afterPath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_evidencias.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_reds.html" afterPath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_reds.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_subsanaciones.html" afterPath="$PROJECT_DIR$/templates/evidencias/subsanacion/lista_subsanaciones.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/contratos/editar.html" afterPath="$PROJECT_DIR$/templates/financiera/contratos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/contratos/entregables/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/contratos/entregables/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/contratos/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/contratos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/contratos/nuevo.html" afterPath="$PROJECT_DIR$/templates/financiera/contratos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/cortes/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/cortes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/cortes/nuevo.html" afterPath="$PROJECT_DIR$/templates/financiera/cortes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/cronogramas/cronograma.html" afterPath="$PROJECT_DIR$/templates/financiera/cronogramas/cronograma.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/cronogramas/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/cronogramas/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/cronogramas/lista_formadores.html" afterPath="$PROJECT_DIR$/templates/financiera/cronogramas/lista_formadores.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/aprobadasfinanciera/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/aprobadasfinanciera/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/aprobadaslideres/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/aprobadaslideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/consignadas/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/consignadas/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/editar.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/eliminar.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/estado.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/estado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/nuevo.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/pendientes/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/pendientes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/financiera/transportes/rechazadas/lista.html" afterPath="$PROJECT_DIR$/templates/financiera/transportes/rechazadas/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/cronograma.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/cronograma.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/eliminar.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/nuevo.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/cronograma/semanas.html" afterPath="$PROJECT_DIR$/templates/formacion/cronograma/semanas.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/diplomas/escuelatic/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/diplomas/escuelatic/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/grupos/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/grupos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/grupos/eliminar.html" afterPath="$PROJECT_DIR$/templates/formacion/grupos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/grupos/lista_formadores.html" afterPath="$PROJECT_DIR$/templates/formacion/grupos/lista_formadores.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/grupos/lista_grupos.html" afterPath="$PROJECT_DIR$/templates/formacion/grupos/lista_grupos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/grupos/nuevo.html" afterPath="$PROJECT_DIR$/templates/formacion/grupos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/preinscritos/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/preinscritos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/preinscritos/eliminar.html" afterPath="$PROJECT_DIR$/templates/formacion/preinscritos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/preinscritos/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/preinscritos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/preinscritos/nuevo.html" afterPath="$PROJECT_DIR$/templates/formacion/preinscritos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/requerimientosrh/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/requerimientosrh/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/requerimientosrh/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/requerimientosrh/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/requerimientosrh/nuevo.html" afterPath="$PROJECT_DIR$/templates/formacion/requerimientosrh/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/revision/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/revision/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/revision/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/revision/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/revision/lista_revisiones.html" afterPath="$PROJECT_DIR$/templates/formacion/revision/lista_revisiones.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/revision/lista_revisiones_diplomado.html" afterPath="$PROJECT_DIR$/templates/formacion/revision/lista_revisiones_diplomado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/revision/nuevo.html" afterPath="$PROJECT_DIR$/templates/formacion/revision/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/aprobadasfinanciera/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/aprobadasfinanciera/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/aprobadaslideres/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/aprobadaslideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/consignadas/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/consignadas/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/editar.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/estado.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/estado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/pendientes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formacion/transportes/rechazadas/lista.html" afterPath="$PROJECT_DIR$/templates/formacion/transportes/rechazadas/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formadores/legalizacion/general/general.html" afterPath="$PROJECT_DIR$/templates/formadores/legalizacion/general/general.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formadores/legalizacion/general/lista.html" afterPath="$PROJECT_DIR$/templates/formadores/legalizacion/general/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formadores/legalizacion/seguridadsocial/lista.html" afterPath="$PROJECT_DIR$/templates/formadores/legalizacion/seguridadsocial/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/formadores/legalizacion/seguridadsocial/seguridadsocial.html" afterPath="$PROJECT_DIR$/templates/formadores/legalizacion/seguridadsocial/seguridadsocial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inbox/inicio.html" afterPath="$PROJECT_DIR$/templates/inbox/inicio.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/excel/lista.html" afterPath="$PROJECT_DIR$/templates/informes/excel/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lideres/legalizacion/general/general.html" afterPath="$PROJECT_DIR$/templates/lideres/legalizacion/general/general.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lideres/legalizacion/general/lista.html" afterPath="$PROJECT_DIR$/templates/lideres/legalizacion/general/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lideres/legalizacion/seguridadsocial/lista.html" afterPath="$PROJECT_DIR$/templates/lideres/legalizacion/seguridadsocial/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lideres/legalizacion/seguridadsocial/seguridadsocial.html" afterPath="$PROJECT_DIR$/templates/lideres/legalizacion/seguridadsocial/seguridadsocial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/cargamasiva/lista.html" afterPath="$PROJECT_DIR$/templates/matrices/cargamasiva/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/cargamasiva/nuevo.html" afterPath="$PROJECT_DIR$/templates/matrices/cargamasiva/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/diplomados/editar.html" afterPath="$PROJECT_DIR$/templates/matrices/diplomados/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/diplomados/eliminar.html" afterPath="$PROJECT_DIR$/templates/matrices/diplomados/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/diplomados/lista.html" afterPath="$PROJECT_DIR$/templates/matrices/diplomados/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matrices/diplomados/nuevo.html" afterPath="$PROJECT_DIR$/templates/matrices/diplomados/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/negociadores/legalizacion/general/general.html" afterPath="$PROJECT_DIR$/templates/negociadores/legalizacion/general/general.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/negociadores/legalizacion/general/lista.html" afterPath="$PROJECT_DIR$/templates/negociadores/legalizacion/general/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/negociadores/legalizacion/seguridadsocial/lista.html" afterPath="$PROJECT_DIR$/templates/negociadores/legalizacion/seguridadsocial/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/negociadores/legalizacion/seguridadsocial/seguridadsocial.html" afterPath="$PROJECT_DIR$/templates/negociadores/legalizacion/seguridadsocial/seguridadsocial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/diplomados/editar.html" afterPath="$PROJECT_DIR$/templates/productos/diplomados/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/diplomados/lista.html" afterPath="$PROJECT_DIR$/templates/productos/diplomados/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/diplomados/nuevo.html" afterPath="$PROJECT_DIR$/templates/productos/diplomados/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/entregables/editar.html" afterPath="$PROJECT_DIR$/templates/productos/entregables/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/entregables/lista.html" afterPath="$PROJECT_DIR$/templates/productos/entregables/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/entregables/nuevo.html" afterPath="$PROJECT_DIR$/templates/productos/entregables/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/niveles/editar.html" afterPath="$PROJECT_DIR$/templates/productos/niveles/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/niveles/lista.html" afterPath="$PROJECT_DIR$/templates/productos/niveles/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/niveles/nuevo.html" afterPath="$PROJECT_DIR$/templates/productos/niveles/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/sesiones/editar.html" afterPath="$PROJECT_DIR$/templates/productos/sesiones/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/sesiones/lista.html" afterPath="$PROJECT_DIR$/templates/productos/sesiones/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/productos/sesiones/nuevo.html" afterPath="$PROJECT_DIR$/templates/productos/sesiones/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectosmix.html" afterPath="$PROJECT_DIR$/templates/proyectosmix.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/recovery.html" afterPath="$PROJECT_DIR$/templates/recovery.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/requerimientos/interventoria/editar.html" afterPath="$PROJECT_DIR$/templates/requerimientos/interventoria/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/requerimientos/interventoria/eliminar.html" afterPath="$PROJECT_DIR$/templates/requerimientos/interventoria/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/requerimientos/interventoria/lista.html" afterPath="$PROJECT_DIR$/templates/requerimientos/interventoria/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/requerimientos/interventoria/nuevo.html" afterPath="$PROJECT_DIR$/templates/requerimientos/interventoria/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/cohortes/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/cohortes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/cohortes/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/cohortes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista_contratos.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista_contratos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista_general.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/lista_general.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_formadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/lista_contratos.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/lista_contratos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_lideres/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/lista_contratos.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/lista_contratos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/contratos_negociadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_formadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_lideres/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/contratacion/solicitud_soportes_negociadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/interventoria_formadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/interventoria_formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/lideres/soportes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/links.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/links.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/acceso/negociadores/soportes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/administrativos/soportes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/cargos/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/cargos/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/cargos/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/cargos/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/cargos/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/cargos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/cargos/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/cargos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/formadores/soportes/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/editar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/eliminar.html" afterPath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/eliminar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/lista.html" afterPath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/nuevo.html" afterPath="$PROJECT_DIR$/templates/rh/personal/tipo_soporte/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/requerimientosrh/editar.html" afterPath="$PROJECT_DIR$/templates/rh/requerimientosrh/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rh/requerimientosrh/lista.html" afterPath="$PROJECT_DIR$/templates/rh/requerimientosrh/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/usuarios/changepassword.html" afterPath="$PROJECT_DIR$/templates/usuarios/changepassword.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/usuarios/inicio.html" afterPath="$PROJECT_DIR$/templates/usuarios/inicio.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/lista_cambios.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/lista_cambios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/cargar_matriz/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/cortes_pago/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/cortes_pago/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/cortes_pago/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/cortes_pago/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/dane/editar.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/dane/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/dane/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/dane/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/dane/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/dane/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_beneficiarios.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_beneficiarios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_productos.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_productos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/arbol.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/arbol.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/editar_beneficiario.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/editar_beneficiario.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/editar_evidencia.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/editar_evidencia.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_evidencias.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_evidencias.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_formador.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_formador.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_inscritos.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista_inscritos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/masivo_evidencia.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/masivo_evidencia.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/no_conectividad.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/no_conectividad.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nueva_evidencia.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nueva_evidencia.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nuevo_beneficiario.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/nuevo_beneficiario.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/resultado_masivo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/resultado_masivo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/informacion_contrato/contrato.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/informacion_contrato/contrato.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/red/editar.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/red/editar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/red/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/red/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/red/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/red/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/rendimiento_evidencias/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/rendimiento_evidencias/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/resumen_evidencias/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/resumen_evidencias/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/nuevo.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/nuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/valor_diplomado.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/valor_contratos/valor_diplomado.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vigencia2017/tasks.py" afterPath="$PROJECT_DIR$/vigencia2017/tasks.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,17 +359,17 @@
       <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="1195" column="43" lean-forward="true" selection-start-line="1195" selection-start-column="43" selection-end-line="1195" selection-end-column="43" />
+            <state relative-caret-position="184">
+              <caret line="622" column="105" lean-forward="true" selection-start-line="622" selection-start-column="105" selection-end-line="622" selection-end-column="105" />
               <folding>
                 <element signature="e#1843#26259#0" expanded="false" />
-                <element signature="e#26328#35416#0" expanded="false" />
-                <element signature="e#35485#42533#0" expanded="false" />
-                <element signature="e#42596#50830#0" expanded="false" />
-                <element signature="e#50893#57625#0" expanded="false" />
-                <element signature="e#57713#59559#0" expanded="false" />
-                <element signature="e#68900#77243#0" expanded="false" />
-                <element signature="e#77289#77481#0" expanded="false" />
+                <element signature="e#35625#42673#0" expanded="false" />
+                <element signature="e#42736#50970#0" expanded="false" />
+                <element signature="e#51033#57765#0" expanded="false" />
+                <element signature="e#57853#59699#0" expanded="false" />
+                <element signature="e#59739#68988#0" expanded="false" />
+                <element signature="e#69040#77383#0" expanded="false" />
+                <element signature="e#77429#77621#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -93,7 +388,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Red</find>
       <find>redfo</find>
       <find>RechazoVigencia2017</find>
       <find>beneficiario.ob</find>
@@ -123,6 +417,7 @@
       <find>resumen</find>
       <find>EvidenciaVigencia2017Form</find>
       <find>pago</find>
+      <find>treeview</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,7 +465,6 @@
         <option value="$PROJECT_DIR$/templates/vigencia2017/rendimiento_evidencias/lista.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/lista.jade" />
         <option value="$PROJECT_DIR$/vigencia2017/migrations/0011_pago_contrato.py" />
-        <option value="$PROJECT_DIR$/templates/base.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/informacion_contrato/contrato.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/red/editar.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/red/lista.jade" />
@@ -181,6 +475,7 @@
         <option value="$PROJECT_DIR$/rest/views.py" />
         <option value="$PROJECT_DIR$/vigencia2017/forms.py" />
         <option value="$PROJECT_DIR$/vigencia2017/models.py" />
+        <option value="$PROJECT_DIR$/templates/base.jade" />
         <option value="$PROJECT_DIR$/vigencia2017/tasks.py" />
       </list>
     </option>
@@ -232,13 +527,7 @@
             <path>
               <item name="sican_2017" type="b2602c69:ProjectViewProjectNode" />
               <item name="sican_2017" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sican_2017" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sican_2017" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="documentos" type="462c0819:PsiDirectoryNode" />
+              <item name="vigencia2017" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -248,7 +537,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Bower" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/static/bower.json" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.path.for.package.jscs" value="project" />
@@ -522,13 +811,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Vigencia 2017 v16">
-      <created>1504038528947</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1504038528947</updated>
     </task>
     <task id="LOCAL-00047" summary="Vigencia 2017 v16">
       <created>1504040444136</created>
@@ -866,7 +1148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507820652202</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Vigencia 2017 v62">
+      <created>1507821441904</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1507821441904</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -916,7 +1205,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vigencia 2017 v37" />
     <MESSAGE value="Vigencia 2017 v38" />
     <MESSAGE value="Vigencia 2017 v39" />
     <MESSAGE value="Vigencia 2017 v40" />
@@ -941,7 +1229,8 @@
     <MESSAGE value="Vigencia 2017 v59" />
     <MESSAGE value="Vigencia 2017 v60" />
     <MESSAGE value="Vigencia 2017 v61" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v61" />
+    <MESSAGE value="Vigencia 2017 v62" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v62" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1134,18 +1423,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="323" />
+      <option name="time" value="324" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/region/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
@@ -1363,13 +1645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="63" column="106" lean-forward="false" selection-start-line="63" selection-start-column="106" selection-end-line="63" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/vigencia2017/informacion_contrato/contrato.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -1381,6 +1656,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="443" column="0" lean-forward="false" selection-start-line="443" selection-start-column="0" selection-end-line="456" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1451,6 +1727,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="38" column="50" lean-forward="false" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,27 +1785,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="616">
           <caret line="302" column="38" lean-forward="true" selection-start-line="302" selection-start-column="38" selection-end-line="302" selection-end-column="38" />
           <folding>
-            <element signature="e#46#85#0" expanded="true" />
+            <element signature="e#46#85#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/arbol.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="1195" column="43" lean-forward="true" selection-start-line="1195" selection-start-column="43" selection-end-line="1195" selection-end-column="43" />
+        <state relative-caret-position="184">
+          <caret line="622" column="105" lean-forward="true" selection-start-line="622" selection-start-column="105" selection-end-line="622" selection-end-column="105" />
           <folding>
             <element signature="e#1843#26259#0" expanded="false" />
-            <element signature="e#26328#35416#0" expanded="false" />
-            <element signature="e#35485#42533#0" expanded="false" />
-            <element signature="e#42596#50830#0" expanded="false" />
-            <element signature="e#50893#57625#0" expanded="false" />
-            <element signature="e#57713#59559#0" expanded="false" />
-            <element signature="e#68900#77243#0" expanded="false" />
-            <element signature="e#77289#77481#0" expanded="false" />
+            <element signature="e#35625#42673#0" expanded="false" />
+            <element signature="e#42736#50970#0" expanded="false" />
+            <element signature="e#51033#57765#0" expanded="false" />
+            <element signature="e#57853#59699#0" expanded="false" />
+            <element signature="e#59739#68988#0" expanded="false" />
+            <element signature="e#69040#77383#0" expanded="false" />
+            <element signature="e#77429#77621#0" expanded="false" />
           </folding>
         </state>
       </provider>
