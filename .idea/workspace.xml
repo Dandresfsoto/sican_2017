@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e18cb84-08cb-4a48-bd8c-243afd6a43a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/documentos/RED DIRECTIC 2017.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vigencia2017/tasks.py" afterPath="$PROJECT_DIR$/vigencia2017/tasks.py" />
     </list>
@@ -65,8 +64,8 @@
       <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="1295" column="81" lean-forward="true" selection-start-line="1295" selection-start-column="81" selection-end-line="1295" selection-end-column="81" />
+            <state relative-caret-position="305">
+              <caret line="1195" column="43" lean-forward="true" selection-start-line="1195" selection-start-column="43" selection-end-line="1195" selection-end-column="43" />
               <folding>
                 <element signature="e#1843#26259#0" expanded="false" />
                 <element signature="e#26328#35416#0" expanded="false" />
@@ -524,13 +523,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
     </task>
-    <task id="LOCAL-00045" summary="Vigencia 2017 v16">
-      <created>1504037632493</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1504037632493</updated>
-    </task>
     <task id="LOCAL-00046" summary="Vigencia 2017 v16">
       <created>1504038528947</created>
       <option name="number" value="00046" />
@@ -867,7 +859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507761230838</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Vigencia 2017 v61">
+      <created>1507820652201</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1507820652202</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -917,7 +916,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vigencia 2017 v36" />
     <MESSAGE value="Vigencia 2017 v37" />
     <MESSAGE value="Vigencia 2017 v38" />
     <MESSAGE value="Vigencia 2017 v39" />
@@ -942,7 +940,8 @@
     <MESSAGE value="Vigencia 2017 v58" />
     <MESSAGE value="Vigencia 2017 v59" />
     <MESSAGE value="Vigencia 2017 v60" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v60" />
+    <MESSAGE value="Vigencia 2017 v61" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v61" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1519,8 +1518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="1295" column="81" lean-forward="true" selection-start-line="1295" selection-start-column="81" selection-end-line="1295" selection-end-column="81" />
+        <state relative-caret-position="305">
+          <caret line="1195" column="43" lean-forward="true" selection-start-line="1195" selection-start-column="43" selection-end-line="1195" selection-end-column="43" />
           <folding>
             <element signature="e#1843#26259#0" expanded="false" />
             <element signature="e#26328#35416#0" expanded="false" />

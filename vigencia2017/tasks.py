@@ -1164,7 +1164,7 @@ def build_red(id_red):
         ws = wb.get_sheet_by_name('RED TecnoTIC')
         inicia = 6
     elif red.diplomado.numero == 3:
-        ids = [{'id':125,'letter':'Q'},
+        ids = [{'id':127,'letter':'Q'},
                {'id':128,'letter':'R'},
                {'id':131,'letter':'S'},
                {'id':132,'letter':'T'},
