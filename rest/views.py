@@ -867,9 +867,14 @@ class RendimientoCargaEvidencias(APIView):
         else:
             escencial = "No"
 
-        evidencias = EvidenciaVigencia2017.objects.filter(fecha__gte=desde,fecha__lte=hasta,
-                                                          entregable__sesion__nivel__diplomado__id=diplomado,
-                                                          entregable__escencial=escencial)
+        if diplomado != "total":
+
+            evidencias = EvidenciaVigencia2017.objects.filter(fecha__gte=desde,fecha__lte=hasta,
+                                                              entregable__sesion__nivel__diplomado__id=diplomado,
+                                                              entregable__escencial=escencial)
+        else:
+            evidencias = EvidenciaVigencia2017.objects.filter(fecha__gte=desde, fecha__lte=hasta,
+                                                              entregable__escencial=escencial)
 
         labels = evidencias.values_list('usuario__first_name',flat=True).distinct()
 
