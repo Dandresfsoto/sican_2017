@@ -21,7 +21,7 @@ block breadcrum
 block scroll_header_panel_content
     div(class="container-fluid container-index")
         div(class="row")
-            div(class="col-sm-2 col-sm-offset-1")
+            div(class="col-sm-2")
                 label(for = "desde") Desde:
                 input(class="textInput form-control",type="text",placeholder="Desde:",id="desde")
             div(class="col-sm-2")
@@ -37,13 +37,19 @@ block scroll_header_panel_content
                         option(value="8") DocenTIC
                         option(value="4") EscuelaTIC
                         option(value="7") Docentes Innovadores
-            div(class="col-sm-3")
+            div(class="col-sm-2")
                 div(class="form-group")
                     label(for = "reporte") Tipo de reporte:
                     select(class="form-control",id="reporte")
                         option(value="1") Evidencias cargadas
                         option(value="2") Registros asignados
                         option(value="3") Cantidad de beneficiarios
+            div(class="col-sm-2")
+                div(class="form-group")
+                    label(for = "tipo_evidencia") Evidencias:
+                    select(class="form-control",id="tipo_evidencia")
+                        option(value="1") Evidencias escenciales
+                        option(value="2") Evidencias no escenciales
             div(class="col-sm-2")
                 button(class="btn btn-success",id="actualizar",style="margin-top:25px;") Actualizar
 
@@ -106,10 +112,11 @@ block body_script_content
                 var hasta = $("#hasta").val();
                 var diplomado = $("#diplomado").val();
                 var reporte = $("#reporte").val();
+                var tipo = $("#tipo_evidencia").val();
 
                 $.ajax({
                     type: "GET",
-                    url: "/rest/vigencia_2017/rendimiento_carga/?desde=" + desde + "&hasta=" + hasta + "&diplomado=" + diplomado + "&reporte=" + reporte,
+                    url: "/rest/vigencia_2017/rendimiento_carga/?desde=" + desde + "&hasta=" + hasta + "&diplomado=" + diplomado + "&reporte=" + reporte + "&tipo=" + tipo,
                     cache: false,
                     success: function (data) {
                         myChart.data.labels = data.labels

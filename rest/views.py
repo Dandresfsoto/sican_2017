@@ -860,10 +860,16 @@ class RendimientoCargaEvidencias(APIView):
         hasta = datetime.datetime.strptime(request._request.GET['hasta'],'%d/%m/%Y').replace(hour=23,minute=59,second=59)
         diplomado = request._request.GET['diplomado']
         reporte = request._request.GET['reporte']
+        tipo = request._request.GET['tipo']
 
+        if tipo == "1":
+            escencial = "Si"
+        else:
+            escencial = "No"
 
         evidencias = EvidenciaVigencia2017.objects.filter(fecha__gte=desde,fecha__lte=hasta,
-                                                          entregable__sesion__nivel__diplomado__id=diplomado)
+                                                          entregable__sesion__nivel__diplomado__id=diplomado,
+                                                          entregable__escencial=escencial)
 
         labels = evidencias.values_list('usuario__first_name',flat=True).distinct()
 
