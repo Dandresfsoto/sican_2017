@@ -89,6 +89,8 @@ urlpatterns = [
     url(r'vigencia_2017/resumen_evidencias/',views.ResumenEvidencias.as_view()),
 
     url(r'vigencia_2017/informacion_contrato/',views.InformacionContrato.as_view()),
+
+    url(r'vigencia_2017/evidencias/subsanacion/',views.EvidenciasSubsanacionVigencia2017.as_view()),
     #-------------------------------------------------------------------------------------------------------------------
 
     #--------------------------------------------- BENEFICIARIOS -------------------------------------------------------
@@ -222,4 +224,6 @@ urlpatterns = [
     url(r'rh/contratos/formadores/cohortes/',views.CohortesFormadorList.as_view()),
 
     url(r'ples/',views.BeneficiariosPleList.as_view()),
+
+    url(r'reds/subsanacionevidencias_id_2017/evidencia/(?P<id_evidencia>\w+)/',views.EvidenciasSubsanacionCodigosSubsanacion2017.as_view()),
 ]

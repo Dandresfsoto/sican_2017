@@ -11,7 +11,7 @@ from productos.models import Diplomado
 from vigencia2017.tasks import carga_masiva_matrices
 from vigencia2017.models import Grupos as GruposVigencia2017
 from vigencia2017.models import Beneficiario as BeneficiarioVigencia2017
-from vigencia2017.forms import BeneficiarioVigencia2017Form, NewBeneficiarioVigencia2017Form
+from vigencia2017.forms import BeneficiarioVigencia2017Form, NewBeneficiarioVigencia2017Form, SubsanacionEvidenciaForm
 from vigencia2017.models import Evidencia as EvidenciaVigencia2017
 from vigencia2017.forms import EvidenciaVigencia2017Form, GruposVigencia2017ConectividadForm, MasivoVigencia2017Form
 from vigencia2017.models import Evidencia, Red
@@ -42,6 +42,8 @@ from django.template import RequestContext
 from vigencia2017.tasks import carga_masiva_evidencia
 from vigencia2017.tasks import retroalimentacion_red
 from vigencia2017.forms import RedRetroalimentacionForm
+import os
+from vigencia2017.models import Subsanacion, Rechazo
 
 # Create your views here.
 class ListadoCodigosDaneView(LoginRequiredMixin,
@@ -990,3 +992,101 @@ class UpdateRedView(LoginRequiredMixin,
     def get_context_data(self, **kwargs):
         kwargs['id_red'] = self.kwargs['pk']
         return super(UpdateRedView, self).get_context_data(**kwargs)
+
+
+class TableroControl(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/tablero_control/tablero.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_resumen_evidencias.ver"
+
+
+
+class SubsanacionEvidencias(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/subsanacion_evidencias/lista.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_subsanacion_evidencias.ver"
+
+
+
+
+class ListaSubsanacionEvidencias(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         TemplateView):
+    template_name = 'vigencia2017/subsanacion_evidencias/lista_evidencias.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_subsanacion_evidencias.ver"
+
+    def get_context_data(self, **kwargs):
+        kwargs['id_evidencia'] = self.kwargs['pk']
+        return super(ListaSubsanacionEvidencias, self).get_context_data(**kwargs)
+
+
+
+class SubsanacionEvidenciasFormView(LoginRequiredMixin,
+                              PermissionRequiredMixin,
+                              FormView):
+
+    form_class = SubsanacionEvidenciaForm
+    success_url = '../'
+    template_name = 'vigencia2017/subsanacion_evidencias/subsanacion.html'
+    permission_required = "permisos_sican.evidencias.subsanacion.crear"
+
+    def get_context_data(self, **kwargs):
+
+        evidencia = Evidencia.objects.get(id = self.kwargs['pk'])
+
+        kwargs['id_evidencia'] = self.kwargs['pk']
+        kwargs['link_soporte'] = evidencia.get_archivo_url()
+        kwargs['nombre_soporte'] = os.path.basename(evidencia.archivo.name)
+
+        return super(SubsanacionEvidenciasFormView,self).get_context_data(**kwargs)
+
+    def get_initial(self):
+        return {'id_evidencia':self.kwargs['pk']}
+
+    def form_valid(self, form):
+        keys = list(form.cleaned_data.keys())
+        keys.remove('archivo')
+        keys.remove('observacion')
+
+        evidencia = Evidencia.objects.get(id = self.kwargs['pk'])
+
+
+        if form.cleaned_data['archivo'] != None:
+            archivo = form.cleaned_data['archivo']
+        else:
+            archivo = evidencia.archivo
+
+        nueva_evidencia = Evidencia.objects.create(usuario = self.request.user,archivo = archivo,entregable=evidencia.entregable,
+                                                   contrato=evidencia.contrato,subsanacion=True)
+
+        cantidad = 0
+
+        for key in keys:
+            if form.cleaned_data[key]:
+                cantidad += 1
+                beneficiario = BeneficiarioVigencia2017.objects.get(id = key.split('_')[1])
+                nueva_evidencia.beneficiarios_cargados.add(beneficiario)
+                rechazo = Rechazo.objects.filter(evidencia_id__exact = self.kwargs['pk'],beneficiario_rechazo = beneficiario)
+
+                try:
+                    evidencia.beneficiarios_cargados.remove(beneficiario)
+                except:
+                    pass
+                try:
+                    evidencia.beneficiarios_rechazados.remove(rechazo[0])
+                except:
+                    pass
+
+        nueva_evidencia.cantidad_cargados = cantidad
+        nueva_evidencia.save()
+
+        Subsanacion.objects.create(evidencia_origen = evidencia,evidencia_subsanada=nueva_evidencia,usuario=self.request.user,
+                                   observacion = form.cleaned_data['observacion'])
+
+        if evidencia.beneficiarios_rechazados.all().count() == 0:
+            evidencia.subsanacion = True
+            evidencia.save()
+
+        return super(SubsanacionEvidenciasFormView,self).form_valid(form)

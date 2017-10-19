@@ -847,3 +847,78 @@ class RedRetroalimentacionForm(forms.ModelForm):
         labels = {
             'archivo_retroalimentacion': 'Archivo de retroalimentación'
         }
+
+
+class SubsanacionEvidenciaForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(SubsanacionEvidenciaForm, self).__init__(*args, **kwargs)
+
+        evidencia = Evidencia.objects.get(id=kwargs['initial']['id_evidencia'])
+
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            Fieldset(
+                'Soporte',
+                HTML(
+                    """
+                    <p>Original: <a target="_blank" href="{{link_soporte}}">{{nombre_soporte}}</a></p>
+                    """
+                ),
+                Div(
+                    Div('archivo',css_class='col-sm-12'),
+                    css_class = 'row'
+                ),
+                HTML(
+                    """
+                    <p>*Solo use este campo si es necesario reemplazar el archivo original.</p>
+                    """
+                )
+            ),
+        )
+
+        self.helper.layout.fields.append(Fieldset('Beneficiarios',
+                                                  Div(
+                                                      Div(
+                                                          Div(HTML("""<p style="color:#004c99;font-weight:bold;font-size:18px">Nombre</p>"""),css_class='col-sm-3'),
+                                                          Div(HTML("""<p style="color:#004c99;font-weight:bold;font-size:18px">Cedula</p>"""),css_class='col-sm-2'),
+                                                          Div(HTML("""<p style="color:#004c99;font-weight:bold;font-size:18px">Grupo</p>"""),css_class='col-sm-2'),
+                                                          Div(HTML("""<p style="color:#004c99;font-weight:bold;font-size:18px">Motivo de rechazo</p>"""),css_class='col-sm-3'),
+                                                          Div(HTML("""<p style="color:#004c99;font-weight:bold;font-size:18px">Subsanado</p>"""),css_class='col-sm-2'),
+                                                          css_class = 'row'),
+                                                      css_class = 'container-fluid')
+                                                  )
+                                         )
+
+
+        self.helper.layout.fields.append(Fieldset('Observación',
+                                                  Div(
+                                                      'observacion',
+                                                      css_class = 'container-fluid')
+                                                  )
+                                         )
+
+
+
+        container = self.helper.layout.fields[1].fields[0]
+
+
+        for rechazo in evidencia.beneficiarios_rechazados.all():
+
+            nombre = 'beneficiario_' + str(rechazo.beneficiario_rechazo.id)
+
+            self.fields[nombre] = forms.BooleanField(label="",required=False)
+
+            container.append(Div(
+                                    Div(HTML("""<p style="margin-top:10px"><a href='beneficiario/""" + str(rechazo.beneficiario_rechazo.id) + """ '>"""+ rechazo.beneficiario_rechazo.get_full_name() +"""</a></p>"""),css_class='col-sm-3'),
+                                    Div(HTML("""<p style="margin-top:10px">"""+ str(rechazo.beneficiario_rechazo.cedula) +"""</p>"""),css_class='col-sm-2'),
+                                    Div(HTML("""<p style="margin-top:10px">"""+ rechazo.beneficiario_rechazo.grupo.get_nombre_grupo() +"""</p>"""),css_class='col-sm-2'),
+                                    Div(HTML("""<p style="margin-top:10px">"""+ rechazo.observacion +"""</p>"""),css_class='col-sm-3'),
+                                    Div(nombre,css_class='col-sm-2'),
+                                    css_class = 'row'
+                                )
+                            )
+
+        x = 0
+
+    archivo = forms.FileField(required=False)
+    observacion = forms.CharField(max_length=100,widget = forms.Textarea(),required=False,label="*Use este campo en caso de requerir un comentario adicional")

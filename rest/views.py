@@ -98,6 +98,7 @@ from vigencia2017.models import Pago as PagoVigencia2017
 import locale
 import random
 from region.models import Region
+from vigencia2017.models import Subsanacion as Subsanacion2017
 # Create your views here.
 
 
@@ -212,6 +213,12 @@ class UserPermissionList(APIView):
         }
 
         links = {
+            'vigencia_2017_subsanacion_evidencias': {
+                'ver': {'name': 'Subsanación de evidencias', 'link': '/vigencia2017/subsanacion_evidencias/'}
+            },
+            'vigencia_2017_tablero_control': {
+                'ver': {'name': 'Tablero de control', 'link': '/vigencia2017/tablero_control/'}
+            },
             'vigencia_2017_resumen_evidencias': {
                 'ver': {'name': 'Resumen evidencias', 'link': '/vigencia2017/resumen_evidencias/'}
             },
@@ -4482,6 +4489,87 @@ class EvidenciasCodigosVigencia2017(BaseDatatableView):
         return json_data
 
 
+class EvidenciasSubsanacionVigencia2017(BaseDatatableView):
+    """
+    0.id
+    1.red
+    2.fecha
+    3.actualizacion
+    4.usuario
+    5.archivo
+    6.entregable
+    7.beneficiarios cargados
+    8.beneficiarios validados
+    9.formador
+    """
+    model = EvidenciaVigencia2017
+    columns = ['id']
+
+    order_columns = ['id','id','id','id']
+    max_display_length = 100
+
+    def get_initial_queryset(self):
+        return EvidenciaVigencia2017.objects.exclude(beneficiarios_rechazados = None).exclude(subsanacion = True)
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get(u'search[value]', None)
+
+        if search:
+            q = Q(id__exact = search.capitalize())
+            qs = qs.filter(q)
+        return qs
+
+    def prepare_results(self, qs):
+        json_data = []
+
+        for item in qs:
+
+            red = ''
+
+            if item.red_id != None:
+                red = 'RED-' + str(item.red_id)
+
+
+            baneficiarios_cargados = []
+            baneficiarios_validados = []
+            baneficiarios_rechazados = []
+
+            for beneficiario in item.beneficiarios_cargados.all():
+                if beneficiario != None:
+                    baneficiarios_cargados.append([beneficiario.get_full_name(),beneficiario.cedula,beneficiario.grupo.get_nombre_grupo()])
+
+            for beneficiario in item.beneficiarios_validados.all():
+                if beneficiario != None:
+                    baneficiarios_validados.append([beneficiario.get_full_name(),beneficiario.cedula,beneficiario.grupo.get_nombre_grupo()])
+
+            for beneficiario in item.beneficiarios_rechazados.all():
+                if beneficiario != None:
+                    baneficiarios_rechazados.append([beneficiario.beneficiario_rechazo.get_full_name(),beneficiario.beneficiario_rechazo.cedula,beneficiario.beneficiario_rechazo.grupo.get_nombre_grupo(),beneficiario.observacion])
+
+
+            json_data.append([
+                item.id,
+                red,
+                item.get_beneficiarios_cantidad(),
+                item.get_rechazados_cantidad(),
+                item.get_archivo_url(),
+                item.entregable.sesion.nivel.diplomado.nombre,
+                item.entregable.sesion.nivel.nombre,
+                item.entregable.sesion.nombre,
+                item.entregable.id,
+
+                localtime(item.fecha).strftime('%d/%m/%Y %I:%M:%S %p'),
+                localtime(item.updated).strftime('%d/%m/%Y %I:%M:%S %p'),
+                item.usuario.get_full_name(),
+                item.entregable.nombre,
+                item.contrato.formador.get_full_name(),
+                baneficiarios_cargados,
+                baneficiarios_validados,
+                baneficiarios_rechazados
+            ])
+        return json_data
+
+
 class EvidenciasSubsanacionCodigos(BaseDatatableView):
     """
     0.id
@@ -4584,6 +4672,45 @@ class EvidenciasSubsanacionCodigosSubsanacion(BaseDatatableView):
 
     def get_initial_queryset(self):
         return Subsanacion.objects.filter(evidencia_origen__id = self.kwargs['id_evidencia'])
+
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get(u'search[value]', None)
+
+        if search:
+            q = Q(id__exact = search.capitalize())
+            qs = qs.filter(q)
+        return qs
+
+    def prepare_results(self, qs):
+        json_data = []
+
+        for item in qs:
+
+            json_data.append([
+                item.id,
+                item.usuario.get_full_name_string(),
+                localtime(item.date).strftime('%d/%m/%Y %I:%M:%S %p'),
+                item.evidencia_subsanada.cantidad_cargados,
+                item.get_archivo_url(),
+            ])
+        return json_data
+
+
+
+class EvidenciasSubsanacionCodigosSubsanacion2017(BaseDatatableView):
+    """
+
+    """
+    model = Subsanacion2017
+    columns = ['id']
+
+    order_columns = ['id','id','id','id']
+    max_display_length = 100
+
+
+    def get_initial_queryset(self):
+        return Subsanacion2017.objects.filter(evidencia_origen__id = self.kwargs['id_evidencia'])
 
 
     def filter_queryset(self, qs):

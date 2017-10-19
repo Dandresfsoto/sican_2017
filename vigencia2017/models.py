@@ -350,3 +350,21 @@ class Corte(models.Model):
 
 class CargaMasiva2017(models.Model):
     archivo = models.FileField(upload_to='Evidencias/Vigencia 2017/Carga Masiva')
+
+
+
+
+class Subsanacion(models.Model):
+    evidencia_origen = models.ForeignKey(Evidencia,related_name="evidencia_origen_2017")
+    evidencia_subsanada = models.ForeignKey(Evidencia,related_name="evidencia_subsanada_2017")
+    usuario = models.ForeignKey(User,related_name="usuario_2017")
+    date = models.DateTimeField(auto_now_add= True)
+    observacion = models.TextField(max_length=1000,blank=True)
+
+
+    def get_archivo_url(self):
+        try:
+            url = self.evidencia_subsanada.archivo.url
+        except:
+            url = ""
+        return url

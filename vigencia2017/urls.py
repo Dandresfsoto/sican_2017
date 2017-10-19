@@ -52,4 +52,12 @@ urlpatterns = [
     url(r'^grupos/informacion_contrato/(?P<id_contrato>[0-9]+)/$', views.InformacionContrato.as_view()),
 
     url(r'^resumen_evidencias/$', views.ResumenEvidencias.as_view()),
+
+    url(r'^tablero_control/$', views.TableroControl.as_view()),
+
+    url(r'^subsanacion_evidencias/$', views.SubsanacionEvidencias.as_view()),
+
+    url(r'^subsanacion_evidencias/(?P<pk>[0-9]+)/$', views.ListaSubsanacionEvidencias.as_view()),
+
+    url(r'^subsanacion_evidencias/(?P<pk>[0-9]+)/nuevo/$', views.SubsanacionEvidenciasFormView.as_view()),
 ]
