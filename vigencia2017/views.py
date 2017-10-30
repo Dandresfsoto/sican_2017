@@ -1030,7 +1030,7 @@ class SubsanacionEvidenciasFormView(LoginRequiredMixin,
     form_class = SubsanacionEvidenciaForm
     success_url = '../'
     template_name = 'vigencia2017/subsanacion_evidencias/subsanacion.html'
-    permission_required = "permisos_sican.evidencias.subsanacion.crear"
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_subsanacion_evidencias.ver"
 
     def get_context_data(self, **kwargs):
 
