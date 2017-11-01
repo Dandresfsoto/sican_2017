@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5e18cb84-08cb-4a48-bd8c-243afd6a43a7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vigencia2017/views.py" afterPath="$PROJECT_DIR$/vigencia2017/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/views.py" afterPath="$PROJECT_DIR$/rest/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.html" afterPath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade" afterPath="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vigencia2017/tasks.py" afterPath="$PROJECT_DIR$/vigencia2017/tasks.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,25 +62,43 @@
       </map>
     </option>
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/vigencia2017/models.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="168">
+                    <caret line="31" column="12" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="12" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vigencia2017/urls.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="61" column="94" lean-forward="false" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vigencia2017/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="1091" column="73" lean-forward="true" selection-start-line="1091" selection-start-column="73" selection-end-line="1091" selection-end-column="73" />
+            <state relative-caret-position="221">
+              <caret line="1704" column="42" lean-forward="true" selection-start-line="1704" selection-start-column="42" selection-end-line="1704" selection-end-column="42" />
               <folding>
-                <element signature="e#17999#18577#0" expanded="false" />
+                <element signature="e#46#85#0" expanded="true" />
+                <element signature="e#1872#26288#0" expanded="false" />
+                <element signature="e#26357#35585#0" expanded="false" />
+                <element signature="e#35654#42702#0" expanded="false" />
+                <element signature="e#42765#50999#0" expanded="false" />
+                <element signature="e#51062#57794#0" expanded="false" />
+                <element signature="e#57882#59728#0" expanded="false" />
+                <element signature="e#69069#77664#0" expanded="false" />
+                <element signature="e#77710#77902#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -96,13 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rendimiento_carga</find>
-      <find>Region</find>
-      <find>cargado</find>
-      <find>from zipfile import ZipFile</find>
-      <find>SimpleUploadedFile</find>
-      <find>create_evidencia</find>
-      <find>get_evidencia</find>
       <find>resumen</find>
       <find>EvidenciaVigencia2017Form</find>
       <find>pago</find>
@@ -126,6 +140,13 @@
       <find>RendimientoCargaEvidencias</find>
       <find>vigencia_2017/rendimiento_carga</find>
       <find>subsanacion</find>
+      <find>diploma</find>
+      <find>diplomas</find>
+      <find>Evidencias</find>
+      <find>35</find>
+      <find>matriz_chequeo_virtual_compilada</find>
+      <find>40</find>
+      <find>Grupos</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,7 +165,6 @@
         <option value="$PROJECT_DIR$/vigencia2017/formatChecker.py" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/grupos_formacion/masivo_evidencia.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.html" />
-        <option value="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_beneficiarios.jade" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/evidencias/cedula/lista_productos.jade" />
         <option value="E:/PENDIENTES/ACTIVIDADES VIRTUALES/TECNOTIC/85/generar.py" />
@@ -182,9 +202,10 @@
         <option value="$PROJECT_DIR$/templates/vigencia2017/subsanacion_evidencias/subsanacion.jade" />
         <option value="$PROJECT_DIR$/vigencia2017/forms.py" />
         <option value="$PROJECT_DIR$/templates/vigencia2017/rendimiento_evidencias/lista.jade" />
+        <option value="$PROJECT_DIR$/vigencia2017/views.py" />
+        <option value="$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade" />
         <option value="$PROJECT_DIR$/rest/views.py" />
         <option value="$PROJECT_DIR$/vigencia2017/tasks.py" />
-        <option value="$PROJECT_DIR$/vigencia2017/views.py" />
       </list>
     </option>
   </component>
@@ -200,8 +221,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1241" />
-    <option name="y" value="-20" />
+    <option name="x" value="-338" />
+    <option name="y" value="-12" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -223,7 +244,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,23 +255,18 @@
             <path>
               <item name="sican_2017" type="b2602c69:ProjectViewProjectNode" />
               <item name="sican_2017" type="462c0819:PsiDirectoryNode" />
-              <item name="region" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sican_2017" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sican_2017" type="462c0819:PsiDirectoryNode" />
               <item name="vigencia2017" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Bower" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/static/bower.json" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.path.for.package.jscs" value="project" />
@@ -524,13 +540,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497469811396</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Vigencia 2017 v20">
-      <created>1504112748207</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1504112748207</updated>
     </task>
     <task id="LOCAL-00053" summary="Vigencia 2017 v21">
       <created>1504287550400</created>
@@ -868,7 +877,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508507330306</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Vigencia 2017 v68">
+      <created>1509383818794</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1509383818795</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -886,16 +902,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17700455" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18154311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5030257" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31578946" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3223684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -940,7 +956,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vigencia 2017 v44" />
     <MESSAGE value="Vigencia 2017 v45" />
     <MESSAGE value="Vigencia 2017 v46" />
     <MESSAGE value="Vigencia 2017 v47" />
@@ -965,7 +980,8 @@
     <MESSAGE value="Vigencia 2017 v66" />
     <MESSAGE value="Vigencia 2017 v67" />
     <MESSAGE value="Vigencia 2017 v68" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v68" />
+    <MESSAGE value="Vigencia 2017 v69" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vigencia 2017 v69" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1150,6 +1166,11 @@
           <line>480</line>
           <option name="timeStamp" value="298" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/matrices/tasks.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="325" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1158,32 +1179,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="325" />
+      <option name="time" value="326" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/PENDIENTES/ACTIVIDADES VIRTUALES/TECNOTIC/BITACORAS/generar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="50" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="332" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/PENDIENTES/ACTIVIDADES VIRTUALES/DIRECTIC/171/generar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/PENDIENTES/ACTIVIDADES VIRTUALES/INNOVATIC/64/generar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/PENDIENTES/ACTIVIDADES VIRTUALES/DIRECTIC/132/generar.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1216,13 +1216,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="197" column="56" lean-forward="false" selection-start-line="197" selection-start-column="56" selection-end-line="197" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informes/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="3489" column="51" lean-forward="true" selection-start-line="3489" selection-start-column="51" selection-end-line="3489" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1324,13 +1317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/evidencias/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="480" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/vigencia2017/red/lista.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -1384,20 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="81" column="20" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="92" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="274" column="9" lean-forward="true" selection-start-line="89" selection-start-column="4" selection-end-line="274" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evidencias/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="917">
-          <caret line="97" column="72" lean-forward="true" selection-start-line="97" selection-start-column="72" selection-end-line="97" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -1487,13 +1459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="894" column="65" lean-forward="true" selection-start-line="894" selection-start-column="65" selection-end-line="894" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1508,34 +1473,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
+    <entry file="file://$PROJECT_DIR$/matrices/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="1512" column="28" lean-forward="false" selection-start-line="1512" selection-start-column="28" selection-end-line="1512" selection-end-column="28" />
+        <state relative-caret-position="289">
+          <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vigencia2017/models.py">
+    <entry file="file://$PROJECT_DIR$/evidencias/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="287" column="49" lean-forward="true" selection-start-line="287" selection-start-column="49" selection-end-line="287" selection-end-column="49" />
+        <state relative-caret-position="219">
+          <caret line="24" column="116" lean-forward="false" selection-start-line="24" selection-start-column="116" selection-end-line="24" selection-end-column="116" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vigencia2017/urls.py">
+    <entry file="file://$PROJECT_DIR$/matrices/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="61" column="94" lean-forward="false" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="94" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="33" />
+          <folding>
+            <element signature="e#46#85#0" expanded="false" />
+            <element signature="e#890#25725#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidencias/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidencias/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="366" column="24" lean-forward="false" selection-start-line="366" selection-start-column="24" selection-end-line="366" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vigencia2017/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="1091" column="73" lean-forward="true" selection-start-line="1091" selection-start-column="73" selection-end-line="1091" selection-end-column="73" />
+        <state relative-caret-position="427">
+          <caret line="1091" column="73" lean-forward="false" selection-start-line="1091" selection-start-column="73" selection-end-line="1091" selection-end-column="73" />
           <folding>
             <element signature="e#17999#18577#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vigencia2017/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="61" column="94" lean-forward="false" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informes/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="3486" column="0" lean-forward="false" selection-start-line="3486" selection-start-column="0" selection-end-line="3678" selection-end-column="42" />
+          <folding>
+            <element signature="e#158738#169204#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="1258" column="79" lean-forward="true" selection-start-line="1258" selection-start-column="79" selection-end-line="1258" selection-end-column="79" />
+          <folding>
+            <element signature="e#46#85#0" expanded="false" />
+            <element signature="e#5688#19259#0" expanded="false" />
+            <element signature="e#19307#20435#0" expanded="false" />
+            <element signature="e#20486#21743#0" expanded="false" />
+            <element signature="e#21798#23174#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/vigencia2017/evidencias/codigos/lista.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="31" column="72" lean-forward="true" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="72" />
+          <folding>
+            <marker date="1509545584951" expanded="true" signature="5287:5301" ph="..." />
+            <marker date="1509545584951" expanded="true" signature="8762:8793" ph="..." />
+            <marker date="1509545584951" expanded="true" signature="9314:9345" ph="..." />
+            <marker date="1509545584951" expanded="true" signature="9868:9899" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vigencia2017/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="31" column="12" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vigencia2017/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="1704" column="42" lean-forward="true" selection-start-line="1704" selection-start-column="42" selection-end-line="1704" selection-end-column="42" />
+          <folding>
+            <element signature="e#46#85#0" expanded="true" />
+            <element signature="e#1872#26288#0" expanded="false" />
+            <element signature="e#26357#35585#0" expanded="false" />
+            <element signature="e#35654#42702#0" expanded="false" />
+            <element signature="e#42765#50999#0" expanded="false" />
+            <element signature="e#51062#57794#0" expanded="false" />
+            <element signature="e#57882#59728#0" expanded="false" />
+            <element signature="e#69069#77664#0" expanded="false" />
+            <element signature="e#77710#77902#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -23,7 +23,7 @@ from PIL import ImageDraw
 import StringIO
 from django.core.files import File
 from django.utils import timezone
-from vigencia2017.models import CargaMatriz, DaneSEDE, Grupos, Beneficiario, BeneficiarioCambio
+from vigencia2017.models import CargaMatriz, DaneSEDE, Grupos, Beneficiario, BeneficiarioCambio, Evidencia
 from formadores.models import Contrato
 from validate_email import validate_email
 from formadores.models import Contrato as ContratoVigencia2017
@@ -44,6 +44,7 @@ from vigencia2017.models import Pago
 import json
 from vigencia2017.models import Rechazo as RechazoVigencia2017
 from openpyxl.comments import Comment
+import xlsxwriter
 
 @app.task
 def carga_masiva_matrices(id,email_user):
@@ -1511,3 +1512,194 @@ def set_pago(pagos,corte_id):
         pago_object.corte_id = corte_id
         pago_object.save()
     return "Corte efectuado"
+
+
+
+@app.task
+def matriz_chequeo_virtual_compilada_2017(email):
+    usuario = User.objects.get(email=email)
+    nombre = 'Compilado evidencias virtuales SICAN VIG 2017'
+
+    proceso = "REV-INF06"
+    informe = InformesExcel.objects.create(usuario = usuario,nombre=nombre,progreso="0%")
+    fecha = informe.creacion
+    output = StringIO.StringIO()
+    dict_productos = []
+
+
+    dict_productos_innovatic = [{'letter':'I','id':11,'nombre':'N1S1 - Guía: Valorando mis Competencias TIC'},
+                                {'letter':'J','id':20,'nombre':'N1S1 - Hoja de Ruta para fortalecer las competencias TIC'},
+                                {'letter':'K','id':262,'nombre':'N1S2 - Guía: construyendo lecciones de innovación educativa'},
+                                {'letter':'L','id':15,'nombre':'N1S3 - Documento: Decálogo de un Proyecto Innovador.'},
+                                {'letter':'M','id':16,'nombre':'N1S3 - Guía: Potenciando mi Experiencia Educativa de primera fase'},
+
+                                {'letter':'N','id':267,'nombre':'N2S3 - Guía Construyendo mi PLE'},
+
+                                {'letter':'O','id':58,'nombre':'N3S1 - Formato de recopilación de resultados: "Lo aprendido"'},
+                                {'letter':'P','id':59,'nombre':'N3S2 - Enlace o imagen interactiva: Ruta de sostenibilidad'},
+                                {'letter':'Q','id':60,'nombre':'N3S3 - Gráfica del PLE realizada en Mindomo'},
+
+                                {'letter':'R','id':67,'nombre':'N4S2 - Registro fotográfico: Evento de socialización'},
+                                ]
+
+
+
+    dict_productos_directic = [{'letter':'I','id':132,'nombre':'N1S2 - Documento: presentación del capítulo  asignado a cada equipo.'},
+                                {'letter':'J','id':134,'nombre':'N1S3 - El Gestor del Plan Estratégico TIC en su primer componente: Identificación Institucional.'},
+                                {'letter':'K','id':142,'nombre':'N1S3 - Gestor del Plan Estratégico TIC con los dos componentes de laCaracterizacióndiligenciados: 1. Identificación institucional TIC y 2. Caracterización proyectos TIC'},
+                                {'letter':'L','id':143,'nombre':'N1S4 - Gestor del Plan Estratégico TIC diligenciado en el componente Indicadores Educativos.'},
+                                {'letter':'M','id':144,'nombre':'N1S5 - Gestor de Plan Estratégico de TIC: componente, valoración de la gestión institucional.'},
+                                {'letter':'N','id':145,'nombre':'N1S6 - Gestor del Plan Estratégico TIC componente Matriz FODA'},
+
+                                {'letter':'O','id':147,'nombre':'N2S1 - Gestor del Plan Estratégico TIC en el componente: Responsables y plazos.'},
+                                {'letter':'P','id':156,'nombre':'N2S1 - Gestor del Plan Estratégico TIC. Componenete Comité de gestores TIC'},
+                                {'letter':'Q','id':149,'nombre':'N2S2 - Gestor del Plan Estratégico TIC. Objetivo general del Plan, objetivos específicos'},
+                                {'letter':'R','id':151,'nombre':'N2S3 - Gestor del Plan Estratégico TIC. Etapa: análisis y formulación del Plan los items: proyectos, actividades, áreas de gestión, y plazos (Inicio y finalización actividades y proyectos)'},
+
+                                {'letter':'S','id':294,'nombre':'N3S1 - Gestor del Plan Estratégico TIC, componente Tipos de Cooperación.'},
+                                {'letter':'T','id':164,'nombre':'N3S2 - Diligenciar la plantilla del documento compartido en Google Drive denominado: Aliados Estratégicos.'},
+                                {'letter':'U','id':165,'nombre':'N3S3 - Gestor Plan Estratégico TIC'},
+                                {'letter':'V','id':162,'nombre':'N3S4 - Brochure'},
+                                {'letter':'W','id':166,'nombre':'N3S4 - Audio, video o Guión de la entrevista ejecutada con la en entidad pública o privada'},
+
+                                {'letter':'X','id':171,'nombre':'N4S1 -  Dos fotografías del desarrollo de la socialización del Plan Estratégico TIC'},
+                                {'letter':'Y','id':170,'nombre':'N4S2 -  Acta diligenciada y firmada por los integrantes del Comité de Gestores TIC.'},
+                                ]
+
+    dict_productos_escuela_tic_docentes_innovadores = [
+                                {'letter': 'I', 'id': 304, 'nombre': 'M1 - ACTA DE COMPROMISO'},
+                                {'letter': 'J', 'id': 305,'nombre': 'M1 - FORO EN LA PLATAFORMA'},
+                                {'letter': 'K', 'id': 306,'nombre': 'M1 - Tarea:Actividad 3. El Coaching como estrategia de liderazgo docente.'},
+                                {'letter': 'L', 'id': 307,'nombre': 'M1 - Cuestionario:Prueba Módulo 1 “Conocimientos adquiridos”'},
+
+                                {'letter': 'M', 'id': 308,'nombre': 'M2 - Documento Word con las características esenciales de los procesos de desarrollo profesional docente.'},
+                                {'letter': 'N', 'id': 309, 'nombre': 'M2 - Documento PDF, rúbrica de Categorización.'},
+                                {'letter': 'O', 'id': 310,'nombre': 'M2 - Foro Wiki en la plataforma.'},
+                                {'letter': 'P', 'id': 311,'nombre': 'M2 - Cuestionario:Prueba Módulo 2 Conocimientos adquiridos'},
+
+                                {'letter': 'Q', 'id': 312,'nombre': 'M3 - Pantallazo de Polígono.'},
+                                {'letter': 'R', 'id': 313,'nombre': 'M3 - Foro Wiki en la plataforma.'},
+                                {'letter': 'S', 'id': 314,'nombre': 'M3 - Pantallazo de Facebook en la cual se vea reflejado el proceso de capacitación.'},
+                                {'letter': 'T', 'id': 315,'nombre': 'M3 - Cuestionario:Prueba Módulo 3 “Evaluando y potenciando proyectos educativos, unidades didácticas y experiencias como Líder Tic.”'},
+
+                                {'letter': 'U', 'id': 316, 'nombre': 'M4 - Mapa Mental Digital realizado en Mindmeister'},
+                                {'letter': 'V', 'id': 317, 'nombre': 'M4 - Tarea:Actividad 13. Construyendo Comunidades de Práctica como estrategia de innovación'},
+                                {'letter': 'W', 'id': 318,'nombre': 'M4 - Cuestionario:Prueba Módulo 4 “Conocimientos adquiridos”'},
+                                {'letter': 'X', 'id': 319,'nombre': 'M4 - Cuestionario:Prueba Final. “Presentación de la prueba final”'},
+                                ]
+
+
+
+
+
+    wb = xlsxwriter.Workbook(output)
+    ws_innovatic = wb.add_worksheet('INNOVATIC')
+    ws_directic = wb.add_worksheet('DIRECTIC')
+    ws_escuela_tic_docentes_innovadores = wb.add_worksheet('ESCUELATIC DOCENTES INNOVADORES')
+
+
+    text = wb.add_format({'font_name':'Calibri', 'font_size':12 ,'align':'left', 'valign':'vcenter', 'text_wrap':False})
+
+    number = wb.add_format({'font_name':'Calibri', 'font_size':12 ,'align':'right', 'valign':'vcenter', 'text_wrap':False,'num_format':'0'})
+
+    validado = wb.add_format({'font_name':'Calibri', 'font_size':12 ,'align':'left', 'valign':'vcenter', 'text_wrap':False, 'pattern':1, 'bg_color':'#00B050'})
+
+    gris = wb.add_format({'font_name':'Arial Narrow','border':1, 'bold':1, 'font_size':10 ,'align':'center', 'valign':'vcenter', 'text_wrap':True, 'pattern':1, 'bg_color':'#808080', 'font_color':'#FFFFFF'})
+
+
+    verde = wb.add_format({'font_name':'Arial Narrow', 'border':1, 'bold':1, 'font_size':10 ,'align':'center', 'valign':'vcenter', 'text_wrap':True, 'pattern':1, 'bg_color':'#008000', 'font_color':'#FFFFFF'})
+
+
+
+    for id_diplomado in [1,3,7]:
+
+        if id_diplomado == 1:
+            ws = ws_innovatic
+            dict_productos = dict_productos_innovatic
+
+            for producto in dict_productos_innovatic:
+                ws.write(producto['letter']+'1',producto['nombre'],verde)
+                ws.set_column(producto['letter']+':'+producto['letter'],14)
+
+
+        elif id_diplomado == 3:
+            ws = ws_directic
+            dict_productos = dict_productos_directic
+
+            for producto in dict_productos_directic:
+                ws.write(producto['letter']+'1',producto['nombre'],verde)
+                ws.set_column(producto['letter']+':'+producto['letter'],14)
+
+
+        elif id_diplomado == 7:
+            ws = ws_escuela_tic_docentes_innovadores
+            dict_productos = dict_productos_escuela_tic_docentes_innovadores
+
+            for producto in dict_productos_escuela_tic_docentes_innovadores:
+                ws.write(producto['letter']+'1',producto['nombre'],verde)
+                ws.set_column(producto['letter']+':'+producto['letter'],14)
+
+
+
+        ws.write('A1','REGIÓN',gris)
+        ws.set_column('A:A',11)
+        ws.set_row(0,90)
+
+        ws.write('B1','DEPARTAMENTO',gris)
+        ws.set_column('B:B',23)
+
+        ws.write('C1','MUNICIPIO',gris)
+        ws.set_column('C:C',18)
+
+        ws.write('D1','NOMBRE DEL FORMADOR',gris)
+        ws.set_column('D:D',36)
+
+        ws.write('E1','NUMERO DE CEDULA DEL FORMADOR',gris)
+        ws.set_column('E:E',13)
+
+        ws.write('F1','APELLIDOS DEL BENEFICIARIO',verde)
+        ws.set_column('F:F',25)
+
+        ws.write('G1','NOMBRES DEL BENEFICIARIO',verde)
+        ws.set_column('G:G',25)
+
+        ws.write('H1','NUMERO DE CEDULA DEL BENEFICIARIO',verde)
+        ws.set_column('H:H',14)
+
+        i = 2
+
+        for beneficiario in Beneficiario.objects.filter(grupo__diplomado__id = id_diplomado).order_by('grupo__contrato__formador'):
+            ws.write('A'+str(i), beneficiario.grupo.contrato.region.nombre.upper(),text)
+
+            ws.write('B'+str(i), beneficiario.municipio.departamento.nombre.upper() if beneficiario.municipio != None else "",text)
+
+            ws.write('C'+str(i), beneficiario.municipio.nombre.upper() if beneficiario.municipio != None else "",text)
+
+            ws.write('D'+str(i), beneficiario.grupo.contrato.formador.get_full_name(),text)
+
+            ws.write('E'+str(i), beneficiario.grupo.contrato.formador.cedula,number)
+
+            ws.write('F'+str(i), beneficiario.apellidos,text)
+
+            ws.write('G'+str(i), beneficiario.nombres,text)
+
+            ws.write('H'+str(i), beneficiario.cedula,number)
+
+
+            for producto in dict_productos:
+                entregable = Entregable.objects.get(id = producto['id'])
+
+                evidencias_cargado = Evidencia.objects.filter(beneficiarios_cargados = beneficiario,entregable = entregable).order_by('-id')
+
+                if evidencias_cargado.count() > 0:
+                    ws.write( producto['letter'] + str(i) , 'SIC-' + str(evidencias_cargado[0].id), validado)
+
+
+            i += 1
+
+    wb.close()
+
+
+    filename = unicode(informe.creacion) + '.xlsx'
+    informe.archivo.save(filename,File(output))
+    return "Reporte generado exitosamente"

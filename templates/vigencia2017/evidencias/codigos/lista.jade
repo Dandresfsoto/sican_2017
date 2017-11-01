@@ -28,17 +28,8 @@ block scroll_header_panel_content
                 select(class="selectpicker",id="select_accion")
                     option(value="") ---------
                     |{% if user.is_superuser %}
-                    option(value="26") Progreso actividades virtuales
-                    option(value="27") Aprobación actividades virtuales
                     |{% endif %}
-                    option(value="23") Progreso de carga listados de asistencia y actas de compromiso
-                    option(value="25") Aprobación listados de asistencia y actas de compromiso
-                    option(value="28") Consolidado RED
-                    option(value="29") Consolidado aprobacion RED
-                    option(value="30") Aprobacion presencial a criterio de la interventoria
-                    option(value="32") Consolidado de aprobación
-                    option(value="33") Secretaria bogota
-                    option(value="35") Consolidado actividades virtuales
+                    option(value="40") Consolidado actividades virtuales
 
 
                 button(class="btn",id="accion") Generar reporte

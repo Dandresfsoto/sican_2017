@@ -78,6 +78,7 @@ from rest.serializers import BeneficiarioSerializer
 import json
 from formadores.models import CohortesFormadores
 from informes.tasks import matriz_chequeo_virtual_compilada
+from vigencia2017.tasks import matriz_chequeo_virtual_compilada_2017
 from beneficiarios.models import GruposBeneficiarios
 from beneficiarios.models import BeneficiarioVigencia
 from vigencia2017.models import DaneSEDE
@@ -1254,6 +1255,8 @@ class ReportesView(APIView):
             x = matriz_chequeo_vigencia_2017_total.delay(request.user.email)
         if id_accion == '39':
             x = matriz_valores_vigencia_2017_total.delay(request.user.email)
+        if id_accion == '40':
+            x = matriz_chequeo_virtual_compilada_2017.delay(request.user.email)
 
         return HttpResponse(status=200)
 
