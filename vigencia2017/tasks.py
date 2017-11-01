@@ -1671,9 +1671,9 @@ def matriz_chequeo_virtual_compilada_2017(email):
         for beneficiario in Beneficiario.objects.filter(grupo__diplomado__id = id_diplomado).order_by('grupo__contrato__formador'):
             ws.write('A'+str(i), beneficiario.grupo.contrato.region.nombre.upper(),text)
 
-            ws.write('B'+str(i), beneficiario.municipio.departamento.nombre.upper() if beneficiario.municipio != None else "",text)
+            ws.write('B'+str(i), beneficiario.dane_sede.municipio.departamento.nombre.upper() if beneficiario.dane_sede != None else "",text)
 
-            ws.write('C'+str(i), beneficiario.municipio.nombre.upper() if beneficiario.municipio != None else "",text)
+            ws.write('C'+str(i), beneficiario.dane_sede.municipio.nombre.upper() if beneficiario.dane_sede != None else "",text)
 
             ws.write('D'+str(i), beneficiario.grupo.contrato.formador.get_full_name(),text)
 
