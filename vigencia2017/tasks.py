@@ -1245,7 +1245,12 @@ def build_red(id_red):
                {'id':316,'letter': 'AC'},
                {'id':317,'letter': 'AD'},
                {'id':318,'letter': 'AE'},
-               {'id':319,'letter': 'AF'}]
+               {'id':319,'letter': 'AF'},
+               {'id': 335, 'letter': 'AG'},
+               {'id': 336, 'letter': 'AH'},
+               {'id': 337, 'letter': 'AI'},
+               {'id': 338, 'letter': 'AJ'}
+               ]
 
         wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/ESCUELATIC DOCENTES INNOVADORES 2017.xlsx')
         ws = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
@@ -1445,7 +1450,12 @@ def retroalimentacion_red(id_red):
                    {'id': 316, 'letter': 'AC'},
                    {'id': 317, 'letter': 'AD'},
                    {'id': 318, 'letter': 'AE'},
-                   {'id': 319, 'letter': 'AF'}]
+                   {'id': 319, 'letter': 'AF'},
+                   {'id': 335, 'letter': 'AG'},
+                   {'id': 336, 'letter': 'AH'},
+                   {'id': 337, 'letter': 'AI'},
+                   {'id': 338, 'letter': 'AJ'}
+                   ]
             inicia = 6
 
 
@@ -1512,8 +1522,6 @@ def set_pago(pagos,corte_id):
         pago_object.corte_id = corte_id
         pago_object.save()
     return "Corte efectuado"
-
-
 
 @app.task
 def matriz_chequeo_virtual_compilada_2017(email):
