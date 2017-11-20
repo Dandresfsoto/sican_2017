@@ -1256,6 +1256,28 @@ def build_red(id_red):
         ws = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
         inicia = 6
 
+    elif red.diplomado.numero == 8:
+        ids = [{'id':334,'letter':'R'},
+               {'id':320,'letter':'S'},
+               {'id':321,'letter':'T'},
+               {'id':322,'letter':'U'},
+               {'id':323,'letter':'V'},
+               {'id':324,'letter':'W'},
+               {'id':325,'letter':'X'},
+               {'id':326,'letter':'Y'},
+               {'id':327,'letter':'Z'},
+               {'id':328,'letter':'AA'},
+               {'id':329,'letter':'AB'},
+               {'id':330,'letter': 'AC'},
+               {'id':331,'letter': 'AD'},
+               {'id':332,'letter': 'AE'},
+               {'id':333,'letter': 'AF'}
+               ]
+
+        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED DOCENTIC 2017.xlsx')
+        ws = wb.get_sheet_by_name('DOCENTIC')
+        inicia = 6
+
     evidencias_total = EvidenciaVigencia2017.objects.filter(red_id=id_red)
     beneficiarios_id = evidencias_total.exclude(beneficiarios_cargados = None).values_list('beneficiarios_cargados__id',flat=True).distinct()
 
@@ -1291,8 +1313,6 @@ def build_red(id_red):
         for id in ids:
             evidencia = evidencias.filter(entregable__id = id['id']).order_by('id')
             if evidencia.count() == 1:
-                if evidencia[0].subsanacion:
-                    ws.cell('L'+str(i)).value = 'S'
                 ws.cell( id['letter'] + str(i)).value = 'SIC-' + str(evidencia[0].id)
                 ws.cell( id['letter'] + str(i)).hyperlink = 'https://sican.asoandes.org' + evidencia[0].get_archivo_url()
 
