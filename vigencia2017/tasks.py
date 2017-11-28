@@ -54,7 +54,7 @@ def carga_masiva_matrices(id,email_user):
     wb = openpyxl.load_workbook(filename = carga.archivo.file.name,read_only=True)
     sheets = wb.get_sheet_names()
 
-    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'ESCUELATIC DOCENTES INNOVADORES' in sheets and 'DocenTIC' in sheets and 'ESCUELA TIC FAMILIA' in sheets:
+    if 'InnovaTIC' in sheets and 'TecnoTIC' in sheets and 'DirecTIC' in sheets and 'ESCUELATIC DOCENTES INNOVADORES' in sheets and 'DocenTIC' in sheets and 'ESCUELA TIC FAMILIA' in sheets and 'SAN ANDRES' in sheets:
 
         titulos = ['DIPLOMADO',
                    'RESULTADO',
@@ -525,9 +525,10 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
     ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
     ws_docentic = wb.get_sheet_by_name('DocenTIC')
+    ws_san_andres = wb.get_sheet_by_name('SAN ANDRES')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6,'9':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -586,6 +587,8 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
             ws = ws_escuelatic_innovadores
         elif id_diplomado == 8:
             ws = ws_docentic
+        elif id_diplomado == 9:
+            ws = ws_san_andres
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -648,6 +651,8 @@ def matriz_chequeo_vigencia_2017(email,id_contrato):
         wb.remove_sheet(ws_escuelatic_innovadores)
     if contadores['8'] == 6:
         wb.remove_sheet(ws_docentic)
+    if contadores['9'] == 6:
+        wb.remove_sheet(ws_san_andres)
 
     wb.save(output)
 
@@ -683,9 +688,10 @@ def matriz_valores_vigencia_2017(email,id_contrato):
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
     ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
     ws_docentic = wb.get_sheet_by_name('DocenTIC')
+    ws_san_andres = wb.get_sheet_by_name('SAN ANDRES')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6,'9':6}
 
 
 
@@ -727,6 +733,8 @@ def matriz_valores_vigencia_2017(email,id_contrato):
             ws = ws_escuelatic_innovadores
         elif id_diplomado == 8:
             ws = ws_docentic
+        elif id_diplomado == 9:
+            ws = ws_san_andres
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -778,6 +786,8 @@ def matriz_valores_vigencia_2017(email,id_contrato):
         wb.remove_sheet(ws_escuelatic_innovadores)
     if contadores['8'] == 6:
         wb.remove_sheet(ws_docentic)
+    if contadores['9'] == 6:
+        wb.remove_sheet(ws_san_andres)
 
     wb.save(output)
 
@@ -805,9 +815,10 @@ def matriz_chequeo_vigencia_2017_total(email):
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
     ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
     ws_docentic = wb.get_sheet_by_name('DocenTIC')
+    ws_san_andres = wb.get_sheet_by_name('SAN ANDRES')
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6,'9':6}
 
 
     number = Style(font=Font(name='Calibri', size=12),
@@ -866,6 +877,8 @@ def matriz_chequeo_vigencia_2017_total(email):
             ws = ws_escuelatic_innovadores
         elif id_diplomado == 8:
             ws = ws_docentic
+        elif id_diplomado == 9:
+            ws = ws_san_andres
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -924,6 +937,8 @@ def matriz_chequeo_vigencia_2017_total(email):
         wb.remove_sheet(ws_escuelatic_innovadores)
     if contadores['8'] == 6:
         wb.remove_sheet(ws_docentic)
+    if contadores['9'] == 6:
+        wb.remove_sheet(ws_san_andres)
 
     wb.save(output)
 
@@ -950,10 +965,11 @@ def matriz_valores_vigencia_2017_total(email):
     ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
     ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
     ws_docentic = wb.get_sheet_by_name('DocenTIC')
+    ws_san_andres = wb.get_sheet_by_name('SAN ANDRES')
 
 
 
-    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6}
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6,'9':6}
 
 
 
@@ -995,6 +1011,8 @@ def matriz_valores_vigencia_2017_total(email):
             ws = ws_escuelatic_innovadores
         elif id_diplomado == 8:
             ws = ws_docentic
+        elif id_diplomado == 9:
+            ws = ws_san_andres
 
         ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
         ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
@@ -1046,6 +1064,8 @@ def matriz_valores_vigencia_2017_total(email):
         wb.remove_sheet(ws_escuelatic_innovadores)
     if contadores['8'] == 6:
         wb.remove_sheet(ws_docentic)
+    if contadores['9'] == 6:
+        wb.remove_sheet(ws_san_andres)
 
     wb.save(output)
 
@@ -1276,6 +1296,24 @@ def build_red(id_red):
 
         wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED DOCENTIC 2017.xlsx')
         ws = wb.get_sheet_by_name('DOCENTIC')
+        inicia = 6
+
+    elif red.diplomado.numero == 9:
+        ids = [{'id':339,'letter':'R'},
+               {'id':340,'letter':'S'},
+               {'id':341,'letter':'T'},
+               {'id':342,'letter':'U'},
+               {'id':345,'letter':'V'},
+               {'id':348,'letter':'W'},
+               {'id':350,'letter':'X'},
+               {'id':353,'letter':'Y'},
+               {'id':354,'letter':'Z'},
+               {'id':361,'letter':'AA'},
+               {'id':362,'letter':'AB'}
+               ]
+
+        wb = openpyxl.load_workbook(filename=settings.STATICFILES_DIRS[0]+'/documentos/RED SAN ANDRES 2017.xlsx')
+        ws = wb.get_sheet_by_name('SAN ANDRES')
         inicia = 6
 
     evidencias_total = EvidenciaVigencia2017.objects.filter(red_id=id_red)
