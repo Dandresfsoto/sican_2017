@@ -743,6 +743,7 @@ class NuevoRedView(LoginRequiredMixin,
         evidencias_r1_escuelatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre = 'ESCUELA TIC FAMILIA')
         evidencias_r1_escuelatic_innovadores = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
         evidencias_r1_docentic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
+        evidencias_r1_san_andres = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='SAN ANDRES')
 
 
         evidencias_r2_innovatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre = 'INNOVATIC')
@@ -775,6 +776,10 @@ class NuevoRedView(LoginRequiredMixin,
         kwargs['formadores_docentic_r1'] = evidencias_r1_docentic.values_list('contrato__formador', flat=True).distinct().count()
         kwargs['beneficiarios_docentic_r1'] = evidencias_r1_docentic.values_list('beneficiarios_cargados', flat=True).distinct().count()
         kwargs['evidencias_docentic_r1'] = evidencias_r1_docentic.count()
+
+        kwargs['formadores_san_andres_r1'] = evidencias_r1_san_andres.values_list('contrato__formador',flat=True).distinct().count()
+        kwargs['beneficiarios_san_andres_r1'] = evidencias_r1_san_andres.values_list('beneficiarios_cargados',flat=True).distinct().count()
+        kwargs['evidencias_san_andres_r1'] = evidencias_r1_san_andres.count()
 
 
 
@@ -824,6 +829,7 @@ class NuevoRedView(LoginRequiredMixin,
             evidencias_r1_escuelatic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELA TIC FAMILIA')
             evidencias_r1_escuelatic_innovadores = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='ESCUELATIC DOCENTES INNOVADORES')
             evidencias_r1_docentic = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='DOCENTIC')
+            evidencias_r1_san_andres = evidencias_r1.filter(entregable__sesion__nivel__diplomado__nombre='SAN ANDRES')
 
             evidencias_r2_innovatic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='INNOVATIC')
             evidencias_r2_tecnotic = evidencias_r2.filter(entregable__sesion__nivel__diplomado__nombre='TECNOTIC')
@@ -847,6 +853,8 @@ class NuevoRedView(LoginRequiredMixin,
                     evidencias_r1_escuelatic_innovadores.update(red_id = red.id)
                 elif self.object.diplomado.nombre == 'DOCENTIC':
                     evidencias_r1_docentic.update(red_id = red.id)
+                elif self.object.diplomado.nombre == 'SAN ANDRES':
+                    evidencias_r1_san_andres.update(red_id = red.id)
                 else:
                     pass
 
