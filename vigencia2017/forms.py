@@ -663,12 +663,6 @@ class RedForm(forms.ModelForm):
                                 <p>Beneficiarios: {{beneficiarios_innovatic_r1}}</p>
                                 <p>Evidencias: {{evidencias_innovatic_r1}}</p>
                             </div>
-                            <div class="col-sm-2">
-                                <h4 class="bold-p">Tecnotic</h4>
-                                <p>Formadores: {{formadores_tecnotic_r1}}</p>
-                                <p>Beneficiarios: {{beneficiarios_tecnotic_r1}}</p>
-                                <p>Evidencias: {{evidencias_tecnotic_r1}}</p>
-                            </div>
 
                             <div class="col-sm-2">
                                 <h4 class="bold-p">Directic</h4>
@@ -688,13 +682,13 @@ class RedForm(forms.ModelForm):
                                 <p>Beneficiarios: {{beneficiarios_docentes_innovadores_r1}}</p>
                                 <p>Evidencias: {{evidencias_docentes_innovadores_r1}}</p>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">Docentic</h4>
                                 <p>Formadores: {{formadores_docentic_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_docentic_r1}}</p>
                                 <p>Evidencias: {{evidencias_docentic_r1}}</p>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="col-sm-2">
                                 <h4 class="bold-p">San Andres</h4>
                                 <p>Formadores: {{formadores_san_andres_r1}}</p>
                                 <p>Beneficiarios: {{beneficiarios_san_andres_r1}}</p>
