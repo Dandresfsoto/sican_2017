@@ -1516,6 +1516,25 @@ def retroalimentacion_red(id_red):
                    ]
             inicia = 6
 
+        elif red.diplomado.numero == 8:
+            ids = [{'id': 334, 'letter': 'R'},
+                   {'id': 320, 'letter': 'S'},
+                   {'id': 321, 'letter': 'T'},
+                   {'id': 322, 'letter': 'U'},
+                   {'id': 323, 'letter': 'V'},
+                   {'id': 324, 'letter': 'W'},
+                   {'id': 325, 'letter': 'X'},
+                   {'id': 326, 'letter': 'Y'},
+                   {'id': 327, 'letter': 'Z'},
+                   {'id': 328, 'letter': 'AA'},
+                   {'id': 329, 'letter': 'AB'},
+                   {'id': 330, 'letter': 'AC'},
+                   {'id': 331, 'letter': 'AD'},
+                   {'id': 332, 'letter': 'AE'},
+                   {'id': 333, 'letter': 'AF'}
+                   ]
+            inicia = 6
+
 
         for row in ws.iter_rows(row_offset=inicia-1):
             beneficiario = {}
