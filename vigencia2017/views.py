@@ -530,6 +530,113 @@ class MasivoEvidenciasEntregableView(LoginRequiredMixin,
 
 
 
+class MasivoEvidenciasEntregableNoPagoView(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         FormView):
+    form_class = MasivoVigencia2017Form
+    success_url = '../'
+    template_name = 'vigencia2017/grupos_formacion/masivo_evidencia.html'
+    permission_required = "permisos_sican.vigencia_2017.vigencia_2017_evidencias.crear"
+
+
+    def get_context_data(self, **kwargs):
+        grupo = GruposVigencia2017.objects.get(id=self.kwargs['id_grupo'])
+        kwargs['codigo_dane'] = DaneSEDE.objects.get(id=self.kwargs['pk']).dane_sede
+        kwargs['formador'] = Contrato.objects.get(id=self.kwargs['pk']).formador.get_full_name()
+        kwargs['codigo_grupo'] = grupo.diplomado.nombre + ": " + grupo.get_nombre_grupo()
+        kwargs['id_grupo'] = self.kwargs['id_grupo']
+        kwargs['nombre_entregable'] = Entregable.objects.get(id=self.kwargs['id_entregable']).nombre
+        return super(MasivoEvidenciasEntregableNoPagoView, self).get_context_data(**kwargs)
+
+
+    def form_valid(self, form):
+
+        context = self.get_context_data()
+
+
+        carga = CargaMasiva2017.objects.create(archivo=form.cleaned_data['archivo'])
+
+        #carga_masiva_evidencia.delay(carga.id,self.kwargs['pk'],self.kwargs['id_entregable'],self.request.user.id)
+
+
+        user = self.request.user
+        contrato = Contrato.objects.get(id=self.kwargs['pk'])
+        entregable = Entregable.objects.get(id=self.kwargs['id_entregable'])
+
+        soportes = ZipFile(carga.archivo, 'r')
+
+        resultados = []
+
+        cantidad_cargados = 0
+        cantidad_rechazados = 0
+
+        for soporte_info in soportes.infolist():
+            soporte = soporte_info.filename
+            archivo = SimpleUploadedFile(name=soporte, content=soportes.read(soporte_info))
+            resultado = ""
+
+            try:
+                cedula = soporte.split('/')[-1].split('.')[-2]
+            except:
+                pass
+            else:
+                try:
+                    beneficiario = BeneficiarioVigencia2017.objects.get(cedula=cedula)
+                except:
+                    resultado = "La cedula no esta registrada en el sistema"
+                    cantidad_rechazados += 1
+                else:
+                    if beneficiario.grupo.contrato == contrato:
+                        evidencias = EvidenciaVigencia2017.objects.filter(entregable=entregable, contrato=beneficiario.grupo.contrato)
+
+                        if evidencias.filter(beneficiarios_validados=beneficiario).count() == 0:
+                            #si la evidencia no esta validada
+                            cuenta_reportadas = 0
+                            if evidencias.filter(beneficiarios_cargados=beneficiario).count() > 0:
+                                #si la evidencia esta cargada
+                                evidencias_cargadas = evidencias.filter(beneficiarios_cargados=beneficiario)
+                                for evidencia_cargada in evidencias_cargadas:
+                                    if evidencia_cargada.red_id == None:
+                                        #si la evidencia no esta reportada
+                                        evidencia_cargada.beneficiarios_cargados.remove(beneficiario)
+                                    else:
+                                        #si la evidencia esta reportada
+                                        resultado = "La evidencia fue reportada en el RED-VIG2017-" + str(evidencia_cargada.red_id)
+                                        cuenta_reportadas += 1
+                            if cuenta_reportadas == 0:
+                                evidencia = self.create_evidencia(archivo, user, entregable, beneficiario)
+                                resultado = "La evidencia se cargo exitosamente con el codigo SIC-" + str(evidencia.id)
+                                cantidad_cargados += 1
+                            else:
+                                cantidad_rechazados += 1
+
+                        else:
+                            # si la evidencia esta validada
+                            resultado = "La evidencia ya fue aprobada y no es necesario cargarla nuevamente"
+                            cantidad_rechazados += 1
+                    else:
+                        resultado = "La cedula no corresponde a un beneficiario del contrato"
+                        cantidad_rechazados += 1
+
+            resultados.append({'cedula': cedula, 'resultado': resultado})
+
+        context['resultados'] = resultados
+        context['cantidad_cargados'] = cantidad_cargados
+        context['cantidad_rechazados'] = cantidad_rechazados
+
+        return render_to_response('vigencia2017/grupos_formacion/resultado_masivo.html',context,context_instance=RequestContext(self.request))
+
+
+    def create_evidencia(self,archivo,user,entregable,beneficiario):
+        evidencia = EvidenciaVigencia2017.objects.create(usuario=user,
+                                                         archivo=archivo,
+                                                         entregable=entregable,
+                                                         contrato=beneficiario.grupo.contrato)
+        evidencia.beneficiarios_cargados.add(beneficiario)
+        return evidencia
+
+
+
 class EditarEvidenciaEntregableView(LoginRequiredMixin,
                          PermissionRequiredMixin,
                          UpdateView):

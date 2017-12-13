@@ -36,6 +36,11 @@ block scroll_header_panel_content
         a(href="masivo",class="link_button")
             paper-button(class="submit") Masivo
         | {% endif %}
+
+        | {% if user.is_superuser %}
+        a(href="masivo_no_pago",class="link_button")
+            paper-button(class="submit") Masivo no pago
+        | {% endif %}
         table(id="table",class="display responsive no-wrap table table-striped table-bordered",width="100%")
             thead
                 tr
