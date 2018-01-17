@@ -100,6 +100,7 @@ import locale
 import random
 from region.models import Region
 from vigencia2017.models import Subsanacion as Subsanacion2017
+from vigencia2017.tasks import matriz_chequeo_vigencia_2017_total_red
 # Create your views here.
 
 
@@ -1257,6 +1258,8 @@ class ReportesView(APIView):
             x = matriz_valores_vigencia_2017_total.delay(request.user.email)
         if id_accion == '40':
             x = matriz_chequeo_virtual_compilada_2017.delay(request.user.email)
+        if id_accion == '41':
+            x = matriz_chequeo_vigencia_2017_total_red.delay(request.user.email)
 
         return HttpResponse(status=200)
 

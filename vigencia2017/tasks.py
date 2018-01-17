@@ -946,6 +946,160 @@ def matriz_chequeo_vigencia_2017_total(email):
     informe.archivo.save(filename,File(output))
     return "Reporte generado exitosamente"
 
+
+@app.task
+def matriz_chequeo_vigencia_2017_total_red(email):
+    usuario = User.objects.get(email=email)
+
+    nombre = 'Matriz de chequeo total red'
+
+
+    proceso = "REV-INF06"
+    informe = InformesExcel.objects.create(usuario = usuario,nombre=nombre,progreso="0%")
+    informe.save()
+    output = StringIO.StringIO()
+
+
+    wb = openpyxl.load_workbook(filename = settings.STATICFILES_DIRS[0]+'/documentos/chequeo_2017.xlsx')
+    ws_innovatic = wb.get_sheet_by_name('InnovaTIC')
+    ws_tecnotic = wb.get_sheet_by_name('TecnoTIC')
+    ws_directic = wb.get_sheet_by_name('DirecTIC')
+    ws_escuelatic = wb.get_sheet_by_name('EscuelaTIC')
+    ws_escuelatic_innovadores = wb.get_sheet_by_name('ESCUELATIC DOCENTES INNOVADORES')
+    ws_docentic = wb.get_sheet_by_name('DocenTIC')
+    ws_san_andres = wb.get_sheet_by_name('SAN ANDRES')
+
+
+    contadores = {'1':6,'2':6,'3':6,'4':6,'7':6,'8':6,'9':6}
+
+
+    number = Style(font=Font(name='Calibri', size=12),
+                   alignment=Alignment(horizontal='right', vertical='center', wrap_text=False),
+                   number_format='0',
+                   border=Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'),
+                                 bottom=Side(style='thin'))
+                   )
+
+    text = Style(font=Font(name='Calibri', size=12),
+                 alignment=Alignment(horizontal='left', vertical='center', wrap_text=False),
+                 number_format='General',
+                 border=Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'),
+                               bottom=Side(style='thin'))
+                 )
+
+    validado = Style(font=Font(name='Calibri', size=12),
+                     alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
+                     number_format='General',
+                     fill=PatternFill(fill_type='solid', start_color='FF00B050', end_color='FF00B050')
+                     )
+
+    enviado = Style(font=Font(name='Calibri', size=12),
+                    alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
+                    number_format='General',
+                    fill=PatternFill(fill_type='solid', start_color='FFC65911', end_color='FFC65911')
+                    )
+
+    cargado = Style(font=Font(name='Calibri', size=12),
+                    alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
+                    number_format='General',
+                    fill=PatternFill(fill_type='solid', start_color='FFFFC000', end_color='FFFFC000')
+                    )
+
+    rechazado = Style(font=Font(name='Calibri', size=12),
+                      alignment=Alignment(horizontal='center', vertical='center', wrap_text=False),
+                      number_format='General',
+                      fill=PatternFill(fill_type='solid', start_color='FFFF0000', end_color='FFFF0000')
+                      )
+
+
+
+    for beneficiario in BeneficiarioVigencia2017.objects.filter():
+
+        id_diplomado = beneficiario.grupo.diplomado.id
+
+        if id_diplomado == 1:
+            ws = ws_innovatic
+        elif id_diplomado == 2:
+            ws = ws_tecnotic
+        elif id_diplomado == 3:
+            ws = ws_directic
+        elif id_diplomado == 4:
+            ws = ws_escuelatic
+        elif id_diplomado == 7:
+            ws = ws_escuelatic_innovadores
+        elif id_diplomado == 8:
+            ws = ws_docentic
+        elif id_diplomado == 9:
+            ws = ws_san_andres
+
+        ws.cell(row=contadores[str(id_diplomado)], column=1, value = beneficiario.region.nombre.upper())
+        ws.cell(row=contadores[str(id_diplomado)], column=2, value = beneficiario.dane_sede.dane_sede if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=3, value = beneficiario.dane_sede.nombre_sede.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=4, value = beneficiario.dane_sede.dane_ie if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=5, value = beneficiario.dane_sede.nombre_ie.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=6, value = beneficiario.dane_sede.municipio.codigo_municipio if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=7, value = beneficiario.dane_sede.municipio.nombre.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=8, value = beneficiario.dane_sede.municipio.departamento.codigo_departamento if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=9, value = beneficiario.dane_sede.municipio.departamento.nombre.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=10, value = beneficiario.dane_sede.secretaria.nombre.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=11, value = beneficiario.dane_sede.zona.upper() if beneficiario.dane_sede != None else "N/A")
+        ws.cell(row=contadores[str(id_diplomado)], column=12, value = beneficiario.grupo.get_nombre_grupo())
+        ws.cell(row=contadores[str(id_diplomado)], column=13, value = beneficiario.grupo.contrato.formador.get_full_name().upper())
+        ws.cell(row=contadores[str(id_diplomado)], column=14, value = beneficiario.grupo.contrato.formador.cedula)
+        ws.cell(row=contadores[str(id_diplomado)], column=15, value = beneficiario.apellidos.upper())
+        ws.cell(row=contadores[str(id_diplomado)], column=16, value = beneficiario.nombres.upper())
+        ws.cell(row=contadores[str(id_diplomado)], column=17, value = beneficiario.cedula)
+        ws.cell(row=contadores[str(id_diplomado)], column=18, value = beneficiario.correo)
+        ws.cell(row=contadores[str(id_diplomado)], column=19, value = beneficiario.telefono_fijo)
+        ws.cell(row=contadores[str(id_diplomado)], column=20, value = beneficiario.telefono_celular)
+        ws.cell(row=contadores[str(id_diplomado)], column=21, value = beneficiario.area)
+        ws.cell(row=contadores[str(id_diplomado)], column=22, value = beneficiario.grado)
+        ws.cell(row=contadores[str(id_diplomado)], column=23, value = beneficiario.grupo.diplomado.nombre)
+        ws.cell(row=contadores[str(id_diplomado)], column=24, value = beneficiario.genero)
+
+        for entregable in Entregable.objects.filter(sesion__nivel__diplomado__id = id_diplomado):
+
+            estado = beneficiario.get_evidencia_state(id_entregable = entregable.id)
+
+            if estado['state'] == 'cargado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value=estado['red'])
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = cargado
+            elif estado['state'] == 'enviado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value=estado['red'])
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = enviado
+            elif estado['state'] == 'validado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value=estado['red'])
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = validado
+            elif estado['state'] == 'rechazado':
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero), value=estado['red'])
+                ws.cell(row=contadores[str(id_diplomado)], column=25 + int(entregable.numero)).style = rechazado
+
+        contadores[str(id_diplomado)] += 1
+
+
+    if contadores['1'] == 6:
+        wb.remove_sheet(ws_innovatic)
+    if contadores['2'] == 6:
+        wb.remove_sheet(ws_tecnotic)
+    if contadores['3'] == 6:
+        wb.remove_sheet(ws_directic)
+    if contadores['4'] == 6:
+        wb.remove_sheet(ws_escuelatic)
+    if contadores['7'] == 6:
+        wb.remove_sheet(ws_escuelatic_innovadores)
+    if contadores['8'] == 6:
+        wb.remove_sheet(ws_docentic)
+    if contadores['9'] == 6:
+        wb.remove_sheet(ws_san_andres)
+
+    wb.save(output)
+
+    filename = unicode(informe.creacion) + '.xlsx'
+    informe.archivo.save(filename,File(output))
+    return "Reporte generado exitosamente"
+
+
+
 @app.task
 def matriz_valores_vigencia_2017_total(email):
     usuario = User.objects.get(email=email)
