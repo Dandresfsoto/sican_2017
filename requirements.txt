@@ -33,7 +33,7 @@ django-smart-selects==1.2.2
 django-sslserver==0.19
 django-tables2==1.2.5
 django-telegram-bot==0.6.0
-djangorestframework==3.3.3
+djangorestframework==3.11.2
 et-xmlfile==1.0.1
 future==0.15.2
 image==1.5.3
