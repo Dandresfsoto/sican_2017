@@ -13,7 +13,7 @@ argparse==1.2.1
 arrow==0.8.0
 asgi-redis==0.13.1
 asgiref==0.13.3
-autobahn==0.14.1
+autobahn==20.12.3
 billiard==3.3.0.23
 celery==3.1.23
 certifi==2016.8.2
