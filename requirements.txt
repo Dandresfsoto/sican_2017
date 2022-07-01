@@ -46,7 +46,7 @@ kombu==3.0.35
 messengerbot==0.1.4
 msgpack-python==0.4.7
 openapi-codec==1.0.0
-openpyxl==2.3.5
+openpyxl==2.4.2
 permabots==2.2.3
 protobuf==3.0.0
 pycrypto==2.6.1
