@@ -48,7 +48,7 @@ msgpack-python==0.4.7
 openapi-codec==1.0.0
 openpyxl==2.3.5
 permabots==2.2.3
-protobuf==3.0.0
+protobuf==3.18.3
 pycrypto==2.6.1
 python-dateutil==2.5.3
 python-telegram-bot==4.2.0
